@@ -21,6 +21,7 @@ public class Board implements Loggable, Taskable {
     public static final int NAME_MIN_LENGTH = 5;
     public static final int NAME_MAX_LENGTH = 10;
     public static final String NAME_LEN_ERR = "Board name must be between %d and %d";
+    public static final String NON_EXISTENT_TASK_ERR = "Cant remove non-existent task";
 
     //Attributes
     private String name;
@@ -45,7 +46,7 @@ public class Board implements Loggable, Taskable {
         return name;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         ValidationHelper.validateStringLength(name, NAME_MIN_LENGTH, NAME_MAX_LENGTH,
                 NAME_LEN_ERR.formatted(NAME_MIN_LENGTH, NAME_MAX_LENGTH));
         this.name = name;
@@ -54,15 +55,18 @@ public class Board implements Loggable, Taskable {
     @Override
     public void addTask(Task task) {
         tasks.add(task);
-        String activity = "Task \"" + task.getTitle() + "\" added to board \"" + name + "\"";
+        String activity = "Task %s added to board %s".formatted(task.getTitle(), getName());
         addLog(activity);
     }
 
 
     @Override
     public void removeTask(Task task) {
+        if (!tasks.contains(task)) {
+            throw new IllegalArgumentException(NON_EXISTENT_TASK_ERR);
+        }
         tasks.remove(task);
-        String activity = "Task \"" + task.getTitle() + "\" removed from board \"" + name + "\"";
+        String activity = "Task %s removed from board %s".formatted(task.getTitle(), getName());
         addLog(activity);
     }
 

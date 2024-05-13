@@ -13,6 +13,7 @@ public class FeedbackImpl extends TaskImpl implements Models.Tasks.Contracts.Fee
     //Attributes
     private int rating;
     private StatusFeedback status;
+    private boolean initializing = true;
 
 
     //Constructor
@@ -20,6 +21,7 @@ public class FeedbackImpl extends TaskImpl implements Models.Tasks.Contracts.Fee
         super(id, title, description);
         this.rating = rating;
         this.status = StatusFeedback.NEW;
+        initializing = false;
         addLog(FEEDBACK_CONSTRUCTOR_LOG.formatted(title));
     }
 
@@ -33,6 +35,11 @@ public class FeedbackImpl extends TaskImpl implements Models.Tasks.Contracts.Fee
 
     public void setRating(int rating) {
         ValidationHelper.validateValueInRange(rating, 0, 10, RATING_ERR);
+
+        if (!initializing) {
+            addLog("Rating changed from %d to %d".formatted(this.rating, rating));
+
+        }
         this.rating = rating;
     }
 
@@ -42,6 +49,11 @@ public class FeedbackImpl extends TaskImpl implements Models.Tasks.Contracts.Fee
     }
 
     public void setStatus(StatusFeedback status) {
+        if (!initializing) {
+            addLog("Status changed from %s to %s".formatted(this.status, status));
+
+        }
+
         this.status = status;
     }
 

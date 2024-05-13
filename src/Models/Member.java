@@ -19,6 +19,7 @@ public class Member implements Loggable, Taskable {
     public static final int NAME_MIN_LENGTH = 5;
     public static final int NAME_MAX_LENGTH = 15;
     public static final String NAME_LEN_ERR = "Member name must be between %d and %d";
+    public static final String NON_EXISTENT_TASK_ERR = "Non-existent task";
 
     private String name;
     private final List<Task> tasks;
@@ -46,14 +47,17 @@ public class Member implements Loggable, Taskable {
 
     public void addTask(Task task) {
         tasks.add(task);
-        String activity = "Task \"" + task.getTitle() + "\" added to member \"" + name + "\"";
+        String activity = "Task %s added to board %s".formatted(task.getTitle(), getName());
         addLog(activity);
     }
 
 
     public void removeTask(Task task) {
+        if(!tasks.contains(task)){
+            throw new IllegalArgumentException(NON_EXISTENT_TASK_ERR);
+        }
         tasks.remove(task);
-        String activity = "Task \"" + task.getTitle() + "\" removed from member \"" + name + "\"";
+        String activity = "Task %s removed from board %s".formatted(task.getTitle(), getName());
         addLog(activity);
     }
 

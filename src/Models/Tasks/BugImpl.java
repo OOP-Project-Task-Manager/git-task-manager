@@ -3,6 +3,7 @@ package Models.Tasks;
 import Models.Tasks.enums.Priority;
 import Models.Tasks.enums.Severity;
 import Models.Tasks.enums.StatusBug;
+import Models.contracts.Loggable;
 import Models.contracts.Member;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class BugImpl extends TaskImpl implements Models.Tasks.Contracts.Bug {
     private Severity severity;
     private StatusBug status;
     private Member assignee;
+    private boolean initializing = true;
 
     //TODO /*Need to add the member class for assignee:*/
     //Constructor
@@ -30,6 +32,7 @@ public class BugImpl extends TaskImpl implements Models.Tasks.Contracts.Bug {
         this.severity = severity;
         this.status = StatusBug.ACTIVE;
         stepsToReproduce = new ArrayList<>();
+        initializing = false;
         addLog(BUG_CONSTRUCTOR_LOG.formatted(title));
 
     }
@@ -44,6 +47,10 @@ public class BugImpl extends TaskImpl implements Models.Tasks.Contracts.Bug {
 
 
     public void setPriority(Priority priority) {
+        if(!initializing){
+            addLog("Priority changed from %s to %s".formatted(this.priority,priority));
+
+        }
         this.priority = priority;
     }
 
@@ -53,6 +60,10 @@ public class BugImpl extends TaskImpl implements Models.Tasks.Contracts.Bug {
     }
 
     public void setSeverity(Severity severity) {
+        if(!initializing){
+            addLog("Severity changed from %s to %s".formatted(this.severity,severity));
+
+        }
         this.severity = severity;
     }
 
@@ -62,6 +73,10 @@ public class BugImpl extends TaskImpl implements Models.Tasks.Contracts.Bug {
     }
 
     public void setStatus(StatusBug status) {
+        if(!initializing){
+            addLog("Status changed from %s to %s".formatted(this.status,status));
+
+        }
         this.status = status;
     }
 
@@ -73,18 +88,29 @@ public class BugImpl extends TaskImpl implements Models.Tasks.Contracts.Bug {
 
     @Override
     public void addStepToReproduce(String step) {
+        addLog("""
+                New step to reproduce added
+                Step: %s
+                """.formatted(step));
         stepsToReproduce.add(step);
     }
 
 
     @Override
     public void removeStepToReproduce(String step) {
+        addLog("""
+                New step to reproduce removed
+                Step: %s
+                """.formatted(step));
         stepsToReproduce.remove(step);
     }
 
 
     @Override
     public void clearStepsToReproduce() {
+        addLog("""
+                Steps to reduce cleared
+                """);
         stepsToReproduce.clear();
     }
 
@@ -92,6 +118,8 @@ public class BugImpl extends TaskImpl implements Models.Tasks.Contracts.Bug {
     public Member getAssignee() {
         return assignee;
     }
+
+
 
     /*public void setAssignee(Member assignee) {
         for (Member member : )
