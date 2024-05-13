@@ -1,5 +1,6 @@
 package models;
 
+import models.contracts.Board;
 import models.tasks.Contracts.EventLog;
 import models.tasks.Contracts.Task;
 import models.tasks.EventLogImpl;
@@ -8,7 +9,7 @@ import utilities.ValidationHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardImpl implements models.contracts.Board {
+public class BoardImpl implements Board {
 
     //TODO implement logging to all methods that change something.
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MemberImpl implements models.contracts.Member {
+public class MemberImpl implements Member {
 
     //TODO implement logging to all methods that change something.
 

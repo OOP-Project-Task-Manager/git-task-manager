@@ -1,5 +1,6 @@
 package models;
 
+import models.contracts.Team;
 import models.tasks.Contracts.EventLog;
 import models.tasks.EventLogImpl;
 import utilities.ValidationHelper;
@@ -7,7 +8,7 @@ import utilities.ValidationHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamImpl implements models.contracts.Team {
+public class TeamImpl implements Team {
 
     public static final String TEAM_CONSTRUCTOR_LOG = "Team %s created";
     public static final int NAME_MIN_LENGTH = 5;

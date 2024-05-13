@@ -52,6 +52,7 @@ public abstract class TaskImpl implements Task, Commentable, Loggable, Identifia
         ValidationHelper.validateStringLength(title, TITLE_MIN_LENGTH, TITLE_MAX_LENGTH,
                 TITLE_LENGTH_ERR.formatted(TITLE_MIN_LENGTH, TITLE_MAX_LENGTH));
         this.title = title;
+
     }
 
     @Override
