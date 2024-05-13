@@ -1,14 +1,17 @@
 package Models.Tasks;
 
+import Models.Tasks.Contracts.Bug;
+import Models.Tasks.Contracts.Comment;
 import Models.Tasks.enums.Priority;
 import Models.Tasks.enums.Severity;
 import Models.Tasks.enums.StatusBug;
+import Models.Team;
 import Models.contracts.Member;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BugImpl extends TaskImpl implements Models.Tasks.Contracts.Bug {
+public class BugImpl extends TaskImpl implements Bug {
     public static final String BUG_CONSTRUCTOR_LOG = "Bug %s created";
 
     //Constants
@@ -93,8 +96,8 @@ public class BugImpl extends TaskImpl implements Models.Tasks.Contracts.Bug {
         return assignee;
     }
 
-    /*public void setAssignee(Member assignee) {
-        for (Member member : )
+    public void setAssignee(Member assignee) {
+
         this.assignee = assignee;
-    }*/
+    }
 }

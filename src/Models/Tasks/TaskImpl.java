@@ -41,8 +41,6 @@ public abstract class TaskImpl implements Task, Commentable, Loggable, Identifia
         this.id = id;
 
     }
-
-
     //Methods
 
     @Override
@@ -73,9 +71,12 @@ public abstract class TaskImpl implements Task, Commentable, Loggable, Identifia
     }
 
     @Override
-    public void removeComment(Comment comment) {
+    public void removeComment(Comment commentToRemove) {
         //TODO validation that comment exists.
-        comments.remove(comment);
+        /*for (Comment comment : getComments()){
+            if ()
+        }*/
+        comments.remove(commentToRemove);
     }
 
     @Override
@@ -98,6 +99,10 @@ public abstract class TaskImpl implements Task, Commentable, Loggable, Identifia
         return id;
     }
 
+    @Override
+    public List<Comment> getComments() {
+        return new ArrayList<>(comments);
+    }
 
     @Override
     public String toString() {
