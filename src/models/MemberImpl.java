@@ -1,5 +1,6 @@
 package models;
 
+import models.contracts.Member;
 import models.tasks.Contracts.EventLog;
 import models.tasks.Contracts.Task;
 import models.tasks.EventLogImpl;
