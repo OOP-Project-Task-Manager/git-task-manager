@@ -1,4 +1,7 @@
 package models.contracts;
 
-public interface Board {
+public interface Board extends Taskable,Loggable{
+
+    String getName();
+
 }

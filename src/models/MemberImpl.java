@@ -3,15 +3,13 @@ package models;
 import models.tasks.Contracts.EventLog;
 import models.tasks.Contracts.Task;
 import models.tasks.EventLogImpl;
-import models.contracts.Loggable;
-import models.contracts.Taskable;
 import utilities.ValidationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Member implements Loggable, Taskable {
+public class MemberImpl implements models.contracts.Member {
 
     //TODO implement logging to all methods that change something.
 
@@ -25,7 +23,7 @@ public class Member implements Loggable, Taskable {
     private final List<Task> tasks;
     private final List<EventLog> activityHistory;
 
-    public Member(String name) {
+    public MemberImpl(String name) {
         this.name = name;
         this.tasks = new ArrayList<>();
         this.activityHistory = new ArrayList<>();
@@ -47,7 +45,7 @@ public class Member implements Loggable, Taskable {
 
     public void addTask(Task task) {
         tasks.add(task);
-        String activity = "Task %s added to board %s".formatted(task.getTitle(), getName());
+        String activity = "Task %s added to member %s".formatted(task.getTitle(), getName());
         addLog(activity);
     }
 
@@ -57,7 +55,7 @@ public class Member implements Loggable, Taskable {
             throw new IllegalArgumentException(NON_EXISTENT_TASK_ERR);
         }
         tasks.remove(task);
-        String activity = "Task %s removed from board %s".formatted(task.getTitle(), getName());
+        String activity = "Task %s removed from member %s".formatted(task.getTitle(), getName());
         addLog(activity);
     }
 
@@ -81,7 +79,7 @@ public class Member implements Loggable, Taskable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Member member = (Member) o;
+        MemberImpl member = (MemberImpl) o;
         return Objects.equals(name, member.name);
     }
 

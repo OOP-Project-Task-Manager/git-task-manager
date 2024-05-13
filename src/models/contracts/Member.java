@@ -1,15 +1,6 @@
 package models.contracts;
 
-import models.tasks.Contracts.Task;
+public interface Member extends Taskable,Loggable{
 
-import java.util.List;
-
-public interface Member {
     String getName();
-
-    void addTask(Task task);
-
-    void removeTask(Task task);
-
-    List<Task> getTasks();
 }

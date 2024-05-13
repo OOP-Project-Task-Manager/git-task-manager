@@ -3,14 +3,12 @@ package models;
 import models.tasks.Contracts.EventLog;
 import models.tasks.Contracts.Task;
 import models.tasks.EventLogImpl;
-import models.contracts.Loggable;
-import models.contracts.Taskable;
 import utilities.ValidationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board implements Loggable, Taskable {
+public class BoardImpl implements models.contracts.Board {
 
     //TODO implement logging to all methods that change something.
 
@@ -30,7 +28,7 @@ public class Board implements Loggable, Taskable {
 
     //Constructor
 
-    public Board(String name) {
+    public BoardImpl(String name) {
         setName(name);
         tasks = new ArrayList<>();
         activityHistory = new ArrayList<>();

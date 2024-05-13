@@ -2,13 +2,12 @@ package models;
 
 import models.tasks.Contracts.EventLog;
 import models.tasks.EventLogImpl;
-import models.contracts.Loggable;
 import utilities.ValidationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Team implements Loggable, models.contracts.Teamable {
+public class TeamImpl implements models.contracts.Team {
 
     public static final String TEAM_CONSTRUCTOR_LOG = "Team %s created";
     public static final int NAME_MIN_LENGTH = 5;
@@ -16,11 +15,11 @@ public class Team implements Loggable, models.contracts.Teamable {
     public static final String NAME_LEN_ERR = "Team name must be between %d and %d";
 
     private String name;
-    private List<Member> members;
-    private List<Board> boards;
+    private List<MemberImpl> members;
+    private List<BoardImpl> boards;
     private List<EventLog> activityHistory;
 
-    public Team(String name) {
+    public TeamImpl(String name) {
         this.name = name;
         this.members = new ArrayList<>();
         this.boards = new ArrayList<>();
@@ -39,12 +38,12 @@ public class Team implements Loggable, models.contracts.Teamable {
     }
 
     @Override
-    public List<Member> getMembers() {
+    public List<MemberImpl> getMembers() {
         return new ArrayList<>(members);
     }
 
     @Override
-    public void addMember(Member member) {
+    public void addMember(MemberImpl member) {
         members.add(member);
         String activity = String.format("Member %s added to team %s", member.getName(), getName());
         addLog(activity);
@@ -53,19 +52,19 @@ public class Team implements Loggable, models.contracts.Teamable {
 
 
     @Override
-    public void removeMember(Member member) {
+    public void removeMember(MemberImpl member) {
         members.remove(member);
         String activity = String.format("Member %s removed from team %s", member.getName(), getName());
         addLog(activity);
     }
 
     @Override
-    public List<Board> getBoards() {
+    public List<BoardImpl> getBoards() {
         return new ArrayList<>(boards);
     }
 
     @Override
-    public void addBoard(Board board) {
+    public void addBoard(BoardImpl board) {
         boards.add(board);
         String activity = String.format("Board %s added to team %s", board.getName(), getName());
         addLog(activity);
@@ -73,7 +72,7 @@ public class Team implements Loggable, models.contracts.Teamable {
 
 
     @Override
-    public void removeBoard(Board board) {
+    public void removeBoard(BoardImpl board) {
         boards.remove(board);
         String activity = String.format("Board %s removed from team %s", board.getName(), getName());
         addLog(activity);
