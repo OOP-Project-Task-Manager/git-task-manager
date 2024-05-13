@@ -88,4 +88,6 @@ public class Team implements Loggable, Models.contracts.Teamable {
     public List<EventLog> getLogs() {
         return new ArrayList<>(activityHistory);
     }
+
+
 }

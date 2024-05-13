@@ -1,8 +1,10 @@
 package Models.Tasks.Contracts;
 
+
 import Models.Tasks.enums.Priority;
 import Models.Tasks.enums.Severity;
 import Models.Tasks.enums.StatusBug;
+import Models.contracts.Member;
 
 import java.util.List;
 
@@ -20,4 +22,6 @@ public interface Bug {
     void removeStepToReproduce(String step);
 
     void clearStepsToReproduce();
+
+    Member getAssignee();
 }

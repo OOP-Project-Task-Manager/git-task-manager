@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class EventLogImpl implements Models.Tasks.Contracts.EventLog {
 
     //Constants
-    public static final String DESCRIPTION_EMPTY_ERR = "Desctiption cannot be empty";
+    public static final String DESCRIPTION_EMPTY_ERR = "Description cannot be empty";
 
     //Attributes
     private final String description;

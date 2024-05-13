@@ -3,6 +3,7 @@ package Models.Tasks;
 import Models.Tasks.enums.Priority;
 import Models.Tasks.enums.Severity;
 import Models.Tasks.enums.StatusBug;
+import Models.contracts.Member;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +18,12 @@ public class BugImpl extends TaskImpl implements Models.Tasks.Contracts.Bug {
     private Priority priority;
     private Severity severity;
     private StatusBug status;
+    private Member assignee;
 
     //TODO /*Need to add the member class for assignee:*/
     //Constructor
 
-    public BugImpl(int id, String title, String description, Priority priority, Severity severity) {
+    public BugImpl(int id, String title, String description, Priority priority, Severity severity, Member assignee) {
 
         super(id, title, description);
         this.priority = priority;
@@ -86,5 +88,13 @@ public class BugImpl extends TaskImpl implements Models.Tasks.Contracts.Bug {
         stepsToReproduce.clear();
     }
 
+    @Override
+    public Member getAssignee() {
+        return assignee;
+    }
 
+    /*public void setAssignee(Member assignee) {
+        for (Member member : )
+        this.assignee = assignee;
+    }*/
 }
