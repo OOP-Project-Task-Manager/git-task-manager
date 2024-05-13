@@ -46,7 +46,7 @@ public class Team implements Loggable, Models.contracts.Teamable {
     @Override
     public void addMember(Member member) {
         members.add(member);
-        String activity = "Member \"" + member.getName() + "\" added to team \"" + name + "\"";
+        String activity = String.format("Member %s added to team %s", member.getName(), getName());
         addLog(activity);
 
     }
@@ -55,7 +55,7 @@ public class Team implements Loggable, Models.contracts.Teamable {
     @Override
     public void removeMember(Member member) {
         members.remove(member);
-        String activity = "Member \"" + member.getName() + "\" removed from team \"" + name + "\"";
+        String activity = String.format("Member %s removed from team %s", member.getName(), getName());
         addLog(activity);
     }
 
@@ -67,7 +67,7 @@ public class Team implements Loggable, Models.contracts.Teamable {
     @Override
     public void addBoard(Board board) {
         boards.add(board);
-        String activity = "Board \"" + board.getName() + "\" added to team \"" + name + "\"";
+        String activity = String.format("Board %s added to team %s", board.getName(), getName());
         addLog(activity);
     }
 
@@ -75,7 +75,7 @@ public class Team implements Loggable, Models.contracts.Teamable {
     @Override
     public void removeBoard(Board board) {
         boards.remove(board);
-        String activity = "Board \"" + board.getName() + "\" removed from team \"" + name + "\"";
+        String activity = String.format("Board %s removed from team %s", board.getName(), getName());
         addLog(activity);
     }
 
