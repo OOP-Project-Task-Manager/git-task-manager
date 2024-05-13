@@ -1,10 +1,9 @@
 package Models.Tasks;
 
 import Models.Tasks.Contracts.Comment;
-import Models.contracts.Printable;
 import utilities.ValidationHelper;
 
-public class CommentImpl implements Comment, Printable {
+public class CommentImpl implements Comment {
 
 
     //Constants
@@ -50,10 +49,10 @@ public class CommentImpl implements Comment, Printable {
 
 
     @Override
-    public String getAsString() {
+    public String toString() {
         return """
                 Author: %s
                 Message: %s
-                """.formatted(author,message);
+                """.formatted(author, message);
     }
 }

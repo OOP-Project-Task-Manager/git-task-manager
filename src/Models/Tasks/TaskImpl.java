@@ -6,13 +6,12 @@ import Models.Tasks.Contracts.Task;
 import Models.contracts.Commentable;
 import Models.contracts.Identifiable;
 import Models.contracts.Loggable;
-import Models.contracts.Printable;
 import utilities.ValidationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class TaskImpl implements Task, Printable, Commentable, Loggable, Identifiable {
+public abstract class TaskImpl implements Task, Commentable, Loggable, Identifiable {
 
 
     //Constants
@@ -101,7 +100,7 @@ public abstract class TaskImpl implements Task, Printable, Commentable, Loggable
 
 
     @Override
-    public String getAsString() {
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Title: ").append(title).append("\n");
         stringBuilder.append("Description: ").append(description).append("\n");

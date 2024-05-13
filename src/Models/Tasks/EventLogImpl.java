@@ -1,11 +1,9 @@
 package Models.Tasks;
 
-import Models.contracts.Printable;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class EventLogImpl implements Models.Tasks.Contracts.EventLog, Printable {
+public class EventLogImpl implements Models.Tasks.Contracts.EventLog {
 
     //Constants
     public static final String DESCRIPTION_EMPTY_ERR = "Desctiption cannot be empty";
@@ -47,7 +45,7 @@ public class EventLogImpl implements Models.Tasks.Contracts.EventLog, Printable 
 
 
     @Override
-    public String getAsString() {
+    public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy HH:mm:ss");
         String formattedTimestamp = timestamp.format(formatter);
         return """
