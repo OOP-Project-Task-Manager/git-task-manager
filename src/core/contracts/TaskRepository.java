@@ -20,4 +20,9 @@ public interface TaskRepository {
     Board createBoard(String name);
     Member createNewPerson(String name);
     Team createTeam(String name);
+    boolean hasLoggedInUser();
+
+    void login(Team team);
+
+    void logout();
 }

@@ -22,6 +22,7 @@ import java.util.List;
 
 public class TaskRepositoryImpl implements TaskRepository {
     private final List<Team> teams;
+    private Team loggedTeam;
 
     public TaskRepositoryImpl(){
         teams = new ArrayList<>();
@@ -59,5 +60,18 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public Team createTeam(String name) {
         return new TeamImpl(name);
+    }
+
+    @Override
+    public boolean hasLoggedInUser() {
+        return loggedTeam != null;
+    }
+    @Override
+    public void login(Team team) {
+        loggedTeam = team;
+    }
+    @Override
+    public void logout() {
+        loggedTeam = null;
     }
 }
