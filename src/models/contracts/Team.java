@@ -5,7 +5,9 @@ import models.MemberImpl;
 
 import java.util.List;
 
-public interface Team extends Loggable{
+public interface Team extends Loggable {
+
+    String getName();
     List<MemberImpl> getMembers();
 
     void addMember(MemberImpl member);

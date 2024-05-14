@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskRepositoryImpl implements TaskRepository {
+    private static final String NO_LOGGED_IN_TEAM = "There is no logged in team.";
+    private final static String TEAM_ALREADY_EXIST = "Team %s already exist.";
     private final List<Team> teams;
     private Team loggedTeam;
 
@@ -63,7 +65,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
-    public boolean hasLoggedInUser() {
+    public boolean hasLoggedInTeam() {
         return loggedTeam != null;
     }
     @Override
@@ -73,5 +75,21 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public void logout() {
         loggedTeam = null;
+    }
+
+    @Override
+    public Team getLoggedInTeam() {
+        if (loggedTeam == null){
+            throw new IllegalArgumentException(NO_LOGGED_IN_TEAM);
+        }
+        return loggedTeam;
+    }
+
+    @Override
+    public void addTeam(Team teamToAdd) {
+        if (teams.contains(teamToAdd)){
+            throw new IllegalArgumentException(String.format(TEAM_ALREADY_EXIST, teamToAdd.getName()));
+        }
+        teams.add(teamToAdd);
     }
 }
