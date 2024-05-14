@@ -18,7 +18,7 @@ public abstract class BaseCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        if (requiresLogin() && !repository.hasLoggedInUser()) {
+        if (requiresLogin() && !repository.hasLoggedInTeam()) {
             throw new IllegalArgumentException(TEAM_NOT_LOGGED);
         }
         return executeCommand(parameters);
