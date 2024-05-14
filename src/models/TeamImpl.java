@@ -1,5 +1,7 @@
 package models;
 
+import models.contracts.Board;
+import models.contracts.Member;
 import models.contracts.Team;
 import models.tasks.Contracts.EventLog;
 import models.tasks.EventLogImpl;
@@ -16,8 +18,8 @@ public class TeamImpl implements Team {
     public static final String NAME_LEN_ERR = "Team name must be between %d and %d";
 
     private String name;
-    private List<MemberImpl> members;
-    private List<BoardImpl> boards;
+    private List<Member> members;
+    private List<Board> boards;
     private List<EventLog> activityHistory;
 
     public TeamImpl(String name) {
@@ -42,12 +44,12 @@ public class TeamImpl implements Team {
     }
 
     @Override
-    public List<MemberImpl> getMembers() {
+    public List<Member> getMembers() {
         return new ArrayList<>(members);
     }
 
     @Override
-    public void addMember(MemberImpl member) {
+    public void addMember(Member member) {
         members.add(member);
         String activity = String.format("Member %s added to team %s", member.getName(), getName());
         addLog(activity);
@@ -63,12 +65,12 @@ public class TeamImpl implements Team {
     }
 
     @Override
-    public List<BoardImpl> getBoards() {
+    public List<Board> getBoards() {
         return new ArrayList<>(boards);
     }
 
     @Override
-    public void addBoard(BoardImpl board) {
+    public void addBoard(Board board) {
         boards.add(board);
         String activity = String.format("Board %s added to team %s", board.getName(), getName());
         addLog(activity);
@@ -76,7 +78,7 @@ public class TeamImpl implements Team {
 
 
     @Override
-    public void removeBoard(BoardImpl board) {
+    public void removeBoard(Board board) {
         boards.remove(board);
         String activity = String.format("Board %s removed from team %s", board.getName(), getName());
         addLog(activity);

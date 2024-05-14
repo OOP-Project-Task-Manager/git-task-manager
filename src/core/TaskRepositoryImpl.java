@@ -23,6 +23,7 @@ import java.util.List;
 public class TaskRepositoryImpl implements TaskRepository {
     //private static final String NO_LOGGED_IN_TEAM = "There is no logged in team.";
     private final static String TEAM_ALREADY_EXIST = "Team %s already exist.";
+    private final static String NO_SUCH_TEAM = "There is no team with name %s!";
     private final List<Team> teams;
     //private Team loggedTeam;//без няма логика по скоро мембър...
 
@@ -62,6 +63,16 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public Team createTeam(String name) {
         return new TeamImpl(name);
+    }
+
+    @Override
+    public Team findTeamByName(String username) {
+        Team user = teams
+                .stream()
+                .filter(u -> u.getName().equalsIgnoreCase(username))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TEAM, username)));
+        return user;
     }
 
     /*@Override

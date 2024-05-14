@@ -3,6 +3,7 @@ package commands;
 import core.contracts.TaskRepository;
 import models.BoardImpl;
 import models.contracts.Board;
+import models.contracts.Team;
 import utilities.ValidationHelper;
 
 import java.util.List;
@@ -20,7 +21,11 @@ public class CreateNewBoardInTeamCommand extends BaseCommand {
         return createBoardInTeam(name);
     }
     private String createBoardInTeam(String name){
+        Team team = getRepository().findTeamByName(name);
         Board board = getRepository().createBoard(name);
+        team.addBoard(board);
         return String.format(BOARD_CREATED, board.getName());
     }
+
+    ///not sure should ask tomorrow!!!!!!!!!!!!!!!!
 }

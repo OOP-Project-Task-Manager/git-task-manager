@@ -8,15 +8,15 @@ import java.util.List;
 public interface Team extends Loggable {
 
     String getName();
-    List<MemberImpl> getMembers();
+    List<Member> getMembers();
 
-    void addMember(MemberImpl member);
+    void addMember(Member member);
 
     void removeMember(MemberImpl member);
 
-    List<BoardImpl> getBoards();
+    List<Board> getBoards();
 
-    void addBoard(BoardImpl board);
+    void addBoard(Board board);
 
-    void removeBoard(BoardImpl board);
+    void removeBoard(Board board);
 }
