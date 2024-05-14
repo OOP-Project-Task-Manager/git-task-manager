@@ -26,6 +26,5 @@ public interface TaskRepository {
 
     void logout();
     Team getLoggedInTeam();
-
     void addTeam(Team teamToAdd);
 }

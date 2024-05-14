@@ -84,7 +84,6 @@ public class TaskRepositoryImpl implements TaskRepository {
         }
         return loggedTeam;
     }
-
     @Override
     public void addTeam(Team teamToAdd) {
         if (teams.contains(teamToAdd)){
