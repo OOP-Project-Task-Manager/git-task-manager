@@ -12,7 +12,7 @@ public abstract class BaseCommand implements Command {
         this.repository = repository;
     }
 
-    protected TaskRepository getVehicleDealershipRepository() {
+    protected TaskRepository getRepository() {
         return repository;
     }
 
