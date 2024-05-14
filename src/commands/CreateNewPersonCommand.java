@@ -22,8 +22,8 @@ public class CreateNewPersonCommand extends BaseCommand {
     }
 
     private String createPerson(String name){
-        getRepository().createNewPerson(name);
-        return String.format(PERSON_CREATED, name);
+        Member member = getRepository().createNewPerson(name);
+        return String.format(PERSON_CREATED, member.getName());
     }
 
     /*@Override
