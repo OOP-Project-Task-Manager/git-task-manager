@@ -18,13 +18,13 @@ public abstract class BaseCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        if (requiresLogin() && !repository.hasLoggedInTeam()) {
+        /*if (requiresLogin() && !repository.hasLoggedInTeam()) {
             throw new IllegalArgumentException(TEAM_NOT_LOGGED);
-        }
+        }*/
         return executeCommand(parameters);
     }
 
-    protected abstract boolean requiresLogin();
+    //protected abstract boolean requiresLogin();
 
     protected abstract String executeCommand(List<String> parameters);
 }

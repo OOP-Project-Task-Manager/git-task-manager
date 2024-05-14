@@ -21,10 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskRepositoryImpl implements TaskRepository {
-    private static final String NO_LOGGED_IN_TEAM = "There is no logged in team.";
+    //private static final String NO_LOGGED_IN_TEAM = "There is no logged in team.";
     private final static String TEAM_ALREADY_EXIST = "Team %s already exist.";
     private final List<Team> teams;
-    private Team loggedTeam;
+    //private Team loggedTeam;//без няма логика по скоро мембър...
 
     public TaskRepositoryImpl(){
         teams = new ArrayList<>();
@@ -64,17 +64,17 @@ public class TaskRepositoryImpl implements TaskRepository {
         return new TeamImpl(name);
     }
 
-    @Override
+    /*@Override
     public boolean hasLoggedInTeam() {
         return loggedTeam != null;
-    }
-    @Override
+    }*/
+    /*@Override
     public void login(Team team) {
-        loggedTeam = team;
+        loggedTeam = team;//
     }
     @Override
     public void logout() {
-        loggedTeam = null;
+        loggedTeam = null;//
     }
 
     @Override
@@ -82,8 +82,8 @@ public class TaskRepositoryImpl implements TaskRepository {
         if (loggedTeam == null){
             throw new IllegalArgumentException(NO_LOGGED_IN_TEAM);
         }
-        return loggedTeam;
-    }
+        return loggedTeam;//
+    }*/
     @Override
     public void addTeam(Team teamToAdd) {
         if (teams.contains(teamToAdd)){

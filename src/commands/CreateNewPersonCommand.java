@@ -26,8 +26,8 @@ public class CreateNewPersonCommand extends BaseCommand {
         return String.format(PERSON_CREATED, name);
     }
 
-    @Override
+    /*@Override
     protected boolean requiresLogin() {
         return false;
-    }
+    }*/
 }
