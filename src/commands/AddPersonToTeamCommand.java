@@ -22,7 +22,7 @@ public class AddPersonToTeamCommand extends BaseCommand {
     }
     private String addPersonInTeam(String personName, String teamName){
         Team team = getRepository().findTeamByName(teamName);
-        Member member = getRepository().findMemberByName(personName, team);
+        Member member = getRepository().findMemberByName(personName);
         team.addMember(member);
         return String.format(PERSON_ADDED_SUCCESSFULLY, member.getName(), teamName);
     }

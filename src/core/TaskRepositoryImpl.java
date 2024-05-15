@@ -26,12 +26,12 @@ public class TaskRepositoryImpl implements TaskRepository {
     private final static String NO_SUCH_TEAM = "There is no team with name %s!";
     public static final String NO_SUCH_MEMBER = "No member with name %s";
     private final List<Team> teams;
-    //private final List<Member> members;
+    private final List<Member> members;
     //private Team loggedTeam;//без няма логика по скоро мембър...
 
     public TaskRepositoryImpl(){
         teams = new ArrayList<>();
-        //members = new ArrayList<>();
+        members = new ArrayList<>();
     }
 
     @Override
@@ -82,13 +82,13 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
-    public Member findMemberByName(String username, Team originTeam) {
-        for (Member member : /*getMembers()*/ originTeam.getMembers()){
-            if (member.getName().equalsIgnoreCase(username)){
-                return member;
-            }
-        }
-        throw new IllegalArgumentException(String.format(NO_SUCH_MEMBER, username));
+    public Member findMemberByName(String username) {
+        Member member = members
+                .stream()
+                .filter(u -> u.getName().equalsIgnoreCase(username))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_MEMBER, username)));
+        return member;
     }
     @Override
     public void addTeam(Team teamToAdd) {
@@ -96,5 +96,12 @@ public class TaskRepositoryImpl implements TaskRepository {
             throw new IllegalArgumentException(String.format(TEAM_ALREADY_EXIST, teamToAdd.getName()));
         }
         teams.add(teamToAdd);
+    }
+    @Override
+    public void addMember(Member memberToAdd) {
+        if (members.contains(memberToAdd)){
+            throw new IllegalArgumentException(String.format(TEAM_ALREADY_EXIST, memberToAdd.getName()));
+        }
+        members.add(memberToAdd);
     }
 }

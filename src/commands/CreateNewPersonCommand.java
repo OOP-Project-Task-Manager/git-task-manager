@@ -23,11 +23,7 @@ public class CreateNewPersonCommand extends BaseCommand {
 
     private String createPerson(String name){
         Member member = getRepository().createNewPerson(name);
+        getRepository().addMember(member);
         return String.format(PERSON_CREATED, member.getName());
     }
-
-    /*@Override
-    protected boolean requiresLogin() {
-        return false;
-    }*/
 }
