@@ -27,6 +27,8 @@ public class TaskRepositoryImpl implements TaskRepository {
     private final static String TEAM_ALREADY_EXIST = "Team %s already exist.";
     private final static String NO_SUCH_TEAM = "There is no team with name %s!";
     public static final String NO_SUCH_MEMBER = "No member with name %s";
+    public static final String NO_SUCH_BOARD = "No board with name %s";
+
     private final List<Team> teams;
     private final List<Member> members;
 
@@ -75,7 +77,9 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public Board createBoard(String name) {
-        return new BoardImpl(name);
+        Board board = new BoardImpl(name);
+        boards.add(board);
+        return board;
     }
 
     @Override
@@ -90,16 +94,19 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public Board findBoardByName(String name) {
-        //TODO
 
-//        Board board = boards
+        Board board = boards.stream().filter(u -> u.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_BOARD, name)));
 
-        return null;
+
+        return board;
     }
 
     @Override
     public Team findTeamByName(String name) {
-        Team team = teams.stream().filter(u -> u.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TEAM, name)));
+        Team team = teams.stream()
+                .filter(u -> u.getName().equalsIgnoreCase(name)).
+                findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TEAM, name)));
         return team;
     }
 
