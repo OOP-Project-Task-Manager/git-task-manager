@@ -16,7 +16,7 @@ public class AddPersonToTeamCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        String personName = parameters.getFirst();
+        String personName = parameters.get(0);
         String teamName = parameters.get(1);
         return addPersonInTeam(personName, teamName);
     }
