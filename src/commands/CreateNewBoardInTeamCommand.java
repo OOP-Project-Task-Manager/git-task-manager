@@ -17,12 +17,13 @@ public class CreateNewBoardInTeamCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        String name = parameters.get(0);
-        return createBoardInTeam(name);
+        String boardName = parameters.get(0);
+        String teamName = parameters.get(1);
+        return createBoardInTeam(boardName, teamName);
     }
-    private String createBoardInTeam(String name){
-        Team team = getRepository().findTeamByName(name);
-        Board board = getRepository().createBoard(name);
+    private String createBoardInTeam(String boardName, String teamName){
+        Team team = getRepository().findTeamByName(teamName);
+        Board board = getRepository().createBoard(boardName);
         team.addBoard(board);
         return String.format(BOARD_CREATED, board.getName());
     }

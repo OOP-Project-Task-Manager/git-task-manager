@@ -22,6 +22,7 @@ public interface TaskRepository {
     Team createTeam(String name);
 
     public Team findTeamByName(String username);
+    public Member findMemberByName(String username, Team team);
     //boolean hasLoggedInTeam();
 
     /*void login(Team team);

@@ -24,6 +24,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     //private static final String NO_LOGGED_IN_TEAM = "There is no logged in team.";
     private final static String TEAM_ALREADY_EXIST = "Team %s already exist.";
     private final static String NO_SUCH_TEAM = "There is no team with name %s!";
+    public static final String NO_SUCH_MEMBER = "No member with name %s";
     private final List<Team> teams;
     //private Team loggedTeam;//без няма логика по скоро мембър...
 
@@ -67,34 +68,23 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public Team findTeamByName(String username) {
-        Team user = teams
+        Team team = teams
                 .stream()
                 .filter(u -> u.getName().equalsIgnoreCase(username))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TEAM, username)));
-        return user;
-    }
-
-    /*@Override
-    public boolean hasLoggedInTeam() {
-        return loggedTeam != null;
-    }*/
-    /*@Override
-    public void login(Team team) {
-        loggedTeam = team;//
-    }
-    @Override
-    public void logout() {
-        loggedTeam = null;//
+        return team;
     }
 
     @Override
-    public Team getLoggedInTeam() {
-        if (loggedTeam == null){
-            throw new IllegalArgumentException(NO_LOGGED_IN_TEAM);
+    public Member findMemberByName(String username, Team originTeam) {
+        for (Member member : originTeam.getMembers()){
+            if (member.getName().equalsIgnoreCase(username)){
+                return member;
+            }
         }
-        return loggedTeam;//
-    }*/
+        throw new IllegalArgumentException(String.format(NO_SUCH_MEMBER, username));
+    }
     @Override
     public void addTeam(Team teamToAdd) {
         if (teams.contains(teamToAdd)){
