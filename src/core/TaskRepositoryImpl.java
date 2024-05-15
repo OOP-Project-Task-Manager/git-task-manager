@@ -21,13 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskRepositoryImpl implements TaskRepository {
-    //private static final String NO_LOGGED_IN_TEAM = "There is no logged in team.";
     private final static String TEAM_ALREADY_EXIST = "Team %s already exist.";
     private final static String NO_SUCH_TEAM = "There is no team with name %s!";
     public static final String NO_SUCH_MEMBER = "No member with name %s";
     private final List<Team> teams;
     private final List<Member> members;
-    //private Team loggedTeam;//без няма логика по скоро мембър...
 
     public TaskRepositoryImpl(){
         teams = new ArrayList<>();
@@ -38,20 +36,15 @@ public class TaskRepositoryImpl implements TaskRepository {
     public List<Team> getTeams() {
         return new ArrayList<>(teams);
     }
-    /*public List<Member> getMembers(){
-        return new ArrayList<>(members);
-    }*/
 
     @Override
     public Bug createBug(int id, String title, String description, Priority priority, Severity severity, Member assignee) {
         return new BugImpl(id, title, description, priority, severity, assignee);
     }
-
     @Override
     public Story createStory(int id, String title, String description, Priority priority, Size size, Member assignee) {
         return new StoryImpl(id, title, description, priority, size, assignee);
     }
-
     @Override
     public Feedback createFeedback(int id, String title, String description, int rating) {
         return new FeedbackImpl(id, title, description, rating);
@@ -60,17 +53,14 @@ public class TaskRepositoryImpl implements TaskRepository {
     public Board createBoard(String name) {
         return new BoardImpl(name);
     }
-
     @Override
     public Member createNewPerson(String name) {
         return new MemberImpl(name);
     }
-
     @Override
     public Team createTeam(String name) {
         return new TeamImpl(name);
     }
-
     @Override
     public Team findTeamByName(String username) {
         Team team = teams
@@ -80,7 +70,6 @@ public class TaskRepositoryImpl implements TaskRepository {
                 .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TEAM, username)));
         return team;
     }
-
     @Override
     public Member findMemberByName(String username) {
         Member member = members

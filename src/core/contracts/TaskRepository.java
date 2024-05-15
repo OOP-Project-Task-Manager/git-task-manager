@@ -20,15 +20,8 @@ public interface TaskRepository {
     Board createBoard(String name);
     Member createNewPerson(String name);
     Team createTeam(String name);
-
     public Team findTeamByName(String username);
     public Member findMemberByName(String username);
-    //boolean hasLoggedInTeam();
-
-    /*void login(Team team);
-
-    void logout();
-    Team getLoggedInTeam();*/
     void addTeam(Team teamToAdd);
     void addMember(Member memberToAdd);
 }
