@@ -29,7 +29,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     private final List<Member> members;
     //private Team loggedTeam;//без няма логика по скоро мембър...
 
-    public TaskRepositoryImpl(){
+    public TaskRepositoryImpl() {
         teams = new ArrayList<>();
         members = new ArrayList<>();
     }
@@ -38,9 +38,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     public List<Team> getTeams() {
         return new ArrayList<>(teams);
     }
-    /*public List<Member> getMembers(){
-        return new ArrayList<>(members);
-    }*/
+
 
     @Override
     public Bug createBug(int id, String title, String description, Priority priority, Severity severity, Member assignee) {
@@ -56,6 +54,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     public Feedback createFeedback(int id, String title, String description, int rating) {
         return new FeedbackImpl(id, title, description, rating);
     }
+
     @Override
     public Board createBoard(String name) {
         return new BoardImpl(name);
@@ -90,16 +89,18 @@ public class TaskRepositoryImpl implements TaskRepository {
                 .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_MEMBER, username)));
         return member;
     }
+
     @Override
     public void addTeam(Team teamToAdd) {
-        if (teams.contains(teamToAdd)){
+        if (teams.contains(teamToAdd)) {
             throw new IllegalArgumentException(String.format(TEAM_ALREADY_EXIST, teamToAdd.getName()));
         }
         teams.add(teamToAdd);
     }
+
     @Override
     public void addMember(Member memberToAdd) {
-        if (members.contains(memberToAdd)){
+        if (members.contains(memberToAdd)) {
             throw new IllegalArgumentException(String.format(TEAM_ALREADY_EXIST, memberToAdd.getName()));
         }
         members.add(memberToAdd);

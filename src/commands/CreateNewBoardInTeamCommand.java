@@ -9,9 +9,9 @@ import utilities.ValidationHelper;
 import java.util.List;
 
 public class CreateNewBoardInTeamCommand extends BaseCommand {
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
-    private final static String BOARD_CREATED = "Board %s created successfully!";
-    CreateNewBoardInTeamCommand(TaskRepository repository){
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
+    private final static String BOARD_CREATED = "Board {%s} created successfully and added to team {%s}!";
+    public CreateNewBoardInTeamCommand(TaskRepository repository){
         super(repository);
     }
     @Override
@@ -25,8 +25,8 @@ public class CreateNewBoardInTeamCommand extends BaseCommand {
         Team team = getRepository().findTeamByName(teamName);
         Board board = getRepository().createBoard(boardName);
         team.addBoard(board);
-        return String.format(BOARD_CREATED, board.getName());
+        return String.format(BOARD_CREATED, board.getName(),team.getName());
     }
 
-    ///not sure should ask tomorrow!!!!!!!!!!!!!!!!
+
 }

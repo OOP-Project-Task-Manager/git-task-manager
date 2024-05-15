@@ -1,5 +1,7 @@
 package core;
 
+import commands.CreateNewBoardInTeamCommand;
+import commands.CreateNewPersonCommand;
 import commands.CreateNewTeamCommand;
 import commands.contracts.Command;
 import commands.enums.CommandType;
@@ -18,6 +20,10 @@ public class CommandFactoryImpl implements CommandFactory {
         switch (commandType) {
             case CREATENEWTEAM:
                 return new CreateNewTeamCommand(taskRepository);
+            case CREATENEWBOARDINTEAM:
+                return new CreateNewBoardInTeamCommand(taskRepository);
+            case CREATENEWPERSON:
+                return new CreateNewPersonCommand(taskRepository);
             default:
                 throw new IllegalArgumentException(NO_SUCH_COMMAND);
 

@@ -3,7 +3,8 @@ package commands.enums;
 public enum CommandType {
 
     CREATENEWTEAM,
-    CREATEMEMBER,
+    CREATENEWBOARDINTEAM,
+    CREATENEWPERSON,
     SHOWMEMBERS,
     SHOWMEMBERACTIVITY,
     SHOWALLTEAMS,
