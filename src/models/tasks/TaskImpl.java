@@ -11,7 +11,7 @@ import utilities.ValidationHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class TaskImpl implements Task, Commentable, Loggable, Identifiable {
+public abstract class TaskImpl implements Task {
 
 
     //Constants

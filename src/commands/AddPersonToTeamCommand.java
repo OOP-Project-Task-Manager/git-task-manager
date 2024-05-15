@@ -8,8 +8,8 @@ import utilities.ValidationHelper;
 import java.util.List;
 
 public class AddPersonToTeamCommand extends BaseCommand {
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
-    public final static String PERSON_ADDED_SUCCESSFULLY = "Person with name %s added in team %s successfully!";
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
+    public final static String PERSON_ADDED_SUCCESSFULLY = "%s added to team %s successfully!";
     public AddPersonToTeamCommand(TaskRepository repository){
         super(repository);
     }
