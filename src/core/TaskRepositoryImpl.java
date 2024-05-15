@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskRepositoryImpl implements TaskRepository {
+    public static final String ERROR_TASK_ID = "No task with ID %d";
     private int id;
     private final static String TEAM_ALREADY_EXIST = "Team %s already exist.";
     private final static String NO_SUCH_TEAM = "There is no team with name %s!";
@@ -92,30 +93,34 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
-    public Team findTeamByName(String username) {
+    public Team findTeamByName(String name) {
         Team team = teams
                 .stream()
-                .filter(u -> u.getName().equalsIgnoreCase(username))
+                .filter(u -> u.getName().equalsIgnoreCase(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TEAM, username)));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TEAM, name)));
         return team;
     }
 
     @Override
-    public Member findMemberByName(String username) {
+    public Member findMemberByName(String name) {
         Member member = members
                 .stream()
-                .filter(u -> u.getName().equalsIgnoreCase(username))
+                .filter(u -> u.getName().equalsIgnoreCase(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_MEMBER, username)));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_MEMBER, name)));
         return member;
     }
 
     @Override
     public Task findTaskById(int id) {
-        return null;
+        for (Task task : tasks){
+            if (task.getId() == id){
+                return task;
+            }
+        }
+        throw new IllegalArgumentException(String.format(ERROR_TASK_ID, id));
     }
-
 
     @Override
     public void addTeam(Team teamToAdd) {
@@ -124,7 +129,6 @@ public class TaskRepositoryImpl implements TaskRepository {
         }
         teams.add(teamToAdd);
     }
-
     @Override
     public void addMember(Member memberToAdd) {
         if (members.contains(memberToAdd)) {
