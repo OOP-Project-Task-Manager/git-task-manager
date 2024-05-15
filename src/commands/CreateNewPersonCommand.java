@@ -17,7 +17,7 @@ public class CreateNewPersonCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        String name = parameters.getFirst();
+        String name = parameters.get(0);
         return createPerson(name);
     }
 
