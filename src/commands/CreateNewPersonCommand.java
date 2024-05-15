@@ -10,7 +10,7 @@ public class CreateNewPersonCommand extends BaseCommand {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
     private final static String PERSON_CREATED = "Person %s created successfully!";
 
-    CreateNewPersonCommand(TaskRepository repository){
+    public CreateNewPersonCommand(TaskRepository repository){
         super(repository);
     }
 

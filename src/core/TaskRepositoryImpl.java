@@ -27,7 +27,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     private final List<Team> teams;
     private final List<Member> members;
 
-    public TaskRepositoryImpl(){
+    public TaskRepositoryImpl() {
         teams = new ArrayList<>();
         members = new ArrayList<>();
     }
@@ -36,6 +36,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     public List<Team> getTeams() {
         return new ArrayList<>(teams);
     }
+
 
     @Override
     public Bug createBug(int id, String title, String description, Priority priority, Severity severity, Member assignee) {
@@ -81,14 +82,14 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
     @Override
     public void addTeam(Team teamToAdd) {
-        if (teams.contains(teamToAdd)){
+        if (teams.contains(teamToAdd)) {
             throw new IllegalArgumentException(String.format(TEAM_ALREADY_EXIST, teamToAdd.getName()));
         }
         teams.add(teamToAdd);
     }
     @Override
     public void addMember(Member memberToAdd) {
-        if (members.contains(memberToAdd)){
+        if (members.contains(memberToAdd)) {
             throw new IllegalArgumentException(String.format(TEAM_ALREADY_EXIST, memberToAdd.getName()));
         }
         members.add(memberToAdd);
