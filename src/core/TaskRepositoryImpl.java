@@ -26,16 +26,21 @@ public class TaskRepositoryImpl implements TaskRepository {
     private final static String NO_SUCH_TEAM = "There is no team with name %s!";
     public static final String NO_SUCH_MEMBER = "No member with name %s";
     private final List<Team> teams;
+    //private final List<Member> members;
     //private Team loggedTeam;//без няма логика по скоро мембър...
 
     public TaskRepositoryImpl(){
         teams = new ArrayList<>();
+        //members = new ArrayList<>();
     }
 
     @Override
     public List<Team> getTeams() {
         return new ArrayList<>(teams);
     }
+    /*public List<Member> getMembers(){
+        return new ArrayList<>(members);
+    }*/
 
     @Override
     public Bug createBug(int id, String title, String description, Priority priority, Severity severity, Member assignee) {
@@ -78,7 +83,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public Member findMemberByName(String username, Team originTeam) {
-        for (Member member : originTeam.getMembers()){
+        for (Member member : /*getMembers()*/ originTeam.getMembers()){
             if (member.getName().equalsIgnoreCase(username)){
                 return member;
             }
