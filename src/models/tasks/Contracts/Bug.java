@@ -8,7 +8,7 @@ import models.contracts.Member;
 
 import java.util.List;
 
-public interface Bug {
+public interface Bug extends Task {
     Priority getPriority();
 
     Severity getSeverity();

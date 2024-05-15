@@ -52,20 +52,25 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public Bug createBug(String title, String description, Priority priority, Severity severity, Member assignee) {
-        //TODO add to tasks
-        return new BugImpl(++id, title, description, priority, severity, assignee);
+        Bug bug = new BugImpl(++id, title, description, priority, severity, assignee);
+        tasks.add(bug);
+        return bug;
     }
 
     @Override
     public Story createStory(String title, String description, Priority priority, Size size, Member assignee) {
-        //TODO add to tasks
-        return new StoryImpl(++id, title, description, priority, size, assignee);
+
+        Story story = new StoryImpl(++id, title, description, priority, size, assignee);
+        tasks.add(story);
+        return story;
     }
 
     @Override
     public Feedback createFeedback(String title, String description, int rating) {
-        //TODO add to tasks
-        return new FeedbackImpl(++id, title, description, rating);
+
+        Feedback feedback = new FeedbackImpl(++id, title, description, rating);
+        tasks.add(feedback);
+        return feedback;
     }
 
     @Override
@@ -94,28 +99,20 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public Team findTeamByName(String name) {
-        Team team = teams
-                .stream()
-                .filter(u -> u.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TEAM, name)));
+        Team team = teams.stream().filter(u -> u.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TEAM, name)));
         return team;
     }
 
     @Override
     public Member findMemberByName(String name) {
-        Member member = members
-                .stream()
-                .filter(u -> u.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_MEMBER, name)));
+        Member member = members.stream().filter(u -> u.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_MEMBER, name)));
         return member;
     }
 
     @Override
     public Task findTaskById(int id) {
-        for (Task task : tasks){
-            if (task.getId() == id){
+        for (Task task : tasks) {
+            if (task.getId() == id) {
                 return task;
             }
         }
@@ -129,6 +126,7 @@ public class TaskRepositoryImpl implements TaskRepository {
         }
         teams.add(teamToAdd);
     }
+
     @Override
     public void addMember(Member memberToAdd) {
         if (members.contains(memberToAdd)) {
