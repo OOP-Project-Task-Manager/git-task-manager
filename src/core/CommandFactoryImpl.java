@@ -1,5 +1,6 @@
 package core;
 
+import commands.AddPersonToTeamCommand;
 import commands.CreateNewBoardInTeamCommand;
 import commands.CreateNewPersonCommand;
 import commands.CreateNewTeamCommand;
@@ -24,6 +25,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new CreateNewBoardInTeamCommand(taskRepository);
             case CREATENEWPERSON:
                 return new CreateNewPersonCommand(taskRepository);
+            case ADDPERSONTOTEAM:
+                return new AddPersonToTeamCommand(taskRepository);
             default:
                 throw new IllegalArgumentException(NO_SUCH_COMMAND);
 
