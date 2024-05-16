@@ -20,6 +20,9 @@ public class TaskRepositoryImpl implements TaskRepository {
     public static final String ERROR_TASK_ID = "No task with ID %d";
     public static final String NO_SUCH_TASK = "No such task {%s}";
     public static final String MEMBER_ALREADY_EXIST = "Member %s already exists";
+    public static final String BUG_ERR = "No Bug with id %d";
+    public static final String STORY_ERR = "No story with id %S";
+    public static final String FEEDBACK_ERR = "No feedback with id %s";
     private int id;
     private final static String TEAM_ALREADY_EXIST = "Team %s already exist.";
     private final static String NO_SUCH_TEAM = "There is no team with name %s!";
@@ -175,6 +178,24 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
+    public Bug findBugById(int id) {
+        Bug bug = bugs.stream().filter(u -> u.getId() == id).findFirst().orElseThrow(() -> new IllegalArgumentException(String.format(BUG_ERR, id)));
+        return bug;
+    }
+
+    @Override
+    public Story findStoryById(int id) {
+        Story story = stories.stream().filter(u -> u.getId() == id).findFirst().orElseThrow(() -> new IllegalArgumentException(String.format(STORY_ERR, id)));
+        return story;
+    }
+
+    @Override
+    public Feedback findFeedbackById(int id) {
+        Feedback feedback = feedbacks.stream().filter(u -> u.getId() == id).findFirst().orElseThrow(() -> new IllegalArgumentException(String.format(FEEDBACK_ERR, id)));
+        return feedback;
+    }
+
+    @Override
     public void addTeam(Team teamToAdd) {
         if (teams.contains(teamToAdd)) {
             throw new IllegalArgumentException(String.format(TEAM_ALREADY_EXIST, teamToAdd.getName()));
@@ -191,21 +212,4 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
 
-    public static <T extends Task> void processTasks(List<T> tasks) {
-        for (T task : tasks) {
-
-            if (task instanceof Bug) {
-                Bug bug = (Bug) task;
-
-            } else if (task instanceof Story) {
-                Story story = (Story) task;
-
-            } else if (task instanceof Feedback) {
-                Feedback feedback = (Feedback) task;
-
-            }
-        }
-
-
-    }
 }

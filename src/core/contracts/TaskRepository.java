@@ -16,11 +16,15 @@ public interface TaskRepository {
     List<Board> getBoards();
 
     List<Task> getTasks();
+
     List<Story> getStories();
+
     List<Bug> getBugs();
+
     List<Feedback> getFeedbacks();
 
     List<Member> getMembers();
+
     Comment createComment(Member author, String message);
 
 
@@ -39,6 +43,7 @@ public interface TaskRepository {
     Member createNewPerson(String name);
 
     Team createTeam(String name);
+
     Task findTaskByTitle(String title);
 
     Board findBoardByName(String name);
@@ -49,6 +54,12 @@ public interface TaskRepository {
 
 
     Task findTaskById(int id);
+
+    Bug findBugById(int id);
+
+    Story findStoryById(int id);
+
+    Feedback findFeedbackById(int id);
 
     void addTeam(Team teamToAdd);
 

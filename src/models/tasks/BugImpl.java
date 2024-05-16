@@ -21,7 +21,7 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
     private Member assignee;
     private boolean initializing = true;
 
-    //TODO /*Need to add the member class for assignee:*/
+
     //Constructor
 
     public BugImpl(int id, String title, String description, Priority priority, Severity severity, Member assignee) {
@@ -46,8 +46,8 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
 
 
     public void setPriority(Priority priority) {
-        if(!initializing){
-            addLog("Priority changed from %s to %s".formatted(this.priority,priority));
+        if (!initializing) {
+            addLog("Priority changed from %s to %s".formatted(this.priority, priority));
 
         }
         this.priority = priority;
@@ -58,9 +58,10 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
         return severity;
     }
 
+
     public void setSeverity(Severity severity) {
-        if(!initializing){
-            addLog("Severity changed from %s to %s".formatted(this.severity,severity));
+        if (!initializing) {
+            addLog("Severity changed from %s to %s".formatted(this.severity, severity));
 
         }
         this.severity = severity;
@@ -71,9 +72,10 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
         return status;
     }
 
+
     public void setStatus(StatusBug status) {
-        if(!initializing){
-            addLog("Status changed from %s to %s".formatted(this.status,status));
+        if (!initializing) {
+            addLog("Status changed from %s to %s".formatted(this.status, status));
 
         }
         this.status = status;

@@ -11,6 +11,12 @@ import java.util.List;
 public interface Bug extends Task {
     Priority getPriority();
 
+    void setStatus(StatusBug status);
+
+    void setSeverity(Severity severity);
+
+    void setPriority(Priority priority);
+
     Severity getSeverity();
 
     StatusBug getStatus();

@@ -8,9 +8,16 @@ import models.tasks.enums.StatusStory;
 public interface Story extends Task {
     Priority getPriority();
 
+    void setPriority(Priority priority);
+
+
     Size getSize();
 
+    void setSize(Size size);
+
     StatusStory getStatus();
+
+    void setStatus(StatusStory status);
 
     Member getAssignee();
 }
