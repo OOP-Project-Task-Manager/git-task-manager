@@ -1,4 +1,4 @@
-package commands.NotImplementedCommands;
+package commands;
 
 public class ChangeStatusInStoryCommand {
 }
