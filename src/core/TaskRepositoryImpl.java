@@ -7,11 +7,8 @@ import models.contracts.Board;
 import models.contracts.Member;
 import core.contracts.TaskRepository;
 import models.contracts.Team;
-import models.tasks.BugImpl;
-import models.tasks.CommentImpl;
+import models.tasks.*;
 import models.tasks.Contracts.*;
-import models.tasks.FeedbackImpl;
-import models.tasks.StoryImpl;
 import models.tasks.enums.Priority;
 import models.tasks.enums.Severity;
 import models.tasks.enums.Size;
@@ -35,8 +32,10 @@ public class TaskRepositoryImpl implements TaskRepository {
     private final List<Board> boards;
 
     private final List<Task> tasks;
+    private final List<Story> stories;
+    private final List<Bug> bugs;
+    private final List<Feedback> feedbacks;
 
-    //private Team loggedTeam;//без няма логика по скоро мембър...
 
     public TaskRepositoryImpl() {
         id = 0;
@@ -44,6 +43,9 @@ public class TaskRepositoryImpl implements TaskRepository {
         members = new ArrayList<>();
         boards = new ArrayList<>();
         tasks = new ArrayList<>();
+        stories = new ArrayList<>();
+        bugs = new ArrayList<>();
+        feedbacks = new ArrayList<>();
     }
 
     @Override
@@ -62,14 +64,28 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
+    public List<Story> getStories() {
+        return new ArrayList<>(stories);
+    }
+
+    @Override
+    public List<Bug> getBugs() {
+        return new ArrayList<>(bugs);
+    }
+
+    @Override
+    public List<Feedback> getFeedbacks() {
+        return new ArrayList<>(feedbacks);
+    }
+
+    @Override
     public List<Member> getMembers() {
         return new ArrayList<>(members);
     }
 
     @Override
     public Comment createComment(Member author, String message) {
-        Comment comment = new CommentImpl(author, message);
-        return comment;
+        return new CommentImpl(author, message);
     }
 
     @Override
@@ -86,7 +102,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public Bug createBug(String title, String description, Priority priority, Severity severity, Member assignee) {
         Bug bug = new BugImpl(++id, title, description, priority, severity, assignee);
-        tasks.add(bug);
+        bugs.add(bug);
         return bug;
     }
 
@@ -94,7 +110,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     public Story createStory(String title, String description, Priority priority, Size size, Member assignee) {
 
         Story story = new StoryImpl(++id, title, description, priority, size, assignee);
-        tasks.add(story);
+        stories.add(story);
         return story;
     }
 
@@ -102,7 +118,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     public Feedback createFeedback(String title, String description, int rating) {
 
         Feedback feedback = new FeedbackImpl(++id, title, description, rating);
-        tasks.add(feedback);
+        feedbacks.add(feedback);
         return feedback;
     }
 
@@ -175,4 +191,21 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
 
+    public static <T extends Task> void processTasks(List<T> tasks) {
+        for (T task : tasks) {
+
+            if (task instanceof Bug) {
+                Bug bug = (Bug) task;
+
+            } else if (task instanceof Story) {
+                Story story = (Story) task;
+
+            } else if (task instanceof Feedback) {
+                Feedback feedback = (Feedback) task;
+
+            }
+        }
+
+
+    }
 }

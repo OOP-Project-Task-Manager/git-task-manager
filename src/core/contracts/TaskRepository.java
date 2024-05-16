@@ -16,6 +16,9 @@ public interface TaskRepository {
     List<Board> getBoards();
 
     List<Task> getTasks();
+    List<Story> getStories();
+    List<Bug> getBugs();
+    List<Feedback> getFeedbacks();
 
     List<Member> getMembers();
     Comment createComment(Member author, String message);

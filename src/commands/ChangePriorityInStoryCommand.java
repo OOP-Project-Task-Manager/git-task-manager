@@ -18,7 +18,8 @@ public class ChangePriorityInStoryCommand extends BaseCommand {
     }
 
     private String changePriorityInStory(int id, Priority priority){
-        Task task = getRepository().findTaskById(id);
+
+
 
 
 
