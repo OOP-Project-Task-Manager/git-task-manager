@@ -30,6 +30,7 @@ public class ChangePriorityInBugCommand extends BaseCommand {
         Bug bug = getRepository().findBugById(id);
         return changePriority(bug, priority);
     }
+
     private String changePriority(Bug bug, Priority priority) {
         bug.setPriority(priority);
         return String.format(PRIORITY_CHANGE, bug.getTitle(), priority);
