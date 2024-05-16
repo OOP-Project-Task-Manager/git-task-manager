@@ -30,6 +30,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new CreateNewBugInBoardCommand(taskRepository);
             case CREATENEWSTORYINBOARD:
                 return new CreateNewStoryInBoardCommand(taskRepository);
+            case ADDCOMMENTTOTASK:
+                return new AddCommentToTaskCommand(taskRepository);
             default:
                 throw new IllegalArgumentException(NO_SUCH_COMMAND);
 

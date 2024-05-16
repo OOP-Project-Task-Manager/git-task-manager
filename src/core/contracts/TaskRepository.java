@@ -3,10 +3,7 @@ package core.contracts;
 import models.contracts.Board;
 import models.contracts.Member;
 import models.contracts.Team;
-import models.tasks.Contracts.Bug;
-import models.tasks.Contracts.Feedback;
-import models.tasks.Contracts.Story;
-import models.tasks.Contracts.Task;
+import models.tasks.Contracts.*;
 import models.tasks.enums.Priority;
 import models.tasks.enums.Severity;
 import models.tasks.enums.Size;
@@ -14,13 +11,15 @@ import models.tasks.enums.Size;
 import java.util.List;
 
 public interface TaskRepository {
-    public List<Team> getTeams();
+    List<Team> getTeams();
 
-    public List<Board> getBoards();
+    List<Board> getBoards();
 
-    public List<Task> getTasks();
+    List<Task> getTasks();
 
-    public List<Member> getMembers();
+    List<Member> getMembers();
+    Comment createComment(Member author, String message);
+
 
     void addTaskToMember(Task task, Member member);
 
@@ -37,13 +36,14 @@ public interface TaskRepository {
     Member createNewPerson(String name);
 
     Team createTeam(String name);
+    Task findTaskByTitle(String title);
 
     Board findBoardByName(String name);
 
     Team findTeamByName(String name);
 
     Member findMemberByName(String name);
-    //boolean hasLoggedInTeam();
+
 
     Task findTaskById(int id);
 

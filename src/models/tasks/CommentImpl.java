@@ -1,5 +1,6 @@
 package models.tasks;
 
+import models.contracts.Member;
 import models.tasks.Contracts.Comment;
 import utilities.ValidationHelper;
 
@@ -11,13 +12,13 @@ public class CommentImpl implements Comment {
     public static final String MESSAGE_EMPTY_ERR = "Message cannot be empty";
 
     //Attributes
-    private String author;
+    private Member author;
     private String message;
 
 
     //Consturctor
 
-    public CommentImpl(String author, String message) {
+    public CommentImpl(Member author, String message) {
         setAuthor(author);
         setMessage(message);
     }
@@ -26,12 +27,12 @@ public class CommentImpl implements Comment {
     //Methods
 
     @Override
-    public String getAuthor() {
+    public Member getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
-        ValidationHelper.validateStringNotEmpty(author, AUTHOR_EMPTY_ERR);
+    public void setAuthor(Member author) {
+//        ValidationHelper.validateStringNotEmpty(author, AUTHOR_EMPTY_ERR);
         this.author = author;
 
     }
@@ -52,6 +53,6 @@ public class CommentImpl implements Comment {
         return """
                 Author: %s
                 Message: %s
-                """.formatted(author, message);
+                """.formatted(author.getName(), message);
     }
 }

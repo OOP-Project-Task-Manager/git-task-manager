@@ -1,7 +1,9 @@
 package models.tasks.Contracts;
 
+import models.contracts.Member;
+
 public interface Comment {
-    String getAuthor();
+    Member getAuthor();
 
     String getMessage();
 }

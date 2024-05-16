@@ -8,10 +8,8 @@ import models.contracts.Member;
 import core.contracts.TaskRepository;
 import models.contracts.Team;
 import models.tasks.BugImpl;
-import models.tasks.Contracts.Bug;
-import models.tasks.Contracts.Feedback;
-import models.tasks.Contracts.Story;
-import models.tasks.Contracts.Task;
+import models.tasks.CommentImpl;
+import models.tasks.Contracts.*;
 import models.tasks.FeedbackImpl;
 import models.tasks.StoryImpl;
 import models.tasks.enums.Priority;
@@ -23,6 +21,7 @@ import java.util.List;
 
 public class TaskRepositoryImpl implements TaskRepository {
     public static final String ERROR_TASK_ID = "No task with ID %d";
+    public static final String NO_SUCH_TASK = "No such task {%s}";
     private int id;
     private final static String TEAM_ALREADY_EXIST = "Team %s already exist.";
     private final static String NO_SUCH_TEAM = "There is no team with name %s!";
@@ -67,6 +66,12 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
+    public Comment createComment(Member author, String message) {
+        Comment comment = new CommentImpl(author, message);
+        return comment;
+    }
+
+    @Override
     public void addTaskToMember(Task task, Member member) {
         member.addTask(task);
     }
@@ -75,7 +80,6 @@ public class TaskRepositoryImpl implements TaskRepository {
     public void addTaskToBoard(Task task, Board board) {
         board.addTask(task);
     }
-
 
 
     @Override
@@ -116,6 +120,15 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public Team createTeam(String name) {
         return new TeamImpl(name);
+    }
+
+    @Override
+    public Task findTaskByTitle(String title) {
+        Task task = tasks.stream()
+                .filter(u -> u.getTitle().equalsIgnoreCase(title))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TASK, title)));
+        return task;
     }
 
     @Override
