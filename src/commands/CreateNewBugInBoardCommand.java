@@ -5,6 +5,7 @@ import models.contracts.Board;
 import models.contracts.Member;
 import models.tasks.Contracts.Bug;
 import models.tasks.Contracts.Feedback;
+import models.tasks.Contracts.Story;
 import models.tasks.enums.Priority;
 import models.tasks.enums.Severity;
 import utilities.ParsingHelpers;
@@ -42,6 +43,7 @@ public class CreateNewBugInBoardCommand extends BaseCommand {
         Board board = getRepository().findBoardByName(boardName);
         Bug bug = getRepository().createBug(title, description, priority, severity, assignee);
         AddToBoard(bug, board);
+        AddToMember(bug, assignee);
         return String.format(BUG_CREATED, title, boardName);
 
 
@@ -49,6 +51,10 @@ public class CreateNewBugInBoardCommand extends BaseCommand {
 
     private void AddToBoard(Bug bug, Board board) {
         getRepository().addTaskToBoard(bug, board);
+    }
+
+    private void AddToMember(Bug bug, Member assignee) {
+        getRepository().addTaskToMember(bug, assignee);
     }
 
 

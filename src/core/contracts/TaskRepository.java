@@ -22,6 +22,8 @@ public interface TaskRepository {
 
     public List<Member> getMembers();
 
+    void addTaskToMember(Task task, Member member);
+
     void addTaskToBoard(Task task, Board board);
 
     Bug createBug(String title, String description, Priority priority, Severity severity, Member assignee);

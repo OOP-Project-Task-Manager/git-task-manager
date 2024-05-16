@@ -67,9 +67,15 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
+    public void addTaskToMember(Task task, Member member) {
+        member.addTask(task);
+    }
+
+    @Override
     public void addTaskToBoard(Task task, Board board) {
         board.addTask(task);
     }
+
 
 
     @Override

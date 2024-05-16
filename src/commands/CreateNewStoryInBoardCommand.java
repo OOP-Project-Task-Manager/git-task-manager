@@ -45,9 +45,14 @@ public class CreateNewStoryInBoardCommand extends BaseCommand {
         Board board = getRepository().findBoardByName(boardName);
         Story story = getRepository().createStory(title, description, priority, size, assignee);
         AddToBoard(story, board);
+        AddToMember(story,assignee);
         return String.format(STORY_CREATED, title, boardName);
 
 
+    }
+
+    private void AddToMember(Story story,Member assignee) {
+        getRepository().addTaskToMember(story, assignee);
     }
 
     private void AddToBoard(Story story, Board board) {
