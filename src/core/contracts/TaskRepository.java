@@ -16,6 +16,14 @@ import java.util.List;
 public interface TaskRepository {
     public List<Team> getTeams();
 
+    public List<Board> getBoards();
+
+    public List<Task> getTasks();
+
+    public List<Member> getMembers();
+
+    void addTaskToBoard(Task task, Board board);
+
     Bug createBug(String title, String description, Priority priority, Severity severity, Member assignee);
 
     Story createStory(String title, String description, Priority priority, Size size, Member assignee);
@@ -23,7 +31,9 @@ public interface TaskRepository {
     Feedback createFeedback(String title, String description, int rating);
 
     Board createBoard(String name);
+
     Member createNewPerson(String name);
+
     Team createTeam(String name);
 
     Board findBoardByName(String name);
@@ -36,5 +46,6 @@ public interface TaskRepository {
     Task findTaskById(int id);
 
     void addTeam(Team teamToAdd);
+
     void addMember(Member memberToAdd);
 }

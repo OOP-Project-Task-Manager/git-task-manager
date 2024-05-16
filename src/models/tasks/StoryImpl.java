@@ -20,7 +20,7 @@ public class StoryImpl extends TaskImpl implements Story {
     private Member assignee;
     private boolean initializing = true;
 
-    //TODO /*Need to add the member class for assignee:*/
+
     //TODO Need to add advance/revert methods and put logging logic there as well. Or to add logging loggic in the setters.
 
 
@@ -44,8 +44,8 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
     public void setPriority(Priority priority) {
-        if(!initializing){
-            addLog("Priority changed from %s to %s".formatted(this.priority,priority));
+        if (!initializing) {
+            addLog("Priority changed from %s to %s".formatted(this.priority, priority));
 
         }
 
@@ -58,8 +58,8 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
     public void setSize(Size size) {
-        if(!initializing){
-            addLog("Size changed from %s to %s".formatted(this.size,size));
+        if (!initializing) {
+            addLog("Size changed from %s to %s".formatted(this.size, size));
 
         }
         this.size = size;
@@ -70,9 +70,14 @@ public class StoryImpl extends TaskImpl implements Story {
         return status;
     }
 
+    @Override
+    public Member getAssignee() {
+        return assignee;
+    }
+
     public void setStatus(StatusStory status) {
-        if(!initializing){
-            addLog("Status changed from %s to %s".formatted(this.status,status));
+        if (!initializing) {
+            addLog("Status changed from %s to %s".formatted(this.status, status));
 
         }
         this.status = status;

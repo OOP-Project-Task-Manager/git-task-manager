@@ -51,6 +51,26 @@ public class TaskRepositoryImpl implements TaskRepository {
         return new ArrayList<>(teams);
     }
 
+    @Override
+    public List<Board> getBoards() {
+        return new ArrayList<>(boards);
+    }
+
+    @Override
+    public List<Task> getTasks() {
+        return new ArrayList<>(tasks);
+    }
+
+    @Override
+    public List<Member> getMembers() {
+        return new ArrayList<>(members);
+    }
+
+    @Override
+    public void addTaskToBoard(Task task, Board board) {
+        board.addTask(task);
+    }
+
 
     @Override
     public Bug createBug(String title, String description, Priority priority, Severity severity, Member assignee) {
@@ -95,9 +115,10 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public Board findBoardByName(String name) {
 
-        Board board = boards.stream().filter(u -> u.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_BOARD, name)));
-
-
+        Board board = boards.stream()
+                .filter(u -> u.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_BOARD, name)));
         return board;
     }
 
@@ -141,4 +162,6 @@ public class TaskRepositoryImpl implements TaskRepository {
         }
         members.add(memberToAdd);
     }
+
+
 }
