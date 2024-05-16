@@ -22,6 +22,7 @@ import java.util.List;
 public class TaskRepositoryImpl implements TaskRepository {
     public static final String ERROR_TASK_ID = "No task with ID %d";
     public static final String NO_SUCH_TASK = "No such task {%s}";
+    public static final String MEMBER_ALREADY_EXIST = "Member %s already exists";
     private int id;
     private final static String TEAM_ALREADY_EXIST = "Team %s already exist.";
     private final static String NO_SUCH_TEAM = "There is no team with name %s!";
@@ -124,29 +125,20 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public Task findTaskByTitle(String title) {
-        Task task = tasks.stream()
-                .filter(u -> u.getTitle().equalsIgnoreCase(title))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TASK, title)));
+        Task task = tasks.stream().filter(u -> u.getTitle().equalsIgnoreCase(title)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TASK, title)));
         return task;
     }
 
     @Override
     public Board findBoardByName(String name) {
 
-        Board board = boards.stream()
-                .filter(u -> u.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_BOARD, name)));
+        Board board = boards.stream().filter(u -> u.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_BOARD, name)));
         return board;
     }
 
     @Override
     public Team findTeamByName(String name) {
-        Team team = teams.stream()
-                .filter(u -> u.getName().equalsIgnoreCase(name)).
-                findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TEAM, name)));
+        Team team = teams.stream().filter(u -> u.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.format(NO_SUCH_TEAM, name)));
         return team;
     }
 
@@ -177,7 +169,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public void addMember(Member memberToAdd) {
         if (members.contains(memberToAdd)) {
-            throw new IllegalArgumentException(String.format(TEAM_ALREADY_EXIST, memberToAdd.getName()));
+            throw new IllegalArgumentException(String.format(MEMBER_ALREADY_EXIST, memberToAdd.getName()));
         }
         members.add(memberToAdd);
     }
