@@ -14,7 +14,7 @@ public class AddCommentToTaskCommand extends BaseCommand {
 
     public static final String COMMENT_CREATED = "Comment with author {%s} created and added to task {%s}";
     public static final int EXPECTED_ARGUMENTS_COUNT = 3;
-    public static final String INTEGER_ERR = "Not a valid integer";
+    public static final String INTEGER_ERR = "Not an integer";
 
     public AddCommentToTaskCommand(TaskRepository repository) {
         super(repository);
