@@ -20,7 +20,7 @@ public class CreateNewStoryInBoardCommand extends BaseCommand {
     public static final int EXPECTED_ARGUMENTS_COUNT = 6;
 
 
-    protected CreateNewStoryInBoardCommand(TaskRepository repository) {
+    public CreateNewStoryInBoardCommand(TaskRepository repository) {
         super(repository);
     }
 

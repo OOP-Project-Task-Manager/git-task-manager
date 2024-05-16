@@ -24,8 +24,12 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new CreateNewPersonCommand(taskRepository);
             case ADDPERSONTOTEAM:
                 return new AddPersonToTeamCommand(taskRepository);
-            case CREATENEWFEEDBACKINBOARDCOMMAND:
+            case CREATENEWFEEDBACKINBOARD:
                 return new CreateNewFeedbackInBoardCommand(taskRepository);
+            case CREATENEWBUGINBOARD:
+                return new CreateNewBugInBoardCommand(taskRepository);
+            case CREATENEWSTORYINBOARD:
+                return new CreateNewStoryInBoardCommand(taskRepository);
             default:
                 throw new IllegalArgumentException(NO_SUCH_COMMAND);
 

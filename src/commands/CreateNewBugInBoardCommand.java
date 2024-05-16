@@ -20,7 +20,7 @@ public class CreateNewBugInBoardCommand extends BaseCommand {
     public static final String PRIORITY_ERR = "Priority {%s} does not exist";
     public static final String SEVERITY_ERR = "Severity {%s} does not exist";
 
-    protected CreateNewBugInBoardCommand(TaskRepository repository) {
+    public CreateNewBugInBoardCommand(TaskRepository repository) {
         super(repository);
     }
 
