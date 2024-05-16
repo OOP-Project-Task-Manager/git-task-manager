@@ -25,6 +25,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     public static final String ERROR_TASK_ID = "No task with ID %d";
     private int id;
     private final static String TEAM_ALREADY_EXIST = "Team %s already exist.";
+    private final static String MEMBER_ALREADY_EXIST = "Member %s already exist.";
     private final static String NO_SUCH_TEAM = "There is no team with name %s!";
     public static final String NO_SUCH_MEMBER = "No member with name %s";
     public static final String NO_SUCH_BOARD = "No board with name %s";
@@ -75,8 +76,6 @@ public class TaskRepositoryImpl implements TaskRepository {
     public void addTaskToBoard(Task task, Board board) {
         board.addTask(task);
     }
-
-
 
     @Override
     public Bug createBug(String title, String description, Priority priority, Severity severity, Member assignee) {
@@ -164,7 +163,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public void addMember(Member memberToAdd) {
         if (members.contains(memberToAdd)) {
-            throw new IllegalArgumentException(String.format(TEAM_ALREADY_EXIST, memberToAdd.getName()));
+            throw new IllegalArgumentException(String.format(MEMBER_ALREADY_EXIST, memberToAdd.getName()));
         }
         members.add(memberToAdd);
     }
