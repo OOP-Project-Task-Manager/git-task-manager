@@ -9,9 +9,7 @@ import java.util.List;
 
 public class ShowPersonActivityCommand extends BaseCommand {
 
-    public static final int EXPECTED_ARGUMENTS_COUNT = 2;
-    public static final String INVALID_MEMBER_ERR = "No such member %s in team %s";
-
+    public static final int EXPECTED_ARGUMENTS_COUNT = 1;
     protected ShowPersonActivityCommand(TaskRepository repository) {
         super(repository);
     }
@@ -20,18 +18,10 @@ public class ShowPersonActivityCommand extends BaseCommand {
     protected String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_ARGUMENTS_COUNT);
         Member member = getRepository().findMemberByName(parameters.get(0));
-        Team team = getRepository().findTeamByName(parameters.get(1));
-
-        return showPersonActivity(member, team);
+        return showPersonActivity(member);
     }
 
-
-    private String showPersonActivity(Member member, Team team) {
-        for (Member member1 : team.getMembers()) {
-            if (member1.equals(member)) {
-                return member1.getLogs().toString();
-            }
-        }
-        throw new IllegalArgumentException(INVALID_MEMBER_ERR.formatted(member.getName(), team.getName()));
+    private String showPersonActivity(Member member) {
+        return member.getLogs().toString();//toString() override not sure if it should be overridden?
     }
 }
