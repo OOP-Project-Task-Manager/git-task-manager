@@ -15,7 +15,7 @@ public class ChangeStatusInBugCommand extends BaseCommand {
 
     public static final String STATUS_CHANGE = "Status of task %s changed to %s";
 
-    protected ChangeStatusInBugCommand(TaskRepository repository) {
+    public ChangeStatusInBugCommand(TaskRepository repository) {
         super(repository);
     }
 

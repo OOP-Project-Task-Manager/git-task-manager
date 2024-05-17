@@ -15,7 +15,7 @@ public class ChangeSeverityInBugCommand extends BaseCommand {
     public static final String SEVERITY_CHANGE = "Severity of task %s changed to %s";
     public static final String SEVERITY_ERR = "Not a valid severity option";
 
-    protected ChangeSeverityInBugCommand(TaskRepository repository) {
+    public ChangeSeverityInBugCommand(TaskRepository repository) {
         super(repository);
     }
 

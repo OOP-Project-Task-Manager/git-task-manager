@@ -18,7 +18,7 @@ public class ChangeSizeInStoryCommand extends BaseCommand {
     public static final String SIZE_CHANGE = "Size of task %s changed to %s";
 
 
-    protected ChangeSizeInStoryCommand(TaskRepository repository){
+    public ChangeSizeInStoryCommand(TaskRepository repository){
         super(repository);
     }
     @Override

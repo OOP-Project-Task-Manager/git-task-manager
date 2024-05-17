@@ -10,7 +10,7 @@ import java.util.List;
 public class ShowTeamsActivityCommand extends BaseCommand {
 
     public static final int EXPECTED_ARGUMENTS_COUNT = 1;
-    ShowTeamsActivityCommand(TaskRepository repository){
+    public ShowTeamsActivityCommand(TaskRepository repository){
         super(repository);
     }
     @Override

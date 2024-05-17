@@ -16,7 +16,7 @@ public class ChangeStatusInFeedbackCommand extends BaseCommand {
 
     public static final String STATUS_CHANGE = "Status of task %s changed to %s";
 
-    protected ChangeStatusInFeedbackCommand(TaskRepository repository) {
+    public ChangeStatusInFeedbackCommand(TaskRepository repository) {
         super(repository);
     }
 

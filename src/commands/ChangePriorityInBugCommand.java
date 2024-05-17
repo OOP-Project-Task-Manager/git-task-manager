@@ -16,7 +16,7 @@ public class ChangePriorityInBugCommand extends BaseCommand {
     public static final String PRIORITY_CHANGE = "Priority of task %s changed to %s";
 
 
-    protected ChangePriorityInBugCommand(TaskRepository repository) {
+    public ChangePriorityInBugCommand(TaskRepository repository) {
         super(repository);
     }
 

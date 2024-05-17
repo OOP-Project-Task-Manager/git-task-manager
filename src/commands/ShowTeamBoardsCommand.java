@@ -11,7 +11,7 @@ public class ShowTeamBoardsCommand extends BaseCommand {
 
     public static final int EXPECTED_ARGUMENTS_COUNT = 1;
 
-    protected ShowTeamBoardsCommand(TaskRepository repository) {
+    public ShowTeamBoardsCommand(TaskRepository repository) {
         super(repository);
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 public class ShowPersonActivityCommand extends BaseCommand {
 
     public static final int EXPECTED_ARGUMENTS_COUNT = 1;
-    protected ShowPersonActivityCommand(TaskRepository repository) {
+    public ShowPersonActivityCommand(TaskRepository repository) {
         super(repository);
     }
 

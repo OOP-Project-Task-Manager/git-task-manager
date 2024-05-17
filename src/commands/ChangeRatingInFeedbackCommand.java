@@ -13,7 +13,7 @@ public class ChangeRatingInFeedbackCommand extends BaseCommand {
     public static final String NOT_A_VALID_INTEGER = "Not a valid integer";
     public static final String RATING_CHANGE = "Rating of task %s changed to %s";
 
-    protected ChangeRatingInFeedbackCommand(TaskRepository repository) {
+    public ChangeRatingInFeedbackCommand(TaskRepository repository) {
         super(repository);
     }
 
