@@ -29,7 +29,7 @@ public class ChangeRatingInFeedbackCommand extends BaseCommand {
 
     private String changeRating(Feedback feedback, int rating) {
         feedback.setRating(rating);
-        return String.format(RATING_CHANGE, feedback.getId(), rating);
+        return String.format(RATING_CHANGE, feedback.getTitle(), rating);
     }
 
 

@@ -33,7 +33,7 @@ public class ChangeStatusInFeedbackCommand extends BaseCommand {
     private String changeStatus(Feedback feedback, StatusFeedback status) {
         feedback.setStatus(status);
 
-        return String.format(STATUS_CHANGE, feedback.getId(), status);
+        return String.format(STATUS_CHANGE, feedback.getTitle(), status);
 
     }
 
