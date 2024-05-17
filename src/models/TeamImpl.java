@@ -23,7 +23,7 @@ public class TeamImpl implements Team {
     private List<EventLog> activityHistory;
 
     public TeamImpl(String name) {
-        this.name = name;
+        setName(name);
         this.members = new ArrayList<>();
         this.boards = new ArrayList<>();
         this.activityHistory = new ArrayList<>();

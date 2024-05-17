@@ -25,7 +25,7 @@ public class MemberImpl implements Member {
     private final List<EventLog> activityHistory;
 
     public MemberImpl(String name) {
-        this.name = name;
+        setName(name);
         this.tasks = new ArrayList<>();
         this.activityHistory = new ArrayList<>();
         addLog(MEMBER_CONSTRUCTOR_LOG.formatted(name));
