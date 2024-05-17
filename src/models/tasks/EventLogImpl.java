@@ -46,11 +46,11 @@ public class EventLogImpl implements models.tasks.Contracts.EventLog {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy, hh:mm:ss a");
         String formattedTimestamp = timestamp.format(formatter);
         return """
                 Timestamp:%s
                 Description:%s
-                """.formatted(timestamp, description);
+                """.formatted(formattedTimestamp, description);
     }
 }

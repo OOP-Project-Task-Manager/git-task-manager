@@ -46,13 +46,13 @@ public class MemberImpl implements Member {
 
     public void addTask(Task task) {
         tasks.add(task);
-        String activity = "Task %s added to member %s".formatted(task.getTitle(), getName());
+        String activity = "Task with name %s and id %s added to member %s".formatted(task.getTitle(), task.getId(), getName());
         addLog(activity);
     }
 
 
     public void removeTask(Task task) {
-        if(!tasks.contains(task)){
+        if (!tasks.contains(task)) {
             throw new IllegalArgumentException(NON_EXISTENT_TASK_ERR);
         }
         tasks.remove(task);

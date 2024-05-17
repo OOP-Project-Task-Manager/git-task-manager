@@ -12,7 +12,7 @@ public class UnassignTaskToPersonCommand extends BaseCommand {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     public static final String NO_SUCH_ID = "Task with id %s does not exist";
 
-    public static final String TASK_UNASSIGNED_SUCCESSFULLY = "Task with id %d unassigned to %s successfully!";
+    public static final String TASK_UNASSIGNED_SUCCESSFULLY = "Task with id %d unassigned from %s successfully!";
     public UnassignTaskToPersonCommand(TaskRepository repository){
         super(repository);
     }
