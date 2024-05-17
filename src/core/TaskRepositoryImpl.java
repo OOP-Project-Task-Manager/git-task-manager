@@ -105,6 +105,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public Bug createBug(String title, String description, Priority priority, Severity severity, Member assignee) {
         Bug bug = new BugImpl(++id, title, description, priority, severity, assignee);
+        tasks.add(bug);
         bugs.add(bug);
         return bug;
     }
@@ -113,6 +114,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     public Story createStory(String title, String description, Priority priority, Size size, Member assignee) {
 
         Story story = new StoryImpl(++id, title, description, priority, size, assignee);
+        tasks.add(story);
         stories.add(story);
         return story;
     }
@@ -121,6 +123,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     public Feedback createFeedback(String title, String description, int rating) {
 
         Feedback feedback = new FeedbackImpl(++id, title, description, rating);
+        tasks.add(feedback);
         feedbacks.add(feedback);
         return feedback;
     }

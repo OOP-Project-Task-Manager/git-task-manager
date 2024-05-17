@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CreateNewStoryInBoardCommand extends BaseCommand {
 
-    public static final String STORY_CREATED = "Story {%s} created and added to board {%s}";
+    public static final String STORY_CREATED = "Story with name: {%s} and id: {%s} created and added to board {%s}";
     public static final String PRIORITY_ERR = "Priority {%s} does not exist";
     public static final String SIZE_ERR = "Size {%s} does not exist";
     public static final int EXPECTED_ARGUMENTS_COUNT = 6;
@@ -45,13 +45,13 @@ public class CreateNewStoryInBoardCommand extends BaseCommand {
         Board board = getRepository().findBoardByName(boardName);
         Story story = getRepository().createStory(title, description, priority, size, assignee);
         AddToBoard(story, board);
-        AddToMember(story,assignee);
-        return String.format(STORY_CREATED, title, boardName);
+        AddToMember(story, assignee);
+        return String.format(STORY_CREATED, title, story.getId(), boardName);
 
 
     }
 
-    private void AddToMember(Story story,Member assignee) {
+    private void AddToMember(Story story, Member assignee) {
         getRepository().addTaskToMember(story, assignee);
     }
 

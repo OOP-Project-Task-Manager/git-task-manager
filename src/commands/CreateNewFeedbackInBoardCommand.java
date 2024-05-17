@@ -13,7 +13,7 @@ public class CreateNewFeedbackInBoardCommand extends BaseCommand {
 
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 4;
 
-    private final static String FEEDBACK_CREATED = "Feedback {%s} created successfully and added to board {%s}!";
+    private final static String FEEDBACK_CREATED = "Feedback with name: {%s} and id: {%s} created successfully and added to board {%s}!";
     public static final String NOT_A_VALID_INTEGER = "Not a valid integer";
 
     public CreateNewFeedbackInBoardCommand(TaskRepository repository) {
@@ -38,7 +38,7 @@ public class CreateNewFeedbackInBoardCommand extends BaseCommand {
         Board board = getRepository().findBoardByName(boardName);
         Feedback feedback = getRepository().createFeedback(title, description, rating);
         AddToBoard(feedback, board);
-        return String.format(FEEDBACK_CREATED, title, boardName);
+        return String.format(FEEDBACK_CREATED, title, feedback.getId(), boardName);
 
 
     }

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CreateNewBugInBoardCommand extends BaseCommand {
 
-    public static final String BUG_CREATED = "Bug {%s} created in board {%s}";
+    public static final String BUG_CREATED = "Bug with name: {%s} and id:{%s} created in board: {%s}";
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 6;
     public static final String PRIORITY_ERR = "Priority {%s} does not exist";
     public static final String SEVERITY_ERR = "Severity {%s} does not exist";
@@ -44,7 +44,7 @@ public class CreateNewBugInBoardCommand extends BaseCommand {
         Bug bug = getRepository().createBug(title, description, priority, severity, assignee);
         AddToBoard(bug, board);
         AddToMember(bug, assignee);
-        return String.format(BUG_CREATED, title, boardName);
+        return String.format(BUG_CREATED, title, bug.getId(), boardName);
 
 
     }
