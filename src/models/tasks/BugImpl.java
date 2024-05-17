@@ -27,13 +27,13 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
     public BugImpl(int id, String title, String description, Priority priority, Severity severity, Member assignee) {
 
         super(id, title, description);
-        this.priority = priority;
-        this.severity = severity;
+        setPriority(priority);
+        setSeverity(severity);
         this.status = StatusBug.ACTIVE;
         stepsToReproduce = new ArrayList<>();
         initializing = false;
-        addLog(BUG_CONSTRUCTOR_LOG.formatted(title));
         this.assignee = assignee;
+        addLog(BUG_CONSTRUCTOR_LOG.formatted(title));
     }
 
     //Methods

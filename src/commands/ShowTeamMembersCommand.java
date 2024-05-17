@@ -26,7 +26,7 @@ public class ShowTeamMembersCommand extends BaseCommand {
         StringBuilder result = new StringBuilder();
         result.append("Team %s members:\n".formatted(team.getName()));
         for (Member member : members){
-            result.append(member.getName()).append(System.lineSeparator());
+            result.append("Member name: ").append(member.getName()).append(System.lineSeparator());
         }
         return result.toString();
     }

@@ -3,8 +3,11 @@ package commands;
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
 import models.contracts.Board;
+import models.tasks.Contracts.EventLog;
 import utilities.ValidationHelper;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ShowBoardsActivityCommand extends BaseCommand {
@@ -21,6 +24,15 @@ public class ShowBoardsActivityCommand extends BaseCommand {
     }
 
     private String showBoardsActivity(Board board){
-        return board.getLogs().toString();//toString() override not sure if it should be overridden?
+        List<EventLog> activity = board.getLogs();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Board %s activity history:\n".formatted(board.getName()));
+        stringBuilder.append("\n");
+        for (EventLog eventLog : activity) {
+            stringBuilder.append(eventLog.toString()).append("\n");
+        }
+        stringBuilder.append("No more logs as of ").append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy, hh:mm:ss a")));
+
+        return stringBuilder.toString();
     }
 }

@@ -28,7 +28,7 @@ public class ShowTeamBoardsCommand extends BaseCommand {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Team %s boards:\n".formatted(team.getName()));
         for (Board board : boards) {
-            stringBuilder.append(board.getName()).append("\n");
+            stringBuilder.append("Board name: ").append(board.getName()).append("\n");
         }
 
         return stringBuilder.toString();
