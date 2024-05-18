@@ -3,6 +3,7 @@ package core;
 import commands.*;
 import commands.contracts.Command;
 import commands.enums.CommandType;
+import commands.listing.ListBugsCommand;
 import core.contracts.CommandFactory;
 import core.contracts.TaskRepository;
 import utilities.ParsingHelpers;
@@ -66,6 +67,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowTeamsCommand(taskRepository);
             case UNASSIGNTASKTOPERSON:
                 return new UnassignTaskToPersonCommand(taskRepository);
+            case LISTBUGS:
+                return new ListBugsCommand(taskRepository);
             default:
                 throw new IllegalArgumentException(NO_SUCH_COMMAND);
 
