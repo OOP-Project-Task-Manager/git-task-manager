@@ -130,9 +130,22 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public Board createBoard(String name) {
+        if(boardExist(name)){
+            throw new IllegalArgumentException(String.format("Board with name %s already exists.", name));
+        }
         Board board = new BoardImpl(name);
         boards.add(board);
         return board;
+    }
+
+    @Override
+    public boolean boardExist(String name) {
+        for (Board board : boards){
+            if (board.getName().equalsIgnoreCase(name)){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

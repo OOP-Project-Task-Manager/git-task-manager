@@ -27,6 +27,7 @@ public interface TaskRepository {
 
     Comment createComment(Member author, String message);
 
+    boolean boardExist(String name);
 
     void addTaskToMember(Task task, Member member);
 
