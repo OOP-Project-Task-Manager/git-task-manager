@@ -3,7 +3,8 @@ package core;
 import commands.*;
 import commands.contracts.Command;
 import commands.enums.CommandType;
-import commands.listing.ListBugsCommand;
+import commands.ListBugsCommand;
+import commands.ListFeedbackCommand;
 import core.contracts.CommandFactory;
 import core.contracts.TaskRepository;
 import utilities.ParsingHelpers;
@@ -69,6 +70,10 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new UnassignTaskToPersonCommand(taskRepository);
             case LISTBUGS:
                 return new ListBugsCommand(taskRepository);
+            case LISTFEEDBACKS:
+                return new ListFeedbackCommand(taskRepository);
+            case LISTSTORIES:
+                return new ListStoriesCommand(taskRepository);
             default:
                 throw new IllegalArgumentException(NO_SUCH_COMMAND);
 

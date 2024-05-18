@@ -1,10 +1,9 @@
-package commands.listing;
+package commands;
 
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
 import models.tasks.Contracts.Bug;
 import models.tasks.enums.StatusBug;
-import utilities.ParsingHelpers;
 
 import java.util.Comparator;
 import java.util.List;
@@ -78,7 +77,7 @@ public class ListBugsCommand extends BaseCommand {
         }
         return param.equalsIgnoreCase("title")
                 || param.equalsIgnoreCase("priority")
-                || param.equalsIgnoreCase("size");
+                || param.equalsIgnoreCase("severity");
     }
 
     private String formatBugs(List<Bug> bugs){

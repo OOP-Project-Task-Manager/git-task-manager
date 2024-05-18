@@ -7,7 +7,5 @@ public class StartUp {
 
         TaskEngineImpl engine = new TaskEngineImpl();
         engine.start();
-
-
     }
 }
