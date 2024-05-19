@@ -29,7 +29,8 @@ public enum CommandType {
     UNASSIGNTASKTOPERSON,
     LISTBUGS,
     LISTFEEDBACKS,
-    LISTSTORIES
+    LISTSTORIES,
+    LISTTASKS
 
 
 
