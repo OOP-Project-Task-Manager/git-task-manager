@@ -50,7 +50,7 @@ public class StoryImplTest {
                         new MemberImpl("SSSSSSS")));
     }
     @Test
-    public void constructor_Should_ThrowException_When_DESCRIPTIONLengthOutOfBounds() {
+    public void constructor_Should_ThrowException_When_DescriptionLengthOutOfBounds() {
         Assertions.assertThrows(IllegalArgumentException.class, () ->
                 new StoryImpl(
                         1,
@@ -163,9 +163,12 @@ public class StoryImplTest {
 
         // Act
         story.setPriority(Priority.MEDIUM);
+        List<String> logDescriptions = story.getLogs().stream()
+                .map(log -> log.getDescription())
+                .collect(Collectors.toList());
 
         // Assert
-        Assertions.assertTrue(story.getLogs().contains("Priority changed from High Priority to Medium Priority"));
+        Assertions.assertTrue(logDescriptions.contains("Priority changed from High Priority to Medium Priority"));
     }
     @Test
     public void log_Should_RecordSizeChange() {
@@ -180,9 +183,12 @@ public class StoryImplTest {
 
         // Act
         story.setSize(Size.SMALL);
+        List<String> logDescription = story.getLogs().stream()
+                .map(log -> log.getDescription())
+                .collect(Collectors.toList());
 
         // Assert
-        Assertions.assertTrue(story.getLogs().contains("Size changed from LARGE to SMALL"));
+        Assertions.assertTrue(logDescription.contains("Size changed from Large to Small"));
     }
     @Test
     public void log_Should_RecordStatusChange() {
@@ -197,9 +203,12 @@ public class StoryImplTest {
 
         // Act
         story.setStatus(StatusStory.IN_PROGRESS);
+        List<String> logDescription = story.getLogs().stream()
+                .map(log -> log.getDescription())
+                .collect(Collectors.toList());
 
         // Assert
-        Assertions.assertTrue(story.getLogs().contains("Status changed from NOT_DONE to IN_PROGRESS"));
+        Assertions.assertTrue(logDescription.contains("Status changed from Not Done to In Progress"));
     }
 
 }

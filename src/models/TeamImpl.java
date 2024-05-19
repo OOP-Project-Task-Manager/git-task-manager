@@ -29,9 +29,6 @@ public class TeamImpl implements Team {
         this.activityHistory = new ArrayList<>();
     }
 
-
-
-
     @Override
     public String getName() {
         return name;
