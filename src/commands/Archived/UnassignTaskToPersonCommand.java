@@ -1,6 +1,8 @@
-package commands;
+package commands.Archived;
 
+import commands.BaseCommand;
 import core.contracts.TaskRepository;
+import models.contracts.Assignable;
 import models.contracts.Member;
 import models.tasks.Contracts.Task;
 import utilities.ParsingHelpers;
@@ -13,9 +15,11 @@ public class UnassignTaskToPersonCommand extends BaseCommand {
     public static final String NO_SUCH_ID = "Task with id %s does not exist";
 
     public static final String TASK_UNASSIGNED_SUCCESSFULLY = "Task with id %d unassigned from %s successfully!";
-    public UnassignTaskToPersonCommand(TaskRepository repository){
+
+    public UnassignTaskToPersonCommand(TaskRepository repository) {
         super(repository);
     }
+
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
@@ -24,9 +28,15 @@ public class UnassignTaskToPersonCommand extends BaseCommand {
         return unassignTaskToPerson(taskId, personName);
     }
 
-    private String unassignTaskToPerson(int taskId, String personName){
+    private String unassignTaskToPerson(int taskId, String personName) {
         Member member = getRepository().findMemberByName(personName);
-        Task task = getRepository().findTaskById(taskId);
+        Assignable task = null;
+        try {
+            task = (Assignable) getRepository().findTaskById(taskId);
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException("Task does not have assignable condition");
+        }
+        task.setAssignee(null);
         member.removeTask(task);
         return String.format(TASK_UNASSIGNED_SUCCESSFULLY, taskId, personName);
     }

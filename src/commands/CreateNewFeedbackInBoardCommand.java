@@ -37,6 +37,7 @@ public class CreateNewFeedbackInBoardCommand extends BaseCommand {
     private String createFeedbackInBoard(String title, String description, int rating, String boardName) {
         Board board = getRepository().findBoardByName(boardName);
         Feedback feedback = getRepository().createFeedback(title, description, rating);
+        feedback.setBoard(board);
         AddToBoard(feedback, board);
         return String.format(FEEDBACK_CREATED, title, feedback.getId(), boardName);
 

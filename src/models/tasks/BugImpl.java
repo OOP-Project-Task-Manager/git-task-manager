@@ -4,20 +4,23 @@ import models.tasks.enums.Priority;
 import models.tasks.enums.Severity;
 import models.tasks.enums.StatusBug;
 import models.contracts.Member;
+import models.tasks.enums.StatusBugStoryCombined;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
     public static final String BUG_CONSTRUCTOR_LOG = "Bug %s created";
 
     //Constants
+    public static final StatusBugStoryCombined[] BUG_POSSIGLBE_STATUS = {StatusBugStoryCombined.ACTIVE, StatusBugStoryCombined.DONE};
 
     //Attrbitutes
     private final List<String> stepsToReproduce;
     private Priority priority;
     private Severity severity;
-    private StatusBug status;
+    private StatusBugStoryCombined status;
     private Member assignee;
     private boolean initializing = true;
 
@@ -29,7 +32,7 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
         super(id, title, description);
         setPriority(priority);
         setSeverity(severity);
-        this.status = StatusBug.ACTIVE;
+        this.status = StatusBugStoryCombined.ACTIVE;
         stepsToReproduce = new ArrayList<>();
         initializing = false;
         this.assignee = assignee;
@@ -68,12 +71,15 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
     }
 
     @Override
-    public StatusBug getStatus() {
+    public StatusBugStoryCombined getStatus() {
         return status;
     }
 
 
-    public void setStatus(StatusBug status) {
+    public void setStatus(StatusBugStoryCombined status) {
+        if (Arrays.stream(BUG_POSSIGLBE_STATUS).noneMatch(s -> s == status)) {
+            return;
+        }
         if (!initializing) {
             addLog("Status changed from %s to %s".formatted(this.status, status));
 
@@ -117,6 +123,17 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
 
     @Override
     public Member getAssignee() {
+        if (assignee == null) {
+            throw new IllegalArgumentException("Not assigned to any member");
+        }
         return assignee;
+    }
+
+    @Override
+    public void setAssignee(Member assignee) {
+        if (!initializing) {
+            addLog("Assignee changed from %s to %s".formatted(this.assignee.getName(), assignee.getName()));
+        }
+        this.assignee = assignee;
     }
 }

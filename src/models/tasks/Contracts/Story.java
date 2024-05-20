@@ -1,11 +1,12 @@
 package models.tasks.Contracts;
 
-import models.contracts.Member;
+import models.contracts.Assignable;
 import models.tasks.enums.Priority;
 import models.tasks.enums.Size;
+import models.tasks.enums.StatusBugStoryCombined;
 import models.tasks.enums.StatusStory;
 
-public interface Story extends Task {
+public interface Story extends Task, Assignable {
     Priority getPriority();
 
     void setPriority(Priority priority);
@@ -15,9 +16,9 @@ public interface Story extends Task {
 
     void setSize(Size size);
 
-    StatusStory getStatus();
+    StatusBugStoryCombined getStatus();
 
-    void setStatus(StatusStory status);
+    void setStatus(StatusBugStoryCombined status);
 
-    Member getAssignee();
+
 }

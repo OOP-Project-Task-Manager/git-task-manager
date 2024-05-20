@@ -1,5 +1,6 @@
 package models.tasks;
 
+import models.contracts.Board;
 import models.tasks.Contracts.Comment;
 import models.tasks.Contracts.EventLog;
 import models.tasks.Contracts.Task;
@@ -30,6 +31,7 @@ public abstract class TaskImpl implements Task {
     private String description;
     private final List<Comment> comments;
     private final List<EventLog> activityHistory;
+    private Board board;
 
     //Constructor
 
@@ -91,14 +93,24 @@ public abstract class TaskImpl implements Task {
     public List<EventLog> getLogs() {
         return new ArrayList<>(activityHistory);
     }
+
     @Override
-    public int getId(){
+    public int getId() {
         return id;
     }
 
     @Override
     public List<Comment> getComments() {
         return new ArrayList<>(comments);
+    }
+
+
+    public String getBoard(){
+        return board.getName();
+    }
+    public void setBoard(Board board){
+        this.board = board;
+
     }
 
     @Override

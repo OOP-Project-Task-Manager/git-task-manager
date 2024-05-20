@@ -1,6 +1,7 @@
 package models;
 
 import models.contracts.Member;
+import models.contracts.Team;
 import models.tasks.Contracts.EventLog;
 import models.tasks.Contracts.Task;
 import models.tasks.EventLogImpl;
@@ -21,6 +22,7 @@ public class MemberImpl implements Member {
     public static final String NON_EXISTENT_TASK_ERR = "Non-existent task";
 
     private String name;
+    private Team team;
     private final List<Task> tasks;
     private final List<EventLog> activityHistory;
 
@@ -28,6 +30,7 @@ public class MemberImpl implements Member {
         setName(name);
         this.tasks = new ArrayList<>();
         this.activityHistory = new ArrayList<>();
+        team = null;
         addLog(MEMBER_CONSTRUCTOR_LOG.formatted(name));
 
     }
@@ -37,9 +40,21 @@ public class MemberImpl implements Member {
         return name;
     }
 
+    @Override
+    public String getTeam() {
+        return team.getName();
+    }
+
+    @Override
+    public void setTeam(Team team) {
+        this.team = team;
+        String activity = "Member %s added to team %s".formatted(getName(), team.getName());
+        addLog(activity);
+
+    }
+
     public void setName(String name) {
-        ValidationHelper.validateStringLength(name, NAME_MIN_LENGTH, NAME_MAX_LENGTH,
-                NAME_LEN_ERR.formatted(NAME_MIN_LENGTH, NAME_MAX_LENGTH));
+        ValidationHelper.validateStringLength(name, NAME_MIN_LENGTH, NAME_MAX_LENGTH, NAME_LEN_ERR.formatted(NAME_MIN_LENGTH, NAME_MAX_LENGTH));
         this.name = name;
     }
 

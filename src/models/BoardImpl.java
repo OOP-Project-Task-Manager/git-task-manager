@@ -1,6 +1,7 @@
 package models;
 
 import models.contracts.Board;
+import models.contracts.Team;
 import models.tasks.Contracts.EventLog;
 import models.tasks.Contracts.Task;
 import models.tasks.EventLogImpl;
@@ -26,6 +27,7 @@ public class BoardImpl implements Board {
     private String name;
     private final List<Task> tasks;
     private final List<EventLog> activityHistory;
+    private Team team;
 
     //Constructor
 
@@ -43,9 +45,21 @@ public class BoardImpl implements Board {
         return name;
     }
 
+    @Override
+    public String getTeam() {
+        return team.getName();
+    }
+
+    @Override
+    public void setTeam(Team team) {
+        this.team = team;
+        String activity = "Board created in team %s".formatted(team.getName());
+        addLog(activity);
+
+    }
+
     private void setName(String name) {
-        ValidationHelper.validateStringLength(name, NAME_MIN_LENGTH, NAME_MAX_LENGTH,
-                NAME_LEN_ERR.formatted(NAME_MIN_LENGTH, NAME_MAX_LENGTH));
+        ValidationHelper.validateStringLength(name, NAME_MIN_LENGTH, NAME_MAX_LENGTH, NAME_LEN_ERR.formatted(NAME_MIN_LENGTH, NAME_MAX_LENGTH));
         this.name = name;
     }
 

@@ -42,6 +42,7 @@ public class CreateNewBugInBoardCommand extends BaseCommand {
     private String createBugInBoard(String title, String description, Priority priority, Severity severity, Member assignee, String boardName) {
         Board board = getRepository().findBoardByName(boardName);
         Bug bug = getRepository().createBug(title, description, priority, severity, assignee);
+        bug.setBoard(board);
         AddToBoard(bug, board);
         AddToMember(bug, assignee);
         return String.format(BUG_CREATED, title, bug.getId(), boardName);

@@ -1,6 +1,7 @@
 package commands;
 
 import core.contracts.TaskRepository;
+import models.contracts.Assignable;
 import models.contracts.Member;
 import models.tasks.Contracts.Task;
 import utilities.ParsingHelpers;
@@ -12,9 +13,11 @@ public class AssignTaskToPersonCommand extends BaseCommand {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     public static final String TASK_ASSIGNED_SUCCESSFULLY = "Task with id %d assigned to %s successfully!";
     public static final String NO_SUCH_ID = "Task with id %s does not exist";
-    public AssignTaskToPersonCommand(TaskRepository repository){
+
+    public AssignTaskToPersonCommand(TaskRepository repository) {
         super(repository);
     }
+
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
@@ -22,9 +25,16 @@ public class AssignTaskToPersonCommand extends BaseCommand {
         String personName = parameters.get(1);
         return assignTaskToPerson(taskId, personName);
     }
-    private String assignTaskToPerson(int taskId, String personName){
+
+    private String assignTaskToPerson(int taskId, String personName) {
         Member member = getRepository().findMemberByName(personName);
-        Task task = getRepository().findTaskById(taskId);
+        Assignable task = null;
+        try {
+            task = (Assignable) getRepository().findTaskById(taskId);
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException("Task does not have assignable condition");
+        }
+        task.setAssignee(member);
         member.addTask(task);
         return String.format(TASK_ASSIGNED_SUCCESSFULLY, taskId, personName);
     }

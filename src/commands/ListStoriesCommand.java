@@ -5,6 +5,7 @@ import core.contracts.TaskRepository;
 import models.tasks.Contracts.Bug;
 import models.tasks.Contracts.Story;
 import models.tasks.enums.StatusBug;
+import models.tasks.enums.StatusBugStoryCombined;
 import models.tasks.enums.StatusStory;
 
 import java.util.Comparator;
@@ -21,12 +22,12 @@ public class ListStoriesCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         List<Story> stories = getRepository().getStories();
-        StatusStory statusStory = null;
+        StatusBugStoryCombined statusStory = null;
         String assigneeName = null;
         String sortCriteria = null;
         for (String param : parameters) {
             if (isStatus(param)) {
-                statusStory = StatusStory.valueOf(param.toUpperCase());
+                statusStory = StatusBugStoryCombined.valueOf(param.toUpperCase());
             } else if (isSortCriteria(param)) {
                 sortCriteria = param.toLowerCase();
             } else {
@@ -34,7 +35,7 @@ public class ListStoriesCommand extends BaseCommand {
             }
         }
         if (statusStory != null) {
-            StatusStory result = statusStory;
+            StatusBugStoryCombined result = statusStory;
             stories = stories.stream()
                     .filter(story -> story.getStatus() == result)
                     .collect(Collectors.toList());

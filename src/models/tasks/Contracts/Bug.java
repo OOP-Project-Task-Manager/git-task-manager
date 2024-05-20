@@ -1,17 +1,18 @@
 package models.tasks.Contracts;
 
 
+import models.contracts.Assignable;
 import models.tasks.enums.Priority;
 import models.tasks.enums.Severity;
 import models.tasks.enums.StatusBug;
-import models.contracts.Member;
+import models.tasks.enums.StatusBugStoryCombined;
 
 import java.util.List;
 
-public interface Bug extends Task {
+public interface Bug extends Task, Assignable {
     Priority getPriority();
 
-    void setStatus(StatusBug status);
+    void setStatus(StatusBugStoryCombined status);
 
     void setSeverity(Severity severity);
 
@@ -19,7 +20,7 @@ public interface Bug extends Task {
 
     Severity getSeverity();
 
-    StatusBug getStatus();
+    StatusBugStoryCombined getStatus();
 
     List<String> getStepsToReproduce();
 
@@ -29,5 +30,5 @@ public interface Bug extends Task {
 
     void clearStepsToReproduce();
 
-    Member getAssignee();
+
 }

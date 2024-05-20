@@ -1,11 +1,13 @@
 package core;
 
 import commands.*;
+import commands.Archived.UnassignTaskToPersonCommand;
 import commands.contracts.Command;
 import commands.enums.CommandType;
 import commands.ListBugsCommand;
 import commands.ListFeedbackCommand;
 import commands.listing.ListTasksCommand;
+import commands.listing.ListTasksWithAssigneeCommand;
 import core.contracts.CommandFactory;
 import core.contracts.TaskRepository;
 import utilities.ParsingHelpers;
@@ -67,8 +69,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowTeamsActivityCommand(taskRepository);
             case SHOWTEAMS:
                 return new ShowTeamsCommand(taskRepository);
-            case UNASSIGNTASKTOPERSON:
-                return new UnassignTaskToPersonCommand(taskRepository);
+//            case UNASSIGNTASKTOPERSON:
+//                return new UnassignTaskToPersonCommand(taskRepository);
             case LISTBUGS:
                 return new ListBugsCommand(taskRepository);
             case LISTFEEDBACKS:
@@ -77,6 +79,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ListStoriesCommand(taskRepository);
             case LISTTASKS:
                 return new ListTasksCommand(taskRepository);
+            case LISTTASKSWITHASSIGNEE:
+                return new ListTasksWithAssigneeCommand(taskRepository);
             default:
                 throw new IllegalArgumentException(NO_SUCH_COMMAND);
 
