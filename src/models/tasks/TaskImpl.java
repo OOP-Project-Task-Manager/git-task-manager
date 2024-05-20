@@ -122,7 +122,7 @@ public abstract class TaskImpl implements Task {
         if (comments != null && !comments.isEmpty()) {
             stringBuilder.append("Comments: \n");
             for (Comment comment : comments) {
-                stringBuilder.append("- ").append(comment.getAuthor()).append(": ").append(comment.getMessage()).append("\n");
+                stringBuilder.append("- ").append(comment.getAuthor().getName()).append(": ").append(comment.getMessage()).append("\n");
             }
         }
 

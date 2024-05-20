@@ -23,6 +23,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     public static final String BUG_ERR = "No Bug with id %d";
     public static final String STORY_ERR = "No story with id %S";
     public static final String FEEDBACK_ERR = "No feedback with id %s";
+    public static final String BOARD_ALREADY_EXIST = "Board with name %s already exists";
     private int id;
     private final static String TEAM_ALREADY_EXIST = "Team %s already exist.";
     private final static String NO_SUCH_TEAM = "There is no team with name %s!";
@@ -100,6 +101,10 @@ public class TaskRepositoryImpl implements TaskRepository {
     public void addTaskToBoard(Task task, Board board) {
         board.addTask(task);
     }
+    @Override
+    public void addBoard(Board board){
+        boards.add(board);
+    }
 
 
     @Override
@@ -131,7 +136,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public Board createBoard(String name) {
         if(boardExist(name)){
-            throw new IllegalArgumentException(String.format("Board with name %s already exists.", name));
+            throw new IllegalArgumentException(String.format(BOARD_ALREADY_EXIST, name));
         }
         Board board = new BoardImpl(name);
         boards.add(board);
@@ -150,12 +155,24 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public Member createNewPerson(String name) {
-        return new MemberImpl(name);
+        boolean personExist = members.stream().anyMatch(u -> u.getName().equalsIgnoreCase(name));
+        if (personExist){
+            throw new IllegalArgumentException(String.format(MEMBER_ALREADY_EXIST, name));
+        }
+        Member member = new MemberImpl(name);
+        members.add(member);
+        return member;
     }
 
     @Override
     public Team createTeam(String name) {
-        return new TeamImpl(name);
+        boolean teamExist = teams.stream().anyMatch(u -> u.getName().equalsIgnoreCase(name));
+        if (teamExist){
+            throw new IllegalArgumentException(String.format(TEAM_ALREADY_EXIST, name));
+        }
+        Team team = new TeamImpl(name);
+        teams.add(team);
+        return team;
     }
 
     @Override

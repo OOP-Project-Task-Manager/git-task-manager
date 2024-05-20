@@ -10,11 +10,11 @@ public enum Priority {
     public String toString() {
         switch (this) {
             case HIGH:
-                return "High Priority";
+                return "High";
             case MEDIUM:
-                return "Medium Priority";
+                return "Medium";
             case LOW:
-                return "Low Priority";
+                return "Low";
             default:
                 throw new IllegalArgumentException("Unknown priority type");
         }

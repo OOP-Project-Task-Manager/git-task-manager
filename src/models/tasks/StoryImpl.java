@@ -47,7 +47,7 @@ public class StoryImpl extends TaskImpl implements Story {
 
     public void setPriority(Priority priority) {
         if (!initializing) {
-            addLog("Priority changed from %s to %s".formatted(this.priority, priority));
+            addLog("Priority changed from %s Priority to %s Priority".formatted(this.priority, priority));
 
         }
 

@@ -99,8 +99,4 @@ public class MemberImpl implements Member {
         return Objects.equals(name, member.name);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
 }
