@@ -32,6 +32,7 @@ public interface TaskRepository {
     void addTaskToMember(Task task, Member member);
 
     void addTaskToBoard(Task task, Board board);
+    void addBoard(Board board);
 
     Bug createBug(String title, String description, Priority priority, Severity severity, Member assignee);
 

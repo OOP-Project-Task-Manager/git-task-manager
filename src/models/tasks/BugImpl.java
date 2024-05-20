@@ -47,7 +47,7 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
 
     public void setPriority(Priority priority) {
         if (!initializing) {
-            addLog("Priority changed from %s to %s".formatted(this.priority, priority));
+            addLog("Priority changed from %s Priority to %s Priority".formatted(this.priority, priority));
 
         }
         this.priority = priority;
