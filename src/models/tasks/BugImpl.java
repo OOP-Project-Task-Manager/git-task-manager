@@ -123,9 +123,9 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
 
     @Override
     public Member getAssignee() {
-        if (assignee == null) {
-            throw new IllegalArgumentException("Not assigned to any member");
-        }
+//        if (assignee == null) {
+//            throw new IllegalArgumentException("Not assigned to any member");
+//        }
         return assignee;
     }
 

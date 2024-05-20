@@ -70,8 +70,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowTeamsActivityCommand(taskRepository);
             case SHOWTEAMS:
                 return new ShowTeamsCommand(taskRepository);
-//            case UNASSIGNTASKTOPERSON:
-//                return new UnassignTaskToPersonCommand(taskRepository);
+            case UNASSIGNTASKTOPERSON:
+                return new UnassignTaskToPersonCommand(taskRepository);
             case LISTBUGS:
                 return new ListBugsCommand(taskRepository);
             case LISTFEEDBACKS:

@@ -2,6 +2,7 @@ package commands.Archived;
 
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
+import models.MemberImpl;
 import models.contracts.Assignable;
 import models.contracts.Member;
 import models.tasks.Contracts.Task;
@@ -15,6 +16,7 @@ public class UnassignTaskToPersonCommand extends BaseCommand {
     public static final String NO_SUCH_ID = "Task with id %s does not exist";
 
     public static final String TASK_UNASSIGNED_SUCCESSFULLY = "Task with id %d unassigned from %s successfully!";
+    private static final Member unassgined = new MemberImpl("Unassigned");
 
     public UnassignTaskToPersonCommand(TaskRepository repository) {
         super(repository);
@@ -36,7 +38,7 @@ public class UnassignTaskToPersonCommand extends BaseCommand {
         } catch (ClassCastException e) {
             throw new IllegalArgumentException("Task does not have assignable condition");
         }
-        task.setAssignee(null);
+        task.setAssignee(unassgined);
         member.removeTask(task);
         return String.format(TASK_UNASSIGNED_SUCCESSFULLY, taskId, personName);
     }
