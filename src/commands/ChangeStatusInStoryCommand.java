@@ -2,8 +2,7 @@ package commands;
 
 import core.contracts.TaskRepository;
 import models.tasks.Contracts.Story;
-import models.tasks.enums.StatusBugStoryCombined;
-import models.tasks.enums.StatusStory;
+import models.tasks.enums.Status;
 import utilities.ParsingHelpers;
 import utilities.ValidationHelper;
 
@@ -25,12 +24,12 @@ public class ChangeStatusInStoryCommand extends BaseCommand {
     protected String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_ARGUMENTS_COUNT);
         int id = ParsingHelpers.tryParseInteger(parameters.get(0), NOT_A_VALID_INTEGER);
-        StatusBugStoryCombined status = ParsingHelpers.tryParseEnum(parameters.get(1), StatusBugStoryCombined.class ,STATUS_NOT_EXIST);
+        Status status = ParsingHelpers.tryParseEnum(parameters.get(1), Status.class ,STATUS_NOT_EXIST);
         Story story = getRepository().findStoryById(id);
         return changeStatusInStory(story, status);
     }
 
-    private String changeStatusInStory(Story story, StatusBugStoryCombined status){
+    private String changeStatusInStory(Story story, Status status){
         if (story.getStatus() == status){
             throw new IllegalArgumentException(STATUS_ERR);
         }

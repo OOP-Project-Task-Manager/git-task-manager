@@ -1,14 +1,12 @@
 package models.tasks.Contracts;
 
-import models.tasks.enums.StatusFeedback;
+import models.contracts.Statusable;
 
-public interface Feedback extends Task {
+public interface Feedback extends Task, Statusable {
     int getRating();
 
     void setRating(int rating);
 
-    StatusFeedback getStatus();
 
-    void setStatus(StatusFeedback status);
 
 }

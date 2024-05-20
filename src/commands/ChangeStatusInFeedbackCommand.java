@@ -2,7 +2,7 @@ package commands;
 
 import core.contracts.TaskRepository;
 import models.tasks.Contracts.Feedback;
-import models.tasks.enums.StatusFeedback;
+import models.tasks.enums.Status;
 import utilities.ParsingHelpers;
 import utilities.ValidationHelper;
 
@@ -27,12 +27,12 @@ public class ChangeStatusInFeedbackCommand extends BaseCommand {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_ARGUMENTS_COUNT);
         int id = ParsingHelpers.tryParseInteger(parameters.get(0), NOT_A_VALID_INTEGER);
         Feedback feedback = getRepository().findFeedbackById(id);
-        StatusFeedback status = ParsingHelpers.tryParseEnum(parameters.get(1), StatusFeedback.class, STATUS_NOT_EXIST);
+        Status status = ParsingHelpers.tryParseEnum(parameters.get(1), Status.class, STATUS_NOT_EXIST);
 
         return changeStatus(feedback, status);
     }
 
-    private String changeStatus(Feedback feedback, StatusFeedback status) {
+    private String changeStatus(Feedback feedback, Status status) {
         if (feedback.getStatus() == status){
             throw new IllegalArgumentException(STATUS_ERR);
         }

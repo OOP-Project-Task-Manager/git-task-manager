@@ -1,11 +1,9 @@
 package models.contracts;
 
-import models.contracts.Member;
 import models.tasks.Contracts.Task;
-import models.tasks.enums.StatusBugStoryCombined;
 
-public interface Assignable extends Task {
+public interface Assignable extends Task,Statusable {
     Member getAssignee();
     void setAssignee(Member assignee);
-    StatusBugStoryCombined getStatus();
+
 }

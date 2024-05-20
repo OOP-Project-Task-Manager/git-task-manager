@@ -3,7 +3,7 @@ package commands.listing;
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
 import models.tasks.Contracts.Feedback;
-import models.tasks.enums.StatusFeedback;
+import models.tasks.enums.Status;
 
 import java.util.Comparator;
 import java.util.List;
@@ -17,18 +17,18 @@ public class ListFeedbackCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         List<Feedback> feedbacks = getRepository().getFeedbacks();
-        StatusFeedback statusFeedback = null;
+        Status statusFeedback = null;
         String sortCriteria = null;
         for (String param : parameters){
             if (isStatus(param)){
-                statusFeedback = StatusFeedback.valueOf(param.toUpperCase());
+                statusFeedback = Status.valueOf(param.toUpperCase());
             }
             else if (isSortCriteria(param)){
                 sortCriteria = param.toLowerCase();
             }
         }
         if (statusFeedback != null){
-            StatusFeedback result = statusFeedback;
+            Status result = statusFeedback;
             feedbacks = feedbacks.stream()
                     .filter(feedback -> feedback.getStatus() == result)
                     .collect(Collectors.toList());
@@ -50,7 +50,7 @@ public class ListFeedbackCommand extends BaseCommand {
 
     private boolean isStatus(String param){
         try {
-            StatusFeedback.valueOf(param.toUpperCase());
+            Status.valueOf(param.toUpperCase());
             return true;
         } catch (IllegalArgumentException e){
             return false;

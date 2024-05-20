@@ -1,10 +1,14 @@
 package models.tasks.enums;
 
-public enum StatusBugStoryCombined {
+public enum Status {
     ACTIVE,
     NOT_DONE,
     IN_PROGRESS,
-    DONE;
+    DONE,
+    NEW,
+    UNSCHEDULED,
+    SCHEDULED;
+
 
     @Override
     public String toString() {

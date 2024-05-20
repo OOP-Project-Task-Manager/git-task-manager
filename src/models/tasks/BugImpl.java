@@ -2,9 +2,8 @@ package models.tasks;
 
 import models.tasks.enums.Priority;
 import models.tasks.enums.Severity;
-import models.tasks.enums.StatusBug;
 import models.contracts.Member;
-import models.tasks.enums.StatusBugStoryCombined;
+import models.tasks.enums.Status;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,13 +13,13 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
     public static final String BUG_CONSTRUCTOR_LOG = "Bug %s created";
 
     //Constants
-    public static final StatusBugStoryCombined[] BUG_POSSIGLBE_STATUS = {StatusBugStoryCombined.ACTIVE, StatusBugStoryCombined.DONE};
+    public static final Status[] BUG_POSSIGLBE_STATUS = {Status.ACTIVE, Status.DONE};
 
     //Attrbitutes
     private final List<String> stepsToReproduce;
     private Priority priority;
     private Severity severity;
-    private StatusBugStoryCombined status;
+    private Status status;
     private Member assignee;
     private boolean initializing = true;
 
@@ -32,7 +31,7 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
         super(id, title, description);
         setPriority(priority);
         setSeverity(severity);
-        this.status = StatusBugStoryCombined.ACTIVE;
+        this.status = Status.ACTIVE;
         stepsToReproduce = new ArrayList<>();
         initializing = false;
         this.assignee = assignee;
@@ -71,12 +70,12 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
     }
 
     @Override
-    public StatusBugStoryCombined getStatus() {
+    public Status getStatus() {
         return status;
     }
 
 
-    public void setStatus(StatusBugStoryCombined status) {
+    public void setStatus(Status status) {
         if (Arrays.stream(BUG_POSSIGLBE_STATUS).noneMatch(s -> s == status)) {
             return;
         }
@@ -123,9 +122,6 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
 
     @Override
     public Member getAssignee() {
-//        if (assignee == null) {
-//            throw new IllegalArgumentException("Not assigned to any member");
-//        }
         return assignee;
     }
 

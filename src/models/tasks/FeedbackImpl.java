@@ -1,7 +1,9 @@
 package models.tasks;
 
-import models.tasks.enums.StatusFeedback;
+import models.tasks.enums.Status;
 import utilities.ValidationHelper;
+
+import java.util.Arrays;
 
 public class FeedbackImpl extends TaskImpl implements models.tasks.Contracts.Feedback {
 
@@ -12,15 +14,16 @@ public class FeedbackImpl extends TaskImpl implements models.tasks.Contracts.Fee
 
     //Attributes
     private int rating;
-    private StatusFeedback status;
+    private Status status;
     private boolean initializing = true;
+    public static final Status[] FEEDBACK_POSSIGLBE_STATUS = {Status.NEW, Status.UNSCHEDULED, Status.SCHEDULED, Status.DONE};
 
 
     //Constructor
     public FeedbackImpl(int id, String title, String description, int rating) {
         super(id, title, description);
         setRating(rating);
-        this.status = StatusFeedback.NEW;
+        this.status = Status.NEW;
         initializing = false;
         addLog(FEEDBACK_CONSTRUCTOR_LOG.formatted(title));
 
@@ -45,11 +48,14 @@ public class FeedbackImpl extends TaskImpl implements models.tasks.Contracts.Fee
     }
 
     @Override
-    public StatusFeedback getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(StatusFeedback status) {
+    public void setStatus(Status status) {
+        if (Arrays.stream(FEEDBACK_POSSIGLBE_STATUS).noneMatch(s -> s == status)) {
+            return;
+        }
         if (!initializing) {
             addLog("Status changed from %s to %s".formatted(this.status, status));
 

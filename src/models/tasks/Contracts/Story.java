@@ -3,8 +3,7 @@ package models.tasks.Contracts;
 import models.contracts.Assignable;
 import models.tasks.enums.Priority;
 import models.tasks.enums.Size;
-import models.tasks.enums.StatusBugStoryCombined;
-import models.tasks.enums.StatusStory;
+import models.tasks.enums.Status;
 
 public interface Story extends Task, Assignable {
     Priority getPriority();
@@ -16,9 +15,9 @@ public interface Story extends Task, Assignable {
 
     void setSize(Size size);
 
-    StatusBugStoryCombined getStatus();
+    Status getStatus();
 
-    void setStatus(StatusBugStoryCombined status);
+    void setStatus(Status status);
 
 
 }

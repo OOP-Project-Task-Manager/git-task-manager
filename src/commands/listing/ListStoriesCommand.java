@@ -2,11 +2,8 @@ package commands.listing;
 
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
-import models.tasks.Contracts.Bug;
 import models.tasks.Contracts.Story;
-import models.tasks.enums.StatusBug;
-import models.tasks.enums.StatusBugStoryCombined;
-import models.tasks.enums.StatusStory;
+import models.tasks.enums.Status;
 
 import java.util.Comparator;
 import java.util.List;
@@ -22,12 +19,12 @@ public class ListStoriesCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         List<Story> stories = getRepository().getStories();
-        StatusBugStoryCombined statusStory = null;
+        Status statusStory = null;
         String assigneeName = null;
         String sortCriteria = null;
         for (String param : parameters) {
             if (isStatus(param)) {
-                statusStory = StatusBugStoryCombined.valueOf(param.toUpperCase());
+                statusStory = Status.valueOf(param.toUpperCase());
             } else if (isSortCriteria(param)) {
                 sortCriteria = param.toLowerCase();
             } else {
@@ -35,7 +32,7 @@ public class ListStoriesCommand extends BaseCommand {
             }
         }
         if (statusStory != null) {
-            StatusBugStoryCombined result = statusStory;
+            Status result = statusStory;
             stories = stories.stream()
                     .filter(story -> story.getStatus() == result)
                     .collect(Collectors.toList());
@@ -66,7 +63,7 @@ public class ListStoriesCommand extends BaseCommand {
 
     private boolean isStatus(String param) {
         try {
-            StatusStory.valueOf(param.toUpperCase());
+            Status.valueOf(param.toUpperCase());
             return true;
         } catch (IllegalArgumentException e) {
             return false;

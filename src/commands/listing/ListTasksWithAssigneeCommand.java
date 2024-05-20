@@ -3,7 +3,6 @@ package commands.listing;
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
 import models.contracts.Assignable;
-import models.tasks.enums.StatusBugStoryCombined;
 import utilities.ValidationHelper;
 
 import java.util.ArrayList;

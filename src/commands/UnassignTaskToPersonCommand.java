@@ -1,4 +1,4 @@
-package commands.Archived;
+package commands;
 
 import commands.BaseCommand;
 import core.contracts.TaskRepository;

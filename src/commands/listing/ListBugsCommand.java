@@ -3,8 +3,7 @@ package commands.listing;
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
 import models.tasks.Contracts.Bug;
-import models.tasks.enums.StatusBug;
-import models.tasks.enums.StatusBugStoryCombined;
+import models.tasks.enums.Status;
 
 import java.util.Comparator;
 import java.util.List;
@@ -20,12 +19,12 @@ public class ListBugsCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         List<Bug> bugs = getRepository().getBugs();
-        StatusBugStoryCombined status = null;
+        Status status = null;
         String assigneeName = null;
         String sortCriteria = null;
         for (String param : parameters){
             if (isStatus(param)){
-                status = StatusBugStoryCombined.valueOf(param.toUpperCase());
+                status = Status.valueOf(param.toUpperCase());
             } else if (isSortCriteria(param)){
                 sortCriteria = param.toLowerCase();
             } else{
@@ -33,7 +32,7 @@ public class ListBugsCommand extends BaseCommand {
             }
         }
         if (status != null){
-            StatusBugStoryCombined result = status;
+            Status result = status;
             bugs = bugs.stream()
                     .filter(bug -> bug.getStatus() == result)
                     .collect(Collectors.toList());
@@ -65,7 +64,7 @@ public class ListBugsCommand extends BaseCommand {
 
     private boolean isStatus(String param){
         try {
-            StatusBug.valueOf(param.toUpperCase());
+            Status.valueOf(param.toUpperCase());
             return true;
         } catch (IllegalArgumentException e){
             return false;

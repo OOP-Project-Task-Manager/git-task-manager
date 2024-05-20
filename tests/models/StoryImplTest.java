@@ -3,11 +3,10 @@ package models;
 
 import models.contracts.Member;
 import models.tasks.Contracts.Task;
-import models.tasks.EventLogImpl;
 import models.tasks.StoryImpl;
 import models.tasks.enums.Priority;
 import models.tasks.enums.Size;
-import models.tasks.enums.StatusStory;
+import models.tasks.enums.Status;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -127,10 +126,10 @@ public class StoryImplTest {
                 new MemberImpl("SSSSSSSSSS"));
 
         // Act
-        story.setStatus(StatusStory.DONE);
+        story.setStatus(Status.DONE);
 
         // Assert
-        Assertions.assertEquals(StatusStory.DONE, story.getStatus());
+        Assertions.assertEquals(Status.DONE, story.getStatus());
     }
     @Test
     public void getAssignee_Should_ReturnAssignee() {
@@ -202,7 +201,7 @@ public class StoryImplTest {
                 new MemberImpl("SSSSSSSSSS"));
 
         // Act
-        story.setStatus(StatusStory.IN_PROGRESS);
+        story.setStatus(Status.IN_PROGRESS);
         List<String> logDescription = story.getLogs().stream()
                 .map(log -> log.getDescription())
                 .collect(Collectors.toList());

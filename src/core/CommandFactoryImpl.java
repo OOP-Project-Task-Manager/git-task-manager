@@ -1,7 +1,7 @@
 package core;
 
 import commands.*;
-import commands.Archived.UnassignTaskToPersonCommand;
+import commands.UnassignTaskToPersonCommand;
 import commands.contracts.Command;
 import commands.enums.CommandType;
 import commands.listing.ListBugsCommand;

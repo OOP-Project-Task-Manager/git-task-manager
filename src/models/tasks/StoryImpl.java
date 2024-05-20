@@ -3,15 +3,14 @@ package models.tasks;
 import models.tasks.Contracts.Story;
 import models.tasks.enums.Priority;
 import models.tasks.enums.Size;
-import models.tasks.enums.StatusBugStoryCombined;
-import models.tasks.enums.StatusStory;
+import models.tasks.enums.Status;
 import models.contracts.Member;
 
 import java.util.Arrays;
 
 public class StoryImpl extends TaskImpl implements Story {
     public static final String STORY_CONSTRUCTOR_LOG = "Story %s created";
-    public static final StatusBugStoryCombined[] STORY_POSSIGLBE_STATUS = {StatusBugStoryCombined.NOT_DONE, StatusBugStoryCombined.IN_PROGRESS, StatusBugStoryCombined.DONE};
+    public static final Status[] STORY_POSSIGLBE_STATUS = {Status.NOT_DONE, Status.IN_PROGRESS, Status.DONE};
     //make arrays of possible statuses for both story nad bug and adjust setters. use common enum for filtering
 
 
@@ -21,7 +20,7 @@ public class StoryImpl extends TaskImpl implements Story {
     //Attributes
     private Priority priority;
     private Size size;
-    private StatusBugStoryCombined status;
+    private Status status;
     private Member assignee;
     private boolean initializing = true;
 
@@ -31,7 +30,7 @@ public class StoryImpl extends TaskImpl implements Story {
         super(id, title, description);
         setPriority(priority);
         setSize(size);
-        this.status = StatusBugStoryCombined.NOT_DONE;
+        this.status = Status.NOT_DONE;
         initializing = false;
         addLog(STORY_CONSTRUCTOR_LOG.formatted(title));
         this.assignee = assignee;
@@ -68,7 +67,7 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
     @Override
-    public StatusBugStoryCombined getStatus() {
+    public Status getStatus() {
         return status;
     }
 
@@ -89,7 +88,7 @@ public class StoryImpl extends TaskImpl implements Story {
         this.assignee = assignee;
     }
 
-    public void setStatus(StatusBugStoryCombined status) {
+    public void setStatus(Status status) {
         if (Arrays.stream(STORY_POSSIGLBE_STATUS).noneMatch(s -> s == status)) {
             throw new IllegalArgumentException("Not a valid status for story");
         }
