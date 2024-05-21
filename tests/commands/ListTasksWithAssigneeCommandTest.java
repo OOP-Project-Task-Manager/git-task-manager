@@ -98,10 +98,24 @@ public class ListTasksWithAssigneeCommandTest {
     }
     @Test
     public void executeCommand_Should_FilterByAssigneeAndStatus() {
-        List<String> params = Arrays.asList("Aliceandra", "ACTIVE", "no");
+        List<String> params = Arrays.asList("Aliceandra", "NOT_DONE", "no");
         String result = listTasksWithAssigneeCommand.executeCommand(params);
-        String expected = "Task ID: 1, Title: Task A, Description: Description A Status: ACTIVE Assignee: Alice\n" +
-                "Task ID: 3, Title: Task C, Description: Description C Status: ACTIVE Assignee: Alice\n";
+        String expected = "Task ID: 1, Title: TaskBBBBBBB, Description: DescriptionB Status: Not_Done Assignee: Aliceandra\n";
+        Assertions.assertEquals(expected, result);
+    }
+    @Test
+    public void executeCommand_InvalidFilter() {
+        List<String> params = Arrays.asList("NonExistentAssignee", "no", "no");
+        String result = listTasksWithAssigneeCommand.executeCommand(params);
+        String expected = "";
+        Assertions.assertEquals(expected, result);
+    }
+    @Test
+    public void executeCommand_Should_SortAndFilter() {
+        List<String> params = Arrays.asList("no", "ACTIVE", "sort");
+        String result = listTasksWithAssigneeCommand.executeCommand(params);
+        String expected = "Task ID: 2, Title: TaskAAAAAAA, Description: DescriptionA Status: Active Assignee: BobbyG\n" +
+                "Task ID: 3, Title: TaskCCCCCCCC, Description: DescriptionC Status: Active Assignee: Johnathan\n";
         Assertions.assertEquals(expected, result);
     }
 }
