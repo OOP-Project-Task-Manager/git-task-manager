@@ -29,7 +29,6 @@ public class CreateNewTeamCommand extends BaseCommand {
 
     private String createTeam(String name) {
         Team team = getRepository().createTeam(name);
-        //getRepository().addTeam(team);
         return String.format(TEAM_CREATED, team.getName());
     }
 }
