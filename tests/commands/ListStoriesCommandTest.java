@@ -57,10 +57,10 @@ public class ListStoriesCommandTest {
         List<String> params = new ArrayList<>();
         params.add("NOT_DONE");
         String result = listStoriesCommand.executeCommand(params);
-        String expected = "Story ID: 1, Title: AAAAAAAAAAAAAAA, Status: Not Done, Assignee: SSSSSSSS\n" +
-                "Story ID: 2, Title: BBBBBBBBBBBBBB, Status: Not Done, Assignee: EEEEEEEEEE\n" +
-                "Story ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: Not Done, Assignee: PPPPPPPPPP\n" +
-                "Story ID: 4, Title: DDDDDDDDDDDDDDDD, Status: Not Done, Assignee: KKKKKKKKKK\n";
+        String expected = "Story ID: 1, Title: AAAAAAAAAAAAAAA, Status: Not_Done, Assignee: SSSSSSSS\n" +
+                "Story ID: 2, Title: BBBBBBBBBBBBBB, Status: Not_Done, Assignee: EEEEEEEEEE\n" +
+                "Story ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: Not_Done, Assignee: PPPPPPPPPP\n" +
+                "Story ID: 4, Title: DDDDDDDDDDDDDDDD, Status: Not_Done, Assignee: KKKKKKKKKK\n";
         Assertions.assertEquals(result, expected);
 
     }
@@ -69,10 +69,10 @@ public class ListStoriesCommandTest {
         List<String> parameters = new ArrayList<>();
         parameters.add("title");
         String result = listStoriesCommand.executeCommand(parameters);
-        String expected = "Story ID: 1, Title: AAAAAAAAAAAAAAA, Status: Not Done, Assignee: SSSSSSSS\n" +
-                "Story ID: 2, Title: BBBBBBBBBBBBBB, Status: Not Done, Assignee: EEEEEEEEEE\n" +
-                "Story ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: Not Done, Assignee: PPPPPPPPPP\n" +
-                "Story ID: 4, Title: DDDDDDDDDDDDDDDD, Status: Not Done, Assignee: KKKKKKKKKK\n";
+        String expected = "Story ID: 1, Title: AAAAAAAAAAAAAAA, Status: Not_Done, Assignee: SSSSSSSS\n" +
+                "Story ID: 2, Title: BBBBBBBBBBBBBB, Status: Not_Done, Assignee: EEEEEEEEEE\n" +
+                "Story ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: Not_Done, Assignee: PPPPPPPPPP\n" +
+                "Story ID: 4, Title: DDDDDDDDDDDDDDDD, Status: Not_Done, Assignee: KKKKKKKKKK\n";
         Assertions.assertEquals(expected, result);
     }
     @Test
@@ -81,10 +81,10 @@ public class ListStoriesCommandTest {
         List<String> parameters = new ArrayList<>();
         parameters.add("size");
         String result = listStoriesCommand.executeCommand(parameters);
-        String expected = "Story ID: 1, Title: AAAAAAAAAAAAAAA, Status: Not Done, Assignee: SSSSSSSS\n" +
-                "Story ID: 2, Title: BBBBBBBBBBBBBB, Status: Not Done, Assignee: EEEEEEEEEE\n" +
-                "Story ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: Not Done, Assignee: PPPPPPPPPP\n" +
-                "Story ID: 4, Title: DDDDDDDDDDDDDDDD, Status: Not Done, Assignee: KKKKKKKKKK\n";
+        String expected = "Story ID: 1, Title: AAAAAAAAAAAAAAA, Status: Not_Done, Assignee: SSSSSSSS\n" +
+                "Story ID: 2, Title: BBBBBBBBBBBBBB, Status: Not_Done, Assignee: EEEEEEEEEE\n" +
+                "Story ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: Not_Done, Assignee: PPPPPPPPPP\n" +
+                "Story ID: 4, Title: DDDDDDDDDDDDDDDD, Status: Not_Done, Assignee: KKKKKKKKKK\n";
         Assertions.assertEquals(expected, result);
     }
     @Test
@@ -93,10 +93,10 @@ public class ListStoriesCommandTest {
         List<String> parameters = new ArrayList<>();
         parameters.add("priority");
         String result = listStoriesCommand.executeCommand(parameters);
-        String expected = "Story ID: 1, Title: AAAAAAAAAAAAAAA, Status: Not Done, Assignee: SSSSSSSS\n" +
-                "Story ID: 2, Title: BBBBBBBBBBBBBB, Status: Not Done, Assignee: EEEEEEEEEE\n" +
-                "Story ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: Not Done, Assignee: PPPPPPPPPP\n" +
-                "Story ID: 4, Title: DDDDDDDDDDDDDDDD, Status: Not Done, Assignee: KKKKKKKKKK\n";
+        String expected = "Story ID: 1, Title: AAAAAAAAAAAAAAA, Status: Not_Done, Assignee: SSSSSSSS\n" +
+                "Story ID: 2, Title: BBBBBBBBBBBBBB, Status: Not_Done, Assignee: EEEEEEEEEE\n" +
+                "Story ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: Not_Done, Assignee: PPPPPPPPPP\n" +
+                "Story ID: 4, Title: DDDDDDDDDDDDDDDD, Status: Not_Done, Assignee: KKKKKKKKKK\n";
         Assertions.assertEquals(expected, result);
     }
     @Test
@@ -105,7 +105,7 @@ public class ListStoriesCommandTest {
         parameters.add("NOT_DONE");
         parameters.add("SSSSSSSS");
         String result = listStoriesCommand.executeCommand(parameters);
-        String expected = "Story ID: 1, Title: AAAAAAAAAAAAAAA, Status: Not Done, Assignee: SSSSSSSS\n";
+        String expected = "Story ID: 1, Title: AAAAAAAAAAAAAAA, Status: Not_Done, Assignee: SSSSSSSS\n";
         Assertions.assertEquals(expected, result);
     }
     @Test
@@ -114,10 +114,10 @@ public class ListStoriesCommandTest {
         parameters.add("NOT_DONE");
         parameters.add("title");
         String result = listStoriesCommand.executeCommand(parameters);
-        String expected = "Story ID: 1, Title: AAAAAAAAAAAAAAA, Status: Not Done, Assignee: SSSSSSSS\n" +
-                "Story ID: 2, Title: BBBBBBBBBBBBBB, Status: Not Done, Assignee: EEEEEEEEEE\n"+
-                "Story ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: Not Done, Assignee: PPPPPPPPPP\n"+
-                "Story ID: 4, Title: DDDDDDDDDDDDDDDD, Status: Not Done, Assignee: KKKKKKKKKK\n";
+        String expected = "Story ID: 1, Title: AAAAAAAAAAAAAAA, Status: Not_Done, Assignee: SSSSSSSS\n" +
+                "Story ID: 2, Title: BBBBBBBBBBBBBB, Status: Not_Done, Assignee: EEEEEEEEEE\n"+
+                "Story ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: Not_Done, Assignee: PPPPPPPPPP\n"+
+                "Story ID: 4, Title: DDDDDDDDDDDDDDDD, Status: Not_Done, Assignee: KKKKKKKKKK\n";
         Assertions.assertEquals(expected, result);
     }
     @Test

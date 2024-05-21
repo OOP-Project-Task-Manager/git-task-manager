@@ -207,7 +207,7 @@ public class StoryImplTest {
                 .collect(Collectors.toList());
 
         // Assert
-        Assertions.assertTrue(logDescription.contains("Status changed from Not Done to In Progress"));
+        Assertions.assertTrue(logDescription.contains("Status changed from Not_Done to In_Progress"));
     }
 
 }

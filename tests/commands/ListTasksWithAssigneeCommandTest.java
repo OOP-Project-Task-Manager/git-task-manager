@@ -67,8 +67,8 @@ public class ListTasksWithAssigneeCommandTest {
         String result = listTasksWithAssigneeCommand.executeCommand(params);
         String expected = "Task ID: 2, Title: TaskAAAAAAA, Description: DescriptionA Status: Active Assignee: BobbyG\n" +
                 "Task ID: 3, Title: TaskCCCCCCCC, Description: DescriptionC Status: Active Assignee: Johnathan\n" +
-                "Task ID: 1, Title: TaskBBBBBBB, Description: DescriptionB Status: Not Done Assignee: Aliceandra\n" +
-                "Task ID: 4, Title: TaskDDDDDDDD, Description: DescriptionD Status: Not Done Assignee: Charlie\n";
+                "Task ID: 1, Title: TaskBBBBBBB, Description: DescriptionB Status: Not_Done Assignee: Aliceandra\n" +
+                "Task ID: 4, Title: TaskDDDDDDDD, Description: DescriptionD Status: Not_Done Assignee: Charlie\n";
         Assertions.assertEquals(expected, result);
     }
     @Test
@@ -76,16 +76,16 @@ public class ListTasksWithAssigneeCommandTest {
         List<String> params = Arrays.asList("no", "no", "sort");
         String result = listTasksWithAssigneeCommand.executeCommand(params);
         String expected = "Task ID: 2, Title: TaskAAAAAAA, Description: DescriptionA Status: Active Assignee: BobbyG\n" +
-                "Task ID: 1, Title: TaskBBBBBBB, Description: DescriptionB Status: Not Done Assignee: Aliceandra\n" +
+                "Task ID: 1, Title: TaskBBBBBBB, Description: DescriptionB Status: Not_Done Assignee: Aliceandra\n" +
                 "Task ID: 3, Title: TaskCCCCCCCC, Description: DescriptionC Status: Active Assignee: Johnathan\n" +
-                "Task ID: 4, Title: TaskDDDDDDDD, Description: DescriptionD Status: Not Done Assignee: Charlie\n";
+                "Task ID: 4, Title: TaskDDDDDDDD, Description: DescriptionD Status: Not_Done Assignee: Charlie\n";
         Assertions.assertEquals(expected, result);
     }
     @Test
     public void executeCommand_Should_FilterByAssignee() {
         List<String> params = Arrays.asList("Aliceandra", "no", "no");
         String result = listTasksWithAssigneeCommand.executeCommand(params);
-        String expected = "Task ID: 1, Title: TaskBBBBBBB, Description: DescriptionB Status: Not Done Assignee: Aliceandra\n";
+        String expected = "Task ID: 1, Title: TaskBBBBBBB, Description: DescriptionB Status: Not_Done Assignee: Aliceandra\n";
         Assertions.assertEquals(expected, result);
     }
     @Test
