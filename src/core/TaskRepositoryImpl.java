@@ -243,6 +243,10 @@ public class TaskRepositoryImpl implements TaskRepository {
         }
         members.add(memberToAdd);
     }
+    @Override
+    public void addTask(Task taskToAdd) {
+        tasks.add(taskToAdd);
+    }
 
 
 }

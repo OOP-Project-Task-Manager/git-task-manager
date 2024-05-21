@@ -27,6 +27,7 @@ public class TeamImpl implements Team {
         this.members = new ArrayList<>();
         this.boards = new ArrayList<>();
         this.activityHistory = new ArrayList<>();
+        addLog(TEAM_CONSTRUCTOR_LOG.formatted(name));
     }
 
     @Override
