@@ -17,7 +17,7 @@ public class ListStoriesCommand extends BaseCommand {
     }
 
     @Override
-    protected String executeCommand(List<String> parameters) {
+    public String executeCommand(List<String> parameters) {
         List<Story> stories = getRepository().getStories();
         Status statusStory = null;
         String assigneeName = null;
@@ -54,8 +54,6 @@ public class ListStoriesCommand extends BaseCommand {
                 case "size":
                     stories.sort(Comparator.comparing(Story::getSize));
                     break;
-                default:
-                    throw new IllegalArgumentException(INVALID_SORTING_CRITERIA);
             }
         }
         return formatStories(stories);

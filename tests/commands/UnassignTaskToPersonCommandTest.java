@@ -6,7 +6,9 @@ import models.MemberImpl;
 import models.contracts.Member;
 import models.tasks.BugImpl;
 import models.tasks.Contracts.Bug;
+import models.tasks.Contracts.Feedback;
 import models.tasks.Contracts.Task;
+import models.tasks.FeedbackImpl;
 import models.tasks.enums.Priority;
 import models.tasks.enums.Severity;
 import org.junit.jupiter.api.Assertions;
@@ -64,6 +66,19 @@ public class UnassignTaskToPersonCommandTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             unassignTaskToPersonCommand.execute(params);
         });
+    }
+    @Test
+    public void executeCommand_ShouldThrowException_WhenTaskNotAssignable() {
+        Member member = new MemberImpl("SSSSSSSSSS");
+        Feedback feedback = new FeedbackImpl(1,
+                "XXXXXXXXX1234",
+                "YYYYYYYYYYY1234",
+                10);
+        repository.addTask(feedback);
+        repository.addMember(member);
+        member.addTask(feedback);
+        List<String> params = List.of("1", "SSSSSSSSSS");
+        Assertions.assertThrows(IllegalArgumentException.class, () -> unassignTaskToPersonCommand.execute(params));
     }
     @Test
     public void executeCommand_Should_UnassignTask_When_ValidArguments(){

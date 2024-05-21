@@ -22,7 +22,7 @@ public class ListTasksWithAssigneeCommand extends BaseCommand {
        LISTTASKSWITHASSIGNEE {No} {Active} {Sort} */
 
     @Override
-    protected String executeCommand(List<String> parameters) {
+    public String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
         List<Assignable> tasks = mergeAssignableLists();
         String paramAssignee = parameters.get(0);

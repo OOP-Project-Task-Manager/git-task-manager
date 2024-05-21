@@ -248,5 +248,15 @@ public class TaskRepositoryImpl implements TaskRepository {
         tasks.add(taskToAdd);
     }
 
+    @Override
+    public void addStory(Story storyToAdd) {
+        stories.add(storyToAdd);
+    }
+
+    @Override
+    public void addBug(Bug bugToAdd) {
+        bugs.add(bugToAdd);
+    }
+
 
 }

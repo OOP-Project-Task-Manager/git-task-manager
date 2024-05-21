@@ -14,7 +14,7 @@ public class ListTasksCommand extends BaseCommand  {
     }
 
     @Override
-    protected String executeCommand(List<String> parameters) {
+    public String executeCommand(List<String> parameters) {
         List<Task> tasks = getRepository().getTasks();
         String param = null;
 
