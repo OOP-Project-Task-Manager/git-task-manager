@@ -55,7 +55,6 @@ public class BoardImpl implements Board {
         this.team = team;
         String activity = "Board created in team %s".formatted(team.getName());
         addLog(activity);
-
     }
 
 

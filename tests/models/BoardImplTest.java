@@ -1,5 +1,6 @@
 package models;
 
+import models.contracts.Team;
 import models.tasks.Contracts.Task;
 import models.tasks.StoryImpl;
 import models.tasks.enums.Priority;
@@ -45,6 +46,21 @@ public class BoardImplTest {
 
         Assertions.assertThrows(IllegalArgumentException.class, () ->
                 board.setName("SS"));
+    }
+    @Test
+    public void setTeam_Should_UpdateTeam(){
+        BoardImpl board = new BoardImpl("SSSSSSSS");
+        Team team = new TeamImpl("XXXXXXXXXXX");
+        board.setTeam(team);
+        Assertions.assertEquals("XXXXXXXXXXX", board.getTeam());
+    }
+    @Test
+    public void setTeam_Should_LogTeamAddition(){
+        BoardImpl board = new BoardImpl("SSSSSSSS");
+        Team team = new TeamImpl("XXXXXXXXXXX");
+        board.setTeam(team);
+        List<String> lodDescription = board.getLogs().stream().map(u -> u.getDescription()).collect(Collectors.toList());
+        Assertions.assertTrue(lodDescription.contains("Board created in team XXXXXXXXXXX"));
     }
     @Test
     public void addTask_Should_AddTaskToBoard() {

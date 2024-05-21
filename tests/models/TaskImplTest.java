@@ -1,7 +1,12 @@
 package models;
 
 import models.tasks.CommentImpl;
+import models.tasks.Contracts.EventLog;
+import models.tasks.Contracts.Story;
+import models.tasks.StoryImpl;
 import models.tasks.TaskImpl;
+import models.tasks.enums.Priority;
+import models.tasks.enums.Size;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -83,7 +88,29 @@ public class TaskImplTest {
                 "AAAAAAAAAAAAAAAA");
         CommentImpl comment1 = new CommentImpl(new MemberImpl("SSSSSS"), "Message111");
         task.addComment(comment1);
-        String expectedOutput = "Title: title1fdksdfnf2\nDescription: AAAAAAAAAAAAAAAA\nComments: \n- SSSSSS: Message111\n";
-        Assertions.assertEquals(expectedOutput, task.toString());
+        task.addLog("Event1");
+        EventLog eventLog1 = task.getLogs().get(0);
+        StringBuilder expected = new StringBuilder();
+        expected.append("Title: title1fdksdfnf2\n");
+        expected.append("Description: AAAAAAAAAAAAAAAA\n");
+        expected.append("Comments: \n");
+        expected.append("- SSSSSS: Message111\n");
+        expected.append("Activity History: \n");
+        expected.append("- Event1 (");
+        expected.append(eventLog1.getTimestamp().toString());
+        expected.append(")\n");
+        String result = task.toString();
+        Assertions.assertEquals(expected.toString(), result);
+    }
+    @Test void getBoard_Should_Return_BoardName(){
+        BoardImpl board = new BoardImpl("SSSSSSSSSS");
+        Story story = new StoryImpl(1,
+                "AAAAAAAAAAA",
+                "XXXXXXXXXXXX",
+                Priority.HIGH,
+                Size.LARGE,
+                new MemberImpl("QQQQQQQQQQQ"));
+        story.setBoard(board);
+        Assertions.assertEquals("SSSSSSSSSS", story.getBoard());
     }
 }

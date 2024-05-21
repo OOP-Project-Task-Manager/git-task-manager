@@ -57,9 +57,9 @@ public class ListTasksWithAssigneeCommand extends BaseCommand {
         return param != null && param.equalsIgnoreCase("sort");
     }
 
-    private boolean isFilterCriteria(String param) {
+    /*private boolean isFilterCriteria(String param) {
         return param != null && !"no".equalsIgnoreCase(param);
-    }
+    }*/
 
     private List<Assignable> mergeAssignableLists() {
         List<Assignable> bugsAndStories = new ArrayList<>();

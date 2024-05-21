@@ -1,5 +1,6 @@
 package models;
 
+import models.contracts.Team;
 import models.tasks.Contracts.Task;
 import models.tasks.StoryImpl;
 import models.tasks.enums.Priority;
@@ -47,6 +48,21 @@ public class MemberImplTest {
 
         Assertions.assertThrows(IllegalArgumentException.class, () ->
                 member.setName("SS"));
+    }
+    @Test
+    public void setTeam_Should_UpdateTeam(){
+        MemberImpl member = new MemberImpl("SSSSSSSS");
+        Team team = new TeamImpl("XXXXXXXXXXX");
+        member.setTeam(team);
+        Assertions.assertEquals("XXXXXXXXXXX", member.getTeam());
+    }
+    @Test
+    public void setTeam_Should_LogTeamAddition(){
+        MemberImpl member = new MemberImpl("SSSSSSSS");
+        Team team = new TeamImpl("XXXXXXXXXXX");
+        member.setTeam(team);
+        List<String> lodDescription = member.getLogs().stream().map(u -> u.getDescription()).collect(Collectors.toList());
+        Assertions.assertTrue(lodDescription.contains("Member SSSSSSSS added to team XXXXXXXXXXX"));
     }
 
     @Test

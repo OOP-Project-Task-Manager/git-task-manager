@@ -132,8 +132,18 @@ public class StoryImplTest {
         Assertions.assertEquals(Status.DONE, story.getStatus());
     }
     @Test
-    public void getAssignee_Should_ReturnAssignee() {
-        // Arrange
+    public void setStatus_Should_ThrowException_When_NotValidInput(){
+        StoryImpl story = new StoryImpl(
+                1,
+                "XXXXXXXXXX",
+                "CCCCCCCCCC",
+                Priority.HIGH,
+                Size.LARGE,
+                new MemberImpl("SSSSSSSSSS"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> story.setStatus(Status.ACTIVE));
+    }
+    @Test
+    void setAssignee_Should_UpdateAssignee() {
         Member member = new MemberImpl("SSSSSSSSSS");
         StoryImpl story = new StoryImpl(
                 1,
@@ -142,12 +152,59 @@ public class StoryImplTest {
                 Priority.HIGH,
                 Size.LARGE,
                 member);
+        story.setAssignee(member);
+
+        Assertions.assertEquals(member, story.getAssignee());
+    }
+    @Test
+    void setAssignee_Should_LogChange_When_AssigneeIsUpdated() {
+        Member member1 = new MemberImpl("SSSSSSSSSS");
+        Member member2 = new MemberImpl("CCCCCCCCCC");
+
+        StoryImpl story = new StoryImpl(
+                1,
+                "XXXXXXXXXX",
+                "CCCCCCCCCC",
+                Priority.HIGH,
+                Size.LARGE,
+                member1);
+
+        story.setAssignee(member1);
 
         // Act
-        Member result = story.getAssignee();
+        story.setAssignee(member2);
 
         // Assert
+        Assertions.assertEquals(member2, story.getAssignee());
+        Assertions.assertTrue(story.getLogs().get(2).getDescription().contains("Assignee changed from SSSSSSSSSS to CCCCCCCCCC"));
+    }
+    @Test
+    public void getAssignee_Should_ReturnAssignee() {
+        Member member = new MemberImpl("SSSSSSSSSS");
+        StoryImpl story = new StoryImpl(
+                1,
+                "XXXXXXXXXX",
+                "CCCCCCCCCC",
+                Priority.HIGH,
+                Size.LARGE,
+                member);
+        Member result = story.getAssignee();
+
         Assertions.assertEquals(member, result);
+    }
+    @Test
+    void getAssignee_Should_ThrowException_When_AssigneeIsNull() {
+        StoryImpl story = new StoryImpl(1,
+                "SSSSSSSSSS",
+                "XXXXXXXXXX",
+                Priority.HIGH,
+                Size.LARGE,
+                null);
+        Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            story.getAssignee();
+        });
+
+        Assertions.assertEquals("Not assigned to any member", exception.getMessage());
     }
     @Test
     public void log_Should_RecordPriorityChange() {
