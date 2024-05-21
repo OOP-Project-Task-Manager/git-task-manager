@@ -7,8 +7,9 @@ import models.tasks.Contracts.Task;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ListTasksCommand extends BaseCommand  {
+public class ListTasksCommand extends BaseCommand {
     public ListTasksCommand(TaskRepository repository) {
         super(repository);
     }
@@ -36,11 +37,12 @@ public class ListTasksCommand extends BaseCommand  {
 
     private List<Task> filterTasks(List<Task> tasks, String filterValue) {
         List<Task> filteredTasks = new ArrayList<>();
-        for (Task task : tasks) {
-            if (task.getTitle().equalsIgnoreCase(filterValue)) {
-                filteredTasks.add(task);
-            }
-        }
+
+        filteredTasks = tasks.stream()
+                .filter(s -> s.getTitle().equalsIgnoreCase(filterValue))
+                .collect(Collectors.toList());
+
+
         return filteredTasks;
     }
 
