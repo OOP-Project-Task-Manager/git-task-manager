@@ -66,4 +66,6 @@ public interface TaskRepository {
     void addTeam(Team teamToAdd);
 
     void addMember(Member memberToAdd);
+
+    void addTask(Task taskToAdd);
 }
