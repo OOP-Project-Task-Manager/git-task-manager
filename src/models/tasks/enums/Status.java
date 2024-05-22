@@ -16,13 +16,19 @@ public enum Status {
             case ACTIVE:
                 return "Active";
             case NOT_DONE:
-                return "Not_Done";
+                return "Not Done";
             case IN_PROGRESS:
-                return "In_Progress";
+                return "In Progress";
             case DONE:
                 return "Done";
+            case NEW:
+                return "New";
+            case UNSCHEDULED:
+                return "Unscheduled";
+            case SCHEDULED:
+                return "Scheduled";
             default:
-                throw new IllegalArgumentException("Unknown status story type");
+                throw new IllegalArgumentException("Unknown status: " + this);
         }
     }
 }
