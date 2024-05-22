@@ -70,5 +70,6 @@ public interface TaskRepository {
     void addTask(Task taskToAdd);
     void addStory(Story storyToAdd);
     void addBug(Bug bugToAdd);
+    void addFeedback(Feedback feedbackToAdd);
 
 }

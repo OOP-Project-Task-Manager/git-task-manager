@@ -101,8 +101,9 @@ public class TaskRepositoryImpl implements TaskRepository {
     public void addTaskToBoard(Task task, Board board) {
         board.addTask(task);
     }
+
     @Override
-    public void addBoard(Board board){
+    public void addBoard(Board board) {
         boards.add(board);
     }
 
@@ -135,7 +136,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public Board createBoard(String name) {
-        if(boardExist(name)){
+        if (boardExist(name)) {
             throw new IllegalArgumentException(String.format(BOARD_ALREADY_EXIST, name));
         }
         Board board = new BoardImpl(name);
@@ -145,8 +146,8 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public boolean boardExist(String name) {
-        for (Board board : boards){
-            if (board.getName().equalsIgnoreCase(name)){
+        for (Board board : boards) {
+            if (board.getName().equalsIgnoreCase(name)) {
                 return true;
             }
         }
@@ -156,7 +157,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public Member createNewPerson(String name) {
         boolean personExist = members.stream().anyMatch(u -> u.getName().equalsIgnoreCase(name));
-        if (personExist){
+        if (personExist) {
             throw new IllegalArgumentException(String.format(MEMBER_ALREADY_EXIST, name));
         }
         Member member = new MemberImpl(name);
@@ -167,7 +168,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public Team createTeam(String name) {
         boolean teamExist = teams.stream().anyMatch(u -> u.getName().equalsIgnoreCase(name));
-        if (teamExist){
+        if (teamExist) {
             throw new IllegalArgumentException(String.format(TEAM_ALREADY_EXIST, name));
         }
         Team team = new TeamImpl(name);
@@ -243,6 +244,7 @@ public class TaskRepositoryImpl implements TaskRepository {
         }
         members.add(memberToAdd);
     }
+
     @Override
     public void addTask(Task taskToAdd) {
         tasks.add(taskToAdd);
@@ -256,6 +258,11 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public void addBug(Bug bugToAdd) {
         bugs.add(bugToAdd);
+    }
+
+    @Override
+    public void addFeedback(Feedback feedbackToAdd) {
+        feedbacks.add(feedbackToAdd);
     }
 
 
