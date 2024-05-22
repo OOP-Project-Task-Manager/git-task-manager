@@ -55,34 +55,34 @@ public class ManualCommand extends BaseCommand {
                 return "CHANGERATINGINFEEDBACK {Task id:Integer} {New_Rating: Integer}";
             case CHANGESEVERITYINBUG:
                 return "CHANGESEVERITYINBUG {Task id:Integer} {New_Severity:Critical,Major,Minor}";
-//            case CHANGESIZEINSTORY:
-//                return new ChangeSizeInStoryCommand(taskRepository);
-//            case CHANGESTATUSINBUG:
-//                return new ChangeStatusInBugCommand(taskRepository);
-//            case CHANGESTATUSINFEEDBACK:
-//                return new ChangeStatusInFeedbackCommand(taskRepository);
-//            case CHANGESTATUSINSTORY:
-//                return new ChangeStatusInStoryCommand(taskRepository);
-//            case SHOWALLPEOPLE:
-//                return new ShowAllPeopleCommand(taskRepository);
-//            case SHOWBOARDSACTIVITY:
-//                return new ShowBoardsActivityCommand(taskRepository);
-//            case SHOWPERSONACTIVITY:
-//                return new ShowPersonActivityCommand(taskRepository);
-//            case SHOWTEAMBOARDS:
-//                return new ShowTeamBoardsCommand(taskRepository);
-//            case SHOWTEAMMEMBERS:
-//                return new ShowTeamMembersCommand(taskRepository);
-//            case SHOWTEAMSACTIVITY:
-//                return new ShowTeamsActivityCommand(taskRepository);
-//            case SHOWTEAMS:
-//                return new ShowTeamsCommand(taskRepository);
-//            case UNASSIGNTASKTOPERSON:
-//                return new UnassignTaskToPersonCommand(taskRepository);
-//            case LISTBUGS:
-//                return new ListBugsCommand(taskRepository);
-//            case LISTFEEDBACKS:
-//                return new ListFeedbackCommand(taskRepository);
+            case CHANGESIZEINSTORY:
+                return "CHANGESIZEINSTORY {Task id: Integer} {New_Size: Large,Medium,Small}";
+            case CHANGESTATUSINBUG:
+                return "CHANGESTATUSINBUG {Task id: Integer} {New_Status: Active,Done}";
+            case CHANGESTATUSINFEEDBACK:
+                return "CHANGESTATUSINFEEDBACK {Task id: Integer} {New_Status: New,Unscheduled,Scheduled }";
+            case CHANGESTATUSINSTORY:
+                return "CHANGESTATUSINSTORY {Task id: Integer} {New_Status: Not_Done,In_Progress,Done}";
+            case SHOWALLPEOPLE:
+                return "SHOWALLPEOPLE";
+            case SHOWBOARDSACTIVITY:
+                return "SHOWBOARDSACTIVITY {Existing_Board_Name}";
+            case SHOWPERSONACTIVITY:
+                return "SHOWPERSONACTIVITY {Existing_Person_Name}";
+            case SHOWTEAMBOARDS:
+                return "SHOWTEAMBOARDS {Existing_Team_Name}";
+            case SHOWTEAMMEMBERS:
+                return "SHOWTEAMMEMBERS {Existing_Team_Name}";
+            case SHOWTEAMSACTIVITY:
+                return "SHOWTEAMSACTIVITY {Existing_Team_Name}";
+            case SHOWTEAMS:
+                return "SHOWTEAMS";
+            case UNASSIGNTASKTOPERSON:
+                return "UNASSIGNTASKTOPERSON {Task id: Integer} {Assignee_Name}";
+            case LISTBUGS:
+                return "LISTBUGS {Status: {Active or Done} or Assignee: {Assignee_Name} or SortCriteria: {title, priority, severity} {Max 3 Criteria}}";
+            case LISTFEEDBACKS:
+                return "LISTFEEDBACKS {Status: {New or Unscheduled or Scheduled} or SortCriteria: {title or rating} {Max 2 Criteria}}";
 //            case LISTSTORIES:
 //                return new ListStoriesCommand(taskRepository);
 //            case LISTTASKS:

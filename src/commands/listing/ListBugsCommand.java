@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class ListBugsCommand extends BaseCommand {
 
     public static final String INVALID_SORTING_CRITERIA = "Invalid sorting criteria";
+    public static final String ONE_SORT_CRITERIA_ONLY = "You should add only one sortCriteria";
 
     public ListBugsCommand(TaskRepository repository){
         super(repository);
@@ -26,6 +27,9 @@ public class ListBugsCommand extends BaseCommand {
             if (isStatus(param)){
                 status = Status.valueOf(param.toUpperCase());
             } else if (isSortCriteria(param)){
+                if (sortCriteria != null){
+                    throw new IllegalArgumentException(ONE_SORT_CRITERIA_ONLY);
+                }
                 sortCriteria = param.toLowerCase();
             } else{
                 assigneeName = param;
