@@ -32,7 +32,6 @@ public class CommentImpl implements Comment {
     }
 
     public void setAuthor(Member author) {
-//        ValidationHelper.validateStringNotEmpty(author, AUTHOR_EMPTY_ERR);
         this.author = author;
 
     }
