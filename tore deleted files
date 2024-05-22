@@ -1,0 +1,13 @@
+[33mcommit 9b7095979cf137981589875ce6a97739d074bd04[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtest[m[33m)[m
+Author: Dimitar Hadzhiev <hadzhiev96@gmail.com>
+Date:   Mon May 13 11:55:25 2024 +0300
+
+    Revert "Test commit"
+    
+    This reverts commit d199ddcf14f67ff56f524d940f2309a29d786a0d.
+
+[33mcommit d199ddcf14f67ff56f524d940f2309a29d786a0d[m[33m ([m[1;31morigin/test[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Dimitar Hadzhiev <hadzhiev96@gmail.com>
+Date:   Mon May 13 11:42:56 2024 +0300
+
+    Test commit
