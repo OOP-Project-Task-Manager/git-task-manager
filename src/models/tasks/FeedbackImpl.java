@@ -11,6 +11,7 @@ public class FeedbackImpl extends TaskImpl implements models.tasks.Contracts.Fee
     //Constants
     public static final String FEEDBACK_CONSTRUCTOR_LOG = "Feedback %s created";
     public static final String RATING_ERR = "Rating should be between 0 and 10";
+    public static final String NOT_A_VALID_STATUS = "Not a valid status for feedback";
 
     //Attributes
     private int rating;
@@ -54,7 +55,7 @@ public class FeedbackImpl extends TaskImpl implements models.tasks.Contracts.Fee
 
     public void setStatus(Status status) {
         if (Arrays.stream(FEEDBACK_POSSIGLBE_STATUS).noneMatch(s -> s == status)) {
-            return;
+            throw new IllegalArgumentException(NOT_A_VALID_STATUS);
         }
         if (!initializing) {
             addLog("Status changed from %s to %s".formatted(this.status, status));

@@ -11,6 +11,7 @@ import java.util.List;
 
 public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
     public static final String BUG_CONSTRUCTOR_LOG = "Bug %s created";
+    public static final String NOT_A_VALID_STATUS = "Not a valid status for Bug";
 
     //Constants
     public static final Status[] BUG_POSSIGLBE_STATUS = {Status.ACTIVE, Status.DONE};
@@ -77,7 +78,7 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
 
     public void setStatus(Status status) {
         if (Arrays.stream(BUG_POSSIGLBE_STATUS).noneMatch(s -> s == status)) {
-            return;
+            throw new IllegalArgumentException(NOT_A_VALID_STATUS);
         }
         if (!initializing) {
             addLog("Status changed from %s to %s".formatted(this.status, status));
