@@ -88,6 +88,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ListTasksCommand(taskRepository);
             case LISTTASKSWITHASSIGNEE:
                 return new ListTasksWithAssigneeCommand(taskRepository);
+            case SHOWBUGSTEPSTOREPRODUCE:
+                return new ShowBugStepsToReproduceCommand(taskRepository);
             case MANUAL:
                 return new ManualCommand(taskRepository);
             default:

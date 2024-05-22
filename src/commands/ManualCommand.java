@@ -37,8 +37,7 @@ public class ManualCommand extends BaseCommand {
             case ADDPERSONTOTEAM:
                 return "ADDPERSONTOTEAM {Existing_Person_Name} {Existing_Team_Name}";
             case CREATENEWFEEDBACKINBOARD:
-                return """
-                        CREATENEWFEEDBACKINBOARD {Title 10-100 characters} {Description 10-500} {Rating: Integer} {Board: Existing_Board_Name}""";
+                return "CREATENEWFEEDBACKINBOARD {Title 10-100 characters} {Description 10-500} {Rating: Integer} {Board: Existing_Board_Name}";
             case CREATENEWBUGINBOARD:
                 return "CREATENEWBUGINBOARD {Title 10-100 characters} {Description 10-500} {Priority: High,Medium,Low} {Severity:Critical,Major,Minor} {Assignee: Existing_Person_Name} {Board: Existing_Board_Name}  ";
             case CREATENEWSTORYINBOARD:
@@ -83,12 +82,14 @@ public class ManualCommand extends BaseCommand {
                 return "LISTBUGS {Status: {Active or Done} or Assignee: {Assignee_Name} or SortCriteria: {title, priority, severity} {Max 3 Criteria}}";
             case LISTFEEDBACKS:
                 return "LISTFEEDBACKS {Status: {New or Unscheduled or Scheduled} or SortCriteria: {title or rating} {Max 2 Criteria}}";
-//            case LISTSTORIES:
-//                return new ListStoriesCommand(taskRepository);
-//            case LISTTASKS:
-//                return new ListTasksCommand(taskRepository);
-//            case LISTTASKSWITHASSIGNEE:
-//                return new ListTasksWithAssigneeCommand(taskRepository);
+            case LISTSTORIES:
+                return "LISTSTORIES {Status: {Not_done, In_Progress, Done} or Assignee: {Assignee_Name} or SortCriteria: {title, priority, size} {Max 3 Criteria}}}";
+            case LISTTASKS:
+                return "LISTTASKS {Filter_Titile: String} {Sort_Title: String} {Max 2 Criteria}";
+            case LISTTASKSWITHASSIGNEE:
+                return "LISTTASKSWITHASSIGNEE {Filter_Assignee: Assignee_Name/no} {Filter_Status: Status/no} {Sort_by_title: String/no}";
+            case SHOWBUGSTEPSTOREPRODUCE:
+                return "SHOWBUGSTEPSTOREPRODUCE {Bug_id: Integer}";
             default:
                 throw new IllegalArgumentException(NO_SUCH_COMMAND);
 

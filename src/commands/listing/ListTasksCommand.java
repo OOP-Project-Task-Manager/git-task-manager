@@ -3,6 +3,7 @@ package commands.listing;
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
 import models.tasks.Contracts.Task;
+import utilities.ValidationHelper;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -10,12 +11,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ListTasksCommand extends BaseCommand {
+
+
+    public static final int EXPECTED_ARUGMETS_COUNT = 2;
+
     public ListTasksCommand(TaskRepository repository) {
         super(repository);
     }
 
+
     @Override
     public String executeCommand(List<String> parameters) {
+        ValidationHelper.validateArgumentsCount(parameters, EXPECTED_ARUGMETS_COUNT);
         List<Task> tasks = getRepository().getTasks();
         String param = null;
 
