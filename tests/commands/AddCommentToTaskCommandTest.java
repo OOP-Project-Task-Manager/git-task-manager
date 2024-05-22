@@ -74,9 +74,9 @@ public class AddCommentToTaskCommandTest {
         List<String> boardParam = List.of("Tasks_OOP", "Project_OOP");
         board.execute(boardParam);
 
-//        Command author = new CreateNewPersonCommand(repository);
-//        List<String> authorParam = List.of("Nasko");
-//        author.execute(authorParam);
+        Command author = new CreateNewPersonCommand(repository);
+        List<String> authorParam = List.of("Nasko");
+        author.execute(authorParam);
 
         Command addPerson = new AddPersonToTeamCommand(repository);
         List<String> addParam = List.of("Nasko", "Project_OOP");
