@@ -42,7 +42,7 @@ public class FeedbackImpl extends TaskImpl implements models.tasks.Contracts.Fee
         ValidationHelper.validateValueInRange(rating, 0, 10, RATING_ERR);
 
         if (!initializing) {
-            addLog("Rating changed from %d to %d".formatted(this.rating, rating));
+            addLog("Rating of task with id:%s changed from %d to %d".formatted(this.getId(),this.rating, rating));
 
         }
         this.rating = rating;
@@ -58,7 +58,7 @@ public class FeedbackImpl extends TaskImpl implements models.tasks.Contracts.Fee
             throw new IllegalArgumentException(NOT_A_VALID_STATUS);
         }
         if (!initializing) {
-            addLog("Status changed from %s to %s".formatted(this.status, status));
+            addLog("Status of task with id:%s changed from %s to %s".formatted(this.getId(),this.status, status));
 
         }
 

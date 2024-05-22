@@ -46,7 +46,7 @@ public class StoryImpl extends TaskImpl implements Story {
 
     public void setPriority(Priority priority) {
         if (!initializing) {
-            addLog("Priority changed from %s Priority to %s Priority".formatted(this.priority, priority));
+            addLog("Priority of task with id:%s changed from %s Priority to %s Priority".formatted(this.getId(),this.priority, priority));
 
         }
 
@@ -60,7 +60,7 @@ public class StoryImpl extends TaskImpl implements Story {
 
     public void setSize(Size size) {
         if (!initializing) {
-            addLog("Size changed from %s to %s".formatted(this.size, size));
+            addLog("Size of task with id: %s changed from %s to %s".formatted(this.getId(),this.size, size));
 
         }
         this.size = size;
@@ -83,7 +83,7 @@ public class StoryImpl extends TaskImpl implements Story {
     @Override
     public void setAssignee(Member assignee) {
         if (!initializing) {
-            addLog("Assignee changed from %s to %s".formatted(this.assignee.getName(), assignee.getName()));
+            addLog("Assignee of task with id:%s changed from %s to %s".formatted(this.getId(),this.assignee.getName(), assignee.getName()));
         }
         this.assignee = assignee;
     }
@@ -93,7 +93,7 @@ public class StoryImpl extends TaskImpl implements Story {
             throw new IllegalArgumentException("Not a valid status for story");
         }
         if (!initializing) {
-            addLog("Status changed from %s to %s".formatted(this.status, status));
+            addLog("Status of task with id:%s changed from %s to %s".formatted(this.getId(),this.status, status));
         }
         this.status = status;
     }

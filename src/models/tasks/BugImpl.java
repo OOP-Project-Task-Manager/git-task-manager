@@ -50,7 +50,7 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
 
     public void setPriority(Priority priority) {
         if (!initializing) {
-            addLog("Priority changed from %s Priority to %s Priority".formatted(this.priority, priority));
+            addLog("Priority of task with id:%s changed from %s Priority to %s Priority".formatted(this.getId(),this.priority, priority));
 
         }
         this.priority = priority;
@@ -64,7 +64,7 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
 
     public void setSeverity(Severity severity) {
         if (!initializing) {
-            addLog("Severity changed from %s to %s".formatted(this.severity, severity));
+            addLog("Severity of task with id:%s changed from %s to %s".formatted(this.getId(),this.severity, severity));
 
         }
         this.severity = severity;
@@ -81,7 +81,7 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
             throw new IllegalArgumentException(NOT_A_VALID_STATUS);
         }
         if (!initializing) {
-            addLog("Status changed from %s to %s".formatted(this.status, status));
+            addLog("Status of task with id:%s changed from %s to %s".formatted(this.getId(),this.status, status));
 
         }
         this.status = status;
@@ -96,9 +96,9 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
     @Override
     public void addStepToReproduce(String step) {
         addLog("""
-                New step to reproduce added
+                New step to reproduce added to task with id:%s
                 Step: %s
-                """.formatted(step));
+                """.formatted(this.getId(),step));
         stepsToReproduce.add(step);
     }
 
@@ -106,9 +106,9 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
     @Override
     public void removeStepToReproduce(String step) {
         addLog("""
-                New step to reproduce removed
+                New step to reproduce removed from task with id:%s
                 Step: %s
-                """.formatted(step));
+                """.formatted(this.getId(),step));
         stepsToReproduce.remove(step);
     }
 
@@ -116,8 +116,8 @@ public class BugImpl extends TaskImpl implements models.tasks.Contracts.Bug {
     @Override
     public void clearStepsToReproduce() {
         addLog("""
-                Steps to reduce cleared
-                """);
+                Steps to reproduce cleared from task with id%s
+                """.formatted(this.getId()));
         stepsToReproduce.clear();
     }
 
