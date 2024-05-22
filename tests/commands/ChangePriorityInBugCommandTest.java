@@ -83,7 +83,7 @@ public class ChangePriorityInBugCommandTest {
         addPerson.execute(addParam);
 
         Command task = new CreateNewBugInBoardCommand(repository);
-        List<String> taskParam = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP");
+        List<String> taskParam = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP","Test","exit");
         task.execute(taskParam);
 
         List<String> params = List.of("1", "High");
@@ -112,7 +112,7 @@ public class ChangePriorityInBugCommandTest {
         addPerson.execute(addParam);
 
         Command task = new CreateNewBugInBoardCommand(repository);
-        List<String> taskParam = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP");
+        List<String> taskParam = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP","Test","exit");
         task.execute(taskParam);
 
         List<String> params = List.of("1", "Low");

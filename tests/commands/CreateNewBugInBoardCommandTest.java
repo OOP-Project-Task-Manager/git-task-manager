@@ -17,7 +17,7 @@ import java.util.List;
 
 public class CreateNewBugInBoardCommandTest {
 
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 6;
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 7;
     private TaskRepository repository;
     private Command createBug;
 
@@ -31,19 +31,10 @@ public class CreateNewBugInBoardCommandTest {
         createBug = new CreateNewBugInBoardCommand(repository);
     }
 
-
-    @Test
-    public void should_ThrowException_When_ArgumentCountDifferentThanExpected() {
-        // Arrange
-        List<String> params = getList(EXPECTED_NUMBER_OF_ARGUMENTS - 1);
-
-        // Act, Assert
-        Assertions.assertThrows(IllegalArgumentException.class, () -> createBug.execute(params));
-    }
-
+    
     @Test
     public void should_ThrowException_When_PriorityIsNotValid() {
-        List<String> params = List.of("BugInIntelij", "ProjectWEntGoodButNo", "X", "Critical", "Nasko", "Tasks_OOP");
+        List<String> params = List.of("BugInIntelij", "ProjectWEntGoodButNo", "X", "Critical", "Nasko", "Tasks_OOP", "Test", "exit");
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> createBug.execute(params));
 
@@ -51,7 +42,7 @@ public class CreateNewBugInBoardCommandTest {
 
     @Test
     public void should_ThrowException_When_SeverityIsNotValid() {
-        List<String> params = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "X", "Nasko", "Tasks_OOP");
+        List<String> params = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "X", "Nasko", "Tasks_OOP", "Test", "exit");
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> createBug.execute(params));
 
@@ -75,7 +66,7 @@ public class CreateNewBugInBoardCommandTest {
         List<String> addParam = List.of("Nasko", "Project_OOP");
         addPerson.execute(addParam);
 
-        List<String> params = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP");
+        List<String> params = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP", "Test", "exit");
 
         Assertions.assertDoesNotThrow(() -> createBug.execute(params));
 

@@ -61,7 +61,7 @@ public class AssignTaskToPersonCommandTest {
         addPerson.execute(addParam);
 
         Command task = new CreateNewBugInBoardCommand(repository);
-        List<String> taskParam = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP");
+        List<String> taskParam = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP","test","exit");
         task.execute(taskParam);
 
 
@@ -96,7 +96,7 @@ public class AssignTaskToPersonCommandTest {
         addPerson.execute(addParam);
 
         Command task = new CreateNewBugInBoardCommand(repository);
-        List<String> taskParam = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP");
+        List<String> taskParam = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP","test","exit");
         task.execute(taskParam);
 
 

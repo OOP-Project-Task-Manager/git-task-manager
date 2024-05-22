@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class ListTasksCommand extends BaseCommand {
 
 
-    public static final int EXPECTED_ARUGMETS_COUNT = 2;
+
 
     public ListTasksCommand(TaskRepository repository) {
         super(repository);
@@ -22,7 +22,7 @@ public class ListTasksCommand extends BaseCommand {
 
     @Override
     public String executeCommand(List<String> parameters) {
-        ValidationHelper.validateArgumentsCount(parameters, EXPECTED_ARUGMETS_COUNT);
+
         List<Task> tasks = getRepository().getTasks();
         String param = null;
 

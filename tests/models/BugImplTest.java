@@ -111,7 +111,7 @@ public class BugImplTest {
                 .toList();
 
         // Assert
-        Assertions.assertTrue(logDescriptions.contains("Priority changed from High Priority to Medium Priority"));
+        Assertions.assertTrue(logDescriptions.contains("Priority of task with id:1 changed from High Priority to Medium Priority"));
     }
 
     @Test
@@ -126,7 +126,7 @@ public class BugImplTest {
                 .toList();
 
         // Assert
-        Assertions.assertTrue(logDescription.contains("Severity changed from Minor to Major"));
+        Assertions.assertTrue(logDescription.contains("Severity of task with id:1 changed from Minor to Major"));
     }
 
     @Test
@@ -141,7 +141,7 @@ public class BugImplTest {
                 .toList();
 
         // Assert
-        Assertions.assertTrue(logDescription.contains("Status changed from Active to Done"));
+        Assertions.assertTrue(logDescription.contains("Status of task with id:1 changed from Active to Done"));
     }
 
 

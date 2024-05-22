@@ -80,8 +80,10 @@ public class ChangeSeverityInBugCommandTest {
         List<String> addParam = List.of("Nasko", "Project_OOP");
         addPerson.execute(addParam);
 
+
+        List<String> steps = List.of("ss","asfas");
         Command task = new CreateNewBugInBoardCommand(repository);
-        List<String> taskParam = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP");
+        List<String> taskParam = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP","SASFSF","Exit");
         task.execute(taskParam);
 
         List<String> params = List.of("1", "Critical");
@@ -109,7 +111,7 @@ public class ChangeSeverityInBugCommandTest {
         addPerson.execute(addParam);
 
         Command task = new CreateNewBugInBoardCommand(repository);
-        List<String> taskParam = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP");
+        List<String> taskParam = List.of("BugInIntelij", "ProjectWEntGoodButNo", "High", "Critical", "Nasko", "Tasks_OOP","Test","Exit");
         task.execute(taskParam);
 
         List<String> params = List.of("1", "Major");

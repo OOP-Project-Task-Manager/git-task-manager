@@ -58,6 +58,7 @@ public class ListTaskCommandTest {
         repository.addTask(story1);
         repository.addTask(story2);
     }
+
     @Test
     public void executeCommand_Should_ReturnNormalList_When_NoParameters() {
         List<String> params = new ArrayList<>();
@@ -68,6 +69,7 @@ public class ListTaskCommandTest {
                 "Task ID: 4, Title: DDDDDDDDDDDDDD, Description: ZZZZZZZZZZZ\n";
         Assertions.assertEquals(expected, result);
     }
+
     @Test
     public void executeCommand_Should_SortTasks() {
         List<String> params = new ArrayList<>();
@@ -79,6 +81,7 @@ public class ListTaskCommandTest {
                 "Task ID: 4, Title: DDDDDDDDDDDDDD, Description: ZZZZZZZZZZZ\n";
         Assertions.assertEquals(expected, result);
     }
+
     @Test
     public void executeCommand_Should_FilterTasksByTitle() {
         List<String> params = new ArrayList<>();
@@ -87,6 +90,7 @@ public class ListTaskCommandTest {
         String expected = "Task ID: 1, Title: AAAAAAAAAAAAAAAAA, Description: XXXXXXXXXX\n";
         Assertions.assertEquals(expected, result);
     }
+
     @Test
     public void executeCommand_Sould_ReturnEmptyList_When_InvalidFilter() {
         List<String> params = new ArrayList<>();
