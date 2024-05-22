@@ -1,14 +1,16 @@
 package commands;
 
+import commands.add.AddCommentToTaskCommand;
+import commands.add.AddPersonToTeamCommand;
 import commands.contracts.Command;
+import commands.create.CreateNewBoardInTeamCommand;
+import commands.create.CreateNewBugInBoardCommand;
+import commands.create.CreateNewPersonCommand;
+import commands.create.CreateNewTeamCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
 import models.MemberImpl;
-import models.contracts.Board;
 import models.contracts.Member;
-import models.contracts.Team;
-import models.tasks.Contracts.Feedback;
-import models.tasks.FeedbackImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

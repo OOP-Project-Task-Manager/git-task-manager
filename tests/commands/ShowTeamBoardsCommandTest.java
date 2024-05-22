@@ -1,5 +1,6 @@
 package commands;
 
+import commands.show.ShowTeamBoardsCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
 import models.BoardImpl;

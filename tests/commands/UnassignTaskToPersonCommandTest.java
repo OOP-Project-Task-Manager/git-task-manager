@@ -1,5 +1,6 @@
 package commands;
 
+import commands.assign_unassign.UnassignTaskToPersonCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
 import models.MemberImpl;
@@ -7,7 +8,6 @@ import models.contracts.Member;
 import models.tasks.BugImpl;
 import models.tasks.Contracts.Bug;
 import models.tasks.Contracts.Feedback;
-import models.tasks.Contracts.Task;
 import models.tasks.FeedbackImpl;
 import models.tasks.enums.Priority;
 import models.tasks.enums.Severity;

@@ -31,14 +31,8 @@ public enum CommandType {
     LISTFEEDBACKS,
     LISTSTORIES,
     LISTTASKS,
-    LISTTASKSWITHASSIGNEE
-
-
-
-
-
-
-
+    LISTTASKSWITHASSIGNEE,
+    MANUAL
 
 
 }

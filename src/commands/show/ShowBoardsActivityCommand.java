@@ -1,8 +1,8 @@
-package commands;
+package commands.show;
 
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
-import models.contracts.Team;
+import models.contracts.Board;
 import models.tasks.Contracts.EventLog;
 import utilities.ValidationHelper;
 
@@ -10,25 +10,23 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class ShowTeamsActivityCommand extends BaseCommand {
-
+public class ShowBoardsActivityCommand extends BaseCommand {
     public static final int EXPECTED_ARGUMENTS_COUNT = 1;
 
-    public ShowTeamsActivityCommand(TaskRepository repository) {
+    public ShowBoardsActivityCommand(TaskRepository repository){
         super(repository);
     }
-
     @Override
-    protected String executeCommand(List<String> parameters) {
+    public String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_ARGUMENTS_COUNT);
-        Team team = getRepository().findTeamByName(parameters.get(0));
-        return showTeamsActivity(team);
+        Board board = getRepository().findBoardByName(parameters.get(0));
+        return showBoardsActivity(board);
     }
 
-    private String showTeamsActivity(Team team) {
-        List<EventLog> activity = team.getLogs();
+    private String showBoardsActivity(Board board){
+        List<EventLog> activity = board.getLogs();
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Team %s activity history:\n".formatted(team.getName()));
+        stringBuilder.append("Board %s activity history:\n".formatted(board.getName()));
         stringBuilder.append("\n");
         for (EventLog eventLog : activity) {
             stringBuilder.append(eventLog.toString()).append("\n");

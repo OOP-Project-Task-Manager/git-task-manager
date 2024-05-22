@@ -1,10 +1,9 @@
 package commands;
 
+import commands.show.ShowPersonActivityCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
-import models.BoardImpl;
 import models.MemberImpl;
-import models.contracts.Board;
 import models.contracts.Member;
 import models.tasks.Contracts.EventLog;
 import org.junit.jupiter.api.Assertions;

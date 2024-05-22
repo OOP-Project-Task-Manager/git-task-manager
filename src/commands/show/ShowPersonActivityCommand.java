@@ -1,5 +1,6 @@
-package commands;
+package commands.show;
 
+import commands.BaseCommand;
 import core.contracts.TaskRepository;
 import models.contracts.Member;
 import models.contracts.Team;
@@ -13,12 +14,13 @@ import java.util.List;
 public class ShowPersonActivityCommand extends BaseCommand {
 
     public static final int EXPECTED_ARGUMENTS_COUNT = 1;
+
     public ShowPersonActivityCommand(TaskRepository repository) {
         super(repository);
     }
 
     @Override
-    protected String executeCommand(List<String> parameters) {
+    public String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_ARGUMENTS_COUNT);
         Member member = getRepository().findMemberByName(parameters.get(0));
         return showPersonActivity(member);

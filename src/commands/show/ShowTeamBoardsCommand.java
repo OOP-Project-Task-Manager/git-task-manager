@@ -1,5 +1,6 @@
-package commands;
+package commands.show;
 
+import commands.BaseCommand;
 import core.contracts.TaskRepository;
 import models.contracts.Board;
 import models.contracts.Team;
@@ -16,7 +17,7 @@ public class ShowTeamBoardsCommand extends BaseCommand {
     }
 
     @Override
-    protected String executeCommand(List<String> parameters) {
+    public String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_ARGUMENTS_COUNT);
         Team team = getRepository().findTeamByName(parameters.get(0));
 

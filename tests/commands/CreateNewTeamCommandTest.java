@@ -1,11 +1,10 @@
 package commands;
 
 import commands.contracts.Command;
+import commands.create.CreateNewTeamCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
-import models.MemberImpl;
 import models.TeamImpl;
-import models.contracts.Member;
 import models.contracts.Team;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,14 +1,11 @@
 package commands;
 
 import commands.contracts.Command;
+import commands.create.CreateNewPersonCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
-import models.BoardImpl;
 import models.MemberImpl;
-import models.contracts.Board;
 import models.contracts.Member;
-import models.tasks.Contracts.Feedback;
-import models.tasks.FeedbackImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

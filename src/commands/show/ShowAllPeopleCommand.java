@@ -1,4 +1,4 @@
-package commands;
+package commands.show;
 
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
@@ -12,7 +12,7 @@ public class ShowAllPeopleCommand extends BaseCommand {
         super(repository);
     }
     @Override
-    protected String executeCommand(List<String> parameters) {
+    public String executeCommand(List<String> parameters) {
         return showPeople();
     }
     private String showPeople(){

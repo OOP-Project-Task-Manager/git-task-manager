@@ -1,14 +1,20 @@
 package core;
 
-import commands.*;
-import commands.UnassignTaskToPersonCommand;
+import commands.ManualCommand;
+import commands.assign_unassign.AssignTaskToPersonCommand;
+import commands.assign_unassign.UnassignTaskToPersonCommand;
+import commands.add.AddCommentToTaskCommand;
+import commands.add.AddPersonToTeamCommand;
+import commands.change.*;
 import commands.contracts.Command;
+import commands.create.*;
 import commands.enums.CommandType;
 import commands.listing.ListBugsCommand;
 import commands.listing.ListFeedbackCommand;
 import commands.listing.ListStoriesCommand;
 import commands.listing.ListTasksCommand;
 import commands.listing.ListTasksWithAssigneeCommand;
+import commands.show.*;
 import core.contracts.CommandFactory;
 import core.contracts.TaskRepository;
 import utilities.ParsingHelpers;
@@ -82,6 +88,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ListTasksCommand(taskRepository);
             case LISTTASKSWITHASSIGNEE:
                 return new ListTasksWithAssigneeCommand(taskRepository);
+            case MANUAL:
+                return new ManualCommand(taskRepository);
             default:
                 throw new IllegalArgumentException(NO_SUCH_COMMAND);
 

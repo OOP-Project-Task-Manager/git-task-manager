@@ -1,6 +1,12 @@
 package commands;
 
+import commands.add.AddPersonToTeamCommand;
+import commands.change.ChangePriorityInBugCommand;
 import commands.contracts.Command;
+import commands.create.CreateNewBoardInTeamCommand;
+import commands.create.CreateNewBugInBoardCommand;
+import commands.create.CreateNewPersonCommand;
+import commands.create.CreateNewTeamCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
 import org.junit.jupiter.api.Assertions;

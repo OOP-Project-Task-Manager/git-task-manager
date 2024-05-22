@@ -1,5 +1,6 @@
-package commands;
+package commands.change;
 
+import commands.BaseCommand;
 import core.contracts.TaskRepository;
 import models.tasks.Contracts.Story;
 import models.tasks.enums.Status;

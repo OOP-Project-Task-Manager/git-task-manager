@@ -1,5 +1,6 @@
 package commands;
 
+import commands.show.ShowAllPeopleCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
 import models.MemberImpl;

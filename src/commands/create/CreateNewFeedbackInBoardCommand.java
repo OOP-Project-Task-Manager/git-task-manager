@@ -1,5 +1,6 @@
-package commands;
+package commands.create;
 
+import commands.BaseCommand;
 import core.contracts.TaskRepository;
 import models.contracts.Board;
 import models.contracts.Team;

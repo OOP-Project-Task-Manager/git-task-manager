@@ -1,17 +1,15 @@
 package commands;
 
+import commands.show.ShowTeamsCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
-import models.MemberImpl;
 import models.TeamImpl;
-import models.contracts.Member;
 import models.contracts.Team;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ShowTeamsCommandTest {

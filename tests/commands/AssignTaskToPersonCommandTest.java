@@ -1,6 +1,9 @@
 package commands;
 
+import commands.add.AddPersonToTeamCommand;
+import commands.assign_unassign.AssignTaskToPersonCommand;
 import commands.contracts.Command;
+import commands.create.*;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
 import org.junit.jupiter.api.Assertions;

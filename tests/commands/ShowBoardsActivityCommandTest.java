@@ -1,11 +1,11 @@
 package commands;
 
+import commands.show.ShowBoardsActivityCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
 import models.BoardImpl;
 import models.contracts.Board;
 import models.tasks.Contracts.EventLog;
-import models.tasks.EventLogImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

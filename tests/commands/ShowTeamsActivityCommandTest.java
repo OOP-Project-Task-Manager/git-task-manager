@@ -1,10 +1,9 @@
 package commands;
 
+import commands.show.ShowTeamsActivityCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
-import models.BoardImpl;
 import models.TeamImpl;
-import models.contracts.Board;
 import models.contracts.Team;
 import models.tasks.Contracts.EventLog;
 import org.junit.jupiter.api.Assertions;

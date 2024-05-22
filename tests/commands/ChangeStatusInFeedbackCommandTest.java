@@ -1,6 +1,10 @@
 package commands;
 
+import commands.change.ChangeStatusInFeedbackCommand;
 import commands.contracts.Command;
+import commands.create.CreateNewBoardInTeamCommand;
+import commands.create.CreateNewFeedbackInBoardCommand;
+import commands.create.CreateNewTeamCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
 import org.junit.jupiter.api.Assertions;
