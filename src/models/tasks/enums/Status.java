@@ -16,9 +16,9 @@ public enum Status {
             case ACTIVE:
                 return "Active";
             case NOT_DONE:
-                return "Not Done";
+                return "Not_Done";
             case IN_PROGRESS:
-                return "In Progress";
+                return "In_Progress";
             case DONE:
                 return "Done";
             case NEW:
