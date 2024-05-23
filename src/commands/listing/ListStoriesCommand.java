@@ -2,6 +2,7 @@ package commands.listing;
 
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
+import models.tasks.Contracts.EventLog;
 import models.tasks.Contracts.Story;
 import models.tasks.enums.Status;
 
@@ -84,6 +85,11 @@ public class ListStoriesCommand extends BaseCommand {
                     .append(", Status: ").append(story.getStatus())
                     .append(", Assignee: ").append(story.getAssignee() != null ? story.getAssignee().getName() : "Unassigned")
                     .append("\n");
+
+                    for (EventLog log : story.getLogs()){
+                        result.append(log);
+                    }
+                    result.append("\n");
         }
         return result.toString();
     }

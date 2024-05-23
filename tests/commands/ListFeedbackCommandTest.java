@@ -6,6 +6,7 @@ import commands.listing.ListStoriesCommand;
 import core.TaskRepositoryImpl;
 import core.contracts.TaskRepository;
 import models.MemberImpl;
+import models.tasks.Contracts.EventLog;
 import models.tasks.Contracts.Feedback;
 import models.tasks.Contracts.Story;
 import models.tasks.FeedbackImpl;
@@ -17,7 +18,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListFeedbackCommandTest {
 
@@ -53,12 +56,7 @@ public class ListFeedbackCommandTest {
         params.add("New");
         String result = listFeedbackCommand.execute(params);
 
-        String expected = """
-                Feedback ID: 1, Title: AAAAAAAAAAAAAAA, Status: New
-                Feedback ID: 2, Title: BBBBBBBBBBBBBB, Status: New
-                Feedback ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: New
-                Feedback ID: 4, Title: DDDDDDDDDDDDDDDD, Status: New
-                """;
+        String expected = generateExpectedResultForAllFeedbackFilteredByStatus();
         Assertions.assertEquals(result, expected);
     }
 
@@ -68,12 +66,7 @@ public class ListFeedbackCommandTest {
         List<String> params = new ArrayList<>();
         params.add("title");
         String result = listFeedbackCommand.execute(params);
-        String expected = """
-                Feedback ID: 1, Title: AAAAAAAAAAAAAAA, Status: New
-                Feedback ID: 2, Title: BBBBBBBBBBBBBB, Status: New
-                Feedback ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: New
-                Feedback ID: 4, Title: DDDDDDDDDDDDDDDD, Status: New
-                """;
+        String expected = generateExpectedResultForAllFeedbacksSortedByTitle();
         Assertions.assertEquals(expected, result);
     }
 
@@ -82,18 +75,58 @@ public class ListFeedbackCommandTest {
         List<String> params = new ArrayList<>();
         params.add("rating");
         String result = listFeedbackCommand.execute(params);
-        String expected = """
-                Feedback ID: 4, Title: DDDDDDDDDDDDDDDD, Status: New
-                Feedback ID: 3, Title: CCCCCCCCCCCCCCCCC, Status: New
-                Feedback ID: 2, Title: BBBBBBBBBBBBBB, Status: New
-                Feedback ID: 1, Title: AAAAAAAAAAAAAAA, Status: New
-                """;
+        String expected = generateExpectedResultForAllFeedbacksSortedByRating();
         Assertions.assertEquals(expected, result);
     }
 
+    private String generateExpectedResultForAllFeedbackFilteredByStatus(){
+        List<Feedback> feedbacks = new ArrayList<>(List.of(
+                repository.findFeedbackById(1),
+                repository.findFeedbackById(2),
+                repository.findFeedbackById(3),
+                repository.findFeedbackById(4)
+        ));
+        feedbacks.stream().filter(u -> u.getStatus().equals("New")).collect(Collectors.toList());
+        return formatFeedbacks(feedbacks);
+    }
+    private String generateExpectedResultForAllFeedbacksSortedByTitle() {
+        List<Feedback> feedbacks = new ArrayList<>(List.of(
+                repository.findFeedbackById(1),
+                repository.findFeedbackById(2),
+                repository.findFeedbackById(3),
+                repository.findFeedbackById(4)
+        ));
 
+        feedbacks.sort(Comparator.comparing(Feedback::getTitle));
 
+        return formatFeedbacks(feedbacks);
+    }
+    private String generateExpectedResultForAllFeedbacksSortedByRating() {
+        List<Feedback> feedbacks = new ArrayList<>(List.of(
+                repository.findFeedbackById(1),
+                repository.findFeedbackById(2),
+                repository.findFeedbackById(3),
+                repository.findFeedbackById(4)
+        ));
 
+        feedbacks.sort(Comparator.comparing(Feedback::getRating));
 
+        return formatFeedbacks(feedbacks);
+    }
+    private String formatFeedbacks(List<Feedback> feedbacks) {
+        StringBuilder result = new StringBuilder();
+        for (Feedback feedback : feedbacks) {
+            result.append("Feedback ID: ").append(feedback.getId())
+                    .append(", Title: ").append(feedback.getTitle())
+                    .append(", Status: ").append(feedback.getStatus())
+                    .append("\n");
+
+            for (EventLog log : feedback.getLogs()) {
+                result.append(log);
+            }
+            result.append("\n");
+        }
+        return result.toString();
+    }
 
 }

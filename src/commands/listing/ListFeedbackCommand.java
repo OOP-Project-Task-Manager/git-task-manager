@@ -2,6 +2,7 @@ package commands.listing;
 
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
+import models.tasks.Contracts.EventLog;
 import models.tasks.Contracts.Feedback;
 import models.tasks.enums.Status;
 
@@ -75,6 +76,10 @@ public class ListFeedbackCommand extends BaseCommand {
                     .append(", Title: ").append(feedback.getTitle())
                     .append(", Status: ").append(feedback.getStatus())
                     .append("\n");
+                    for(EventLog log : feedback.getLogs()){
+                        result.append(log);
+                    }
+                    result.append("\n");
         }
         return result.toString();
     }
