@@ -3,6 +3,7 @@ package commands.listing;
 import commands.BaseCommand;
 import core.contracts.TaskRepository;
 import models.tasks.Contracts.Bug;
+import models.tasks.Contracts.EventLog;
 import models.tasks.enums.Status;
 
 import java.util.Comparator;
@@ -14,43 +15,44 @@ public class ListBugsCommand extends BaseCommand {
     public static final String INVALID_SORTING_CRITERIA = "Invalid sorting criteria";
     public static final String ONE_SORT_CRITERIA_ONLY = "You should add only one sortCriteria";
 
-    public ListBugsCommand(TaskRepository repository){
+    public ListBugsCommand(TaskRepository repository) {
         super(repository);
     }
+
     @Override
     protected String executeCommand(List<String> parameters) {
         List<Bug> bugs = getRepository().getBugs();
         Status status = null;
         String assigneeName = null;
         String sortCriteria = null;
-        for (String param : parameters){
-            if (isStatus(param)){
+        for (String param : parameters) {
+            if (isStatus(param)) {
                 status = Status.valueOf(param.toUpperCase());
-            } else if (isSortCriteria(param)){
-                if (sortCriteria != null){
+            } else if (isSortCriteria(param)) {
+                if (sortCriteria != null) {
                     throw new IllegalArgumentException(ONE_SORT_CRITERIA_ONLY);
                 }
                 sortCriteria = param.toLowerCase();
-            } else{
+            } else {
                 assigneeName = param;
             }
         }
-        if (status != null){
+        if (status != null) {
             Status result = status;
             bugs = bugs.stream()
                     .filter(bug -> bug.getStatus() == result)
                     .collect(Collectors.toList());
         }
-        if (assigneeName != null){
+        if (assigneeName != null) {
             String result = assigneeName;
             bugs = bugs.stream()
                     .filter(bug -> bug.getAssignee() != null && bug.getAssignee().getName().equalsIgnoreCase(result))
                     .collect(Collectors.toList());
         }
-        if (sortCriteria != null){
-            switch (sortCriteria){
+        if (sortCriteria != null) {
+            switch (sortCriteria) {
                 case "title":
-                    bugs.sort(Comparator.comparing(Bug::getTitle));
+                    bugs.sort(Comparator.comparing(bug->bug.getTitle()));
                     break;
                 case "priority":
                     bugs.sort(Comparator.comparing(Bug::getPriority));
@@ -66,17 +68,17 @@ public class ListBugsCommand extends BaseCommand {
         return formatBugs(bugs);
     }
 
-    private boolean isStatus(String param){
+    private boolean isStatus(String param) {
         try {
             Status.valueOf(param.toUpperCase());
             return true;
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return false;
         }
     }
 
-    private boolean isSortCriteria(String param){
-        if (param == null){
+    private boolean isSortCriteria(String param) {
+        if (param == null) {
             return false;
         }
         return param.equalsIgnoreCase("title")
@@ -84,14 +86,17 @@ public class ListBugsCommand extends BaseCommand {
                 || param.equalsIgnoreCase("severity");
     }
 
-    private String formatBugs(List<Bug> bugs){
+    private String formatBugs(List<Bug> bugs) {
         StringBuilder result = new StringBuilder();
-        for (Bug bug : bugs){
+        for (Bug bug : bugs) {
             result.append("Bug ID: ").append(bug.getId())
                     .append(", Title: ").append(bug.getTitle())
                     .append(", Status: ").append(bug.getStatus())
-                    .append(", Assignee: ").append(bug.getAssignee() != null ? bug.getAssignee().getName() : "Unassigned")
-                    .append("\n");
+                    .append(", Assignee: ").append(bug.getAssignee() != null ? bug.getAssignee().getName() : "Unassigned");
+            for (EventLog eventLog : bug.getLogs()) {
+                result.append(eventLog);
+            }
+            result.append("\n");
         }
         return result.toString();
     }

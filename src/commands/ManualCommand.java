@@ -39,7 +39,7 @@ public class ManualCommand extends BaseCommand {
             case CREATENEWFEEDBACKINBOARD:
                 return "CREATENEWFEEDBACKINBOARD {Title 10-100 characters} {Description 10-500} {Rating: Integer} {Board: Existing_Board_Name}";
             case CREATENEWBUGINBOARD:
-                return "CREATENEWBUGINBOARD {Title 10-100 characters} {Description 10-500} {Priority: High,Medium,Low} {Severity:Critical,Major,Minor} {Assignee: Existing_Person_Name} {Board: Existing_Board_Name}  ";
+                return "CREATENEWBUGINBOARD {Title 10-100 characters} {Description 10-500} {Priority: High,Medium,Low} {Severity:Critical,Major,Minor} {Assignee: Existing_Person_Name} {Board: Existing_Board_Name} {Steps_To_Reproduce: Strings terminate with 'exit'}  ";
             case CREATENEWSTORYINBOARD:
                 return "CREATENEWSTORYINBOARD {Title 10-100 characters} {Description 10-500} {Priority: High,Medium,Low} {Size:Large,Medium,Small} {Assignee: Existing_Person_Name} {Board: Existing_Board_Name}";
             case ADDCOMMENTTOTASK:
