@@ -4,6 +4,7 @@ import commands.BaseCommand;
 import core.contracts.TaskRepository;
 import models.tasks.Contracts.Bug;
 import models.tasks.Contracts.EventLog;
+import models.tasks.Contracts.Task;
 import models.tasks.enums.Status;
 
 import java.util.Comparator;
@@ -52,7 +53,7 @@ public class ListBugsCommand extends BaseCommand {
         if (sortCriteria != null) {
             switch (sortCriteria) {
                 case "title":
-                    bugs.sort(Comparator.comparing(bug->bug.getTitle()));
+                    bugs.sort(Comparator.comparing(Bug::getTitle));
                     break;
                 case "priority":
                     bugs.sort(Comparator.comparing(Bug::getPriority));

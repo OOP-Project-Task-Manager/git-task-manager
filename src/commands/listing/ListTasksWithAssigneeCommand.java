@@ -17,9 +17,7 @@ public class ListTasksWithAssigneeCommand extends BaseCommand {
 
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 3;
 
-    /* We need to be able to filter for both things so we should have three arguments
-       and then if we don't want to filter we type "no" for an argument at the specific position:
-       LISTTASKSWITHASSIGNEE {No} {Active} {Sort} */
+
 
     @Override
     public String executeCommand(List<String> parameters) {
@@ -45,6 +43,7 @@ public class ListTasksWithAssigneeCommand extends BaseCommand {
                 .filter(task -> "no".equalsIgnoreCase(assignee) || (task.getAssignee().getName().equalsIgnoreCase(assignee)))
                 .filter(task -> "no".equalsIgnoreCase(status) || task.getStatus().toString().equalsIgnoreCase(status))
                 .collect(Collectors.toList());
+
     }
 
     private List<Assignable> sortTasksByTitle(List<Assignable> tasks) {
@@ -57,9 +56,7 @@ public class ListTasksWithAssigneeCommand extends BaseCommand {
         return param != null && param.equalsIgnoreCase("sort");
     }
 
-    /*private boolean isFilterCriteria(String param) {
-        return param != null && !"no".equalsIgnoreCase(param);
-    }*/
+
 
     private List<Assignable> mergeAssignableLists() {
         List<Assignable> bugsAndStories = new ArrayList<>();
