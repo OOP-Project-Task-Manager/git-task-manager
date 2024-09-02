@@ -30,12 +30,4 @@ Supports three types of tasks:
     ```sh
     git clone https://github.com/username/repository.git
     ```
-2. Build the project:
-    ```sh
-    mvn clean install
-    ```
-3. Run the console application:
-    ```sh
-    java -jar target/task-management-console-app.jar
-    ```
-4. Follow the prompts to manage teams, boards, and tasks.
+2. Follow the prompts to manage teams, boards, and tasks.
